@@ -1,0 +1,55 @@
+package com.giggle.prototype
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_signup_2.*
+
+class SignUpActivity2 : AppCompatActivity() {
+
+    var auth : FirebaseAuth? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_signup_2)
+
+        auth = FirebaseAuth.getInstance()
+
+        signup_button.setOnClickListener {
+            if(email_edittext.text.toString().isEmpty() || password_edittext1.text.toString()
+                    .isEmpty() || password_edittext2.text.toString().isEmpty() || nickname_edittext.text.toString()
+                    .isEmpty()
+            ){
+                Toast.makeText(this, "모두 채워주십시요.", Toast.LENGTH_SHORT).show()
+            } else if(password_edittext1.text.toString().length<8){
+                Toast.makeText(this, "비밀번호의 최소길이는 8글자입니다.", Toast.LENGTH_SHORT).show()
+            } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email_edittext.text.toString()).matches()){
+                Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
+            }else{
+                if(password_edittext1.text.toString()==password_edittext2.text.toString()){
+                    auth?.createUserWithEmailAndPassword(email_edittext.text.toString(),password_edittext1.text.toString())?.addOnCompleteListener(this) { task ->
+                        if(task.isSuccessful) {
+                            Toast.makeText(this, "생성완료.", Toast.LENGTH_SHORT).show()
+                            var user = auth?.currentUser
+                            val nextIntent = Intent(this, LoginActivity::class.java)
+                            startActivity(nextIntent)
+                        }else{
+                            Toast.makeText(this, "생성실패.", Toast.LENGTH_SHORT).show()
+                            email_edittext.text = null
+                            password_edittext1.text = null
+                            password_edittext2.text = null
+                            nickname_edittext.text = null
+                            email.requestFocus()
+                        }
+                    }
+                } else{
+                    Toast.makeText(this, "비밀번호가 서로 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                    password_edittext1.text = null
+                    password_edittext2.text = null
+                }
+            }
+
+        }
+    }
+}

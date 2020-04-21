@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="685dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="46dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:gravity="center"
+            android:text="회원가입"
+            android:textColor="#070707"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="닉네임"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/nickname_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="내용을 입력해주세요."
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="이메일"
+            android:textColor="#090909"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/email_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="내용을 입력해주세요."
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/password1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="비밀번호"
+            android:textColor="#0B0A0A"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/password_edittext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="내용을 입력해주세요. (8글자 이상)"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="비밀번호 확인"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/password_edittext2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="내용을 입력해주세요. (8글자 이상)"
+            android:inputType="textPassword"
+            android:textColor="#050505" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="제출"
+            android:textColor="#070707"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
