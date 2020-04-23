@@ -35,7 +35,7 @@ class SignUpActivity2 : AppCompatActivity() {
                             val nextIntent = Intent(this, LoginActivity::class.java)
                             startActivity(nextIntent)
                         }else{
-                            Toast.makeText(this, "생성실패.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "이미 등록된 회원입니다.", Toast.LENGTH_SHORT).show()
                             email_edittext.text = null
                             password_edittext1.text = null
                             password_edittext2.text = null

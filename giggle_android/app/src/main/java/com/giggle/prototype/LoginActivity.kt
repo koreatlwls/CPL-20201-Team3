@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-
     var auth : FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        //로그인
         login.setOnClickListener {
             if(email.text.toString().isEmpty() || password.text.toString().isEmpty()){
                 Toast.makeText(this,"email 혹은 password를 반드시 입력하세요.",Toast.LENGTH_SHORT).show()
@@ -30,14 +30,15 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+        //회원가입
         signup.setOnClickListener {
             val nextIntent = Intent(this, SignUpActivity1::class.java)
             startActivity(nextIntent)
         }
-        password_reset.setOnClickListener { reset_password() }
-
-    }
-    fun reset_password() {
-
+        //비밀번호 재설정
+        resetpassword.setOnClickListener {
+            val nextIntent = Intent(this, ResetActivity::class.java)
+            startActivity(nextIntent)
+        }
     }
 }
