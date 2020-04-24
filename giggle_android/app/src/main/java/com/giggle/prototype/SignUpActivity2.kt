@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signup_2.*
 
@@ -32,8 +33,15 @@ class SignUpActivity2 : AppCompatActivity() {
                         if(task.isSuccessful) {
                             Toast.makeText(this, "생성완료.", Toast.LENGTH_SHORT).show()
                             var user = auth?.currentUser
-                            val nextIntent = Intent(this, LoginActivity::class.java)
-                            startActivity(nextIntent)
+                            user?.sendEmailVerification()?.addOnCompleteListener(OnCompleteListener { task ->
+                                if(task.isSuccessful){
+                                    Toast.makeText(this, "인증 메일을 보냈습니다. 이메일을 확인해주세요.", Toast.LENGTH_LONG).show()
+                                    val nextIntent = Intent(this, LoginActivity::class.java)
+                                    startActivity(nextIntent)
+                                }else{
+                                    Toast.makeText(this, "실패하였습니다.", Toast.LENGTH_LONG).show()
+                                }
+                            })
                         }else{
                             Toast.makeText(this, "이미 등록된 회원입니다.", Toast.LENGTH_SHORT).show()
                             email_edittext.text = null

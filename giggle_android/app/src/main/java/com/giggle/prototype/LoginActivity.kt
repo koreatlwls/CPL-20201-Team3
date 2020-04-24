@@ -19,11 +19,16 @@ class LoginActivity : AppCompatActivity() {
         login.setOnClickListener {
             if(email.text.toString().isEmpty() || password.text.toString().isEmpty()){
                 Toast.makeText(this,"email 혹은 password를 반드시 입력하세요.",Toast.LENGTH_SHORT).show()
-            }else{
+            } else{
                 auth?.signInWithEmailAndPassword(email.text.toString(),password.text.toString())?.addOnCompleteListener(this) { task ->
                     if(task.isSuccessful){
-                        val nextIntent = Intent(this, SignInActivity::class.java)
-                        startActivity(nextIntent)
+                        var useremailveri =auth?.currentUser?.isEmailVerified
+                        if(useremailveri == true){
+                            val nextIntent = Intent(this, SignInActivity::class.java)
+                            startActivity(nextIntent)
+                        }else {
+                            Toast.makeText(this, "이메일 인증을 완료해주세요", Toast.LENGTH_SHORT).show()
+                        }
                     }else{
                         Toast.makeText(this, "email 혹은 password를 확인 하십시요.", Toast.LENGTH_SHORT).show()
                     }
