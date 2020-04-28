@@ -61,6 +61,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
+                    android:background="@drawable/btn_blue"
+                    android:textColor="#ffffff"
                     android:text="로그인" />
 
                 <LinearLayout
@@ -75,6 +77,9 @@
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/btn_darkblue"
+                        android:textColor="#ffffff"
                         android:text="회원가입" />
 
                     <Button
@@ -82,6 +87,9 @@
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btn_darkblue"
+                        android:textColor="#ffffff"
                         android:text="패스워드 재설정" />
 
                 </LinearLayout>
