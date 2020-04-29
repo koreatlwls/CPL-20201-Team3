@@ -11,8 +11,9 @@
 		B85A6447245284B900981143 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A6446245284B900981143 /* MyPageViewController.swift */; };
 		B85A6469245288BD00981143 /* ShowAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A6468245288BD00981143 /* ShowAdViewController.swift */; };
 		B85A646B245288C700981143 /* AddAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A646A245288C700981143 /* AddAdViewController.swift */; };
-		B85A64722452B2A100981143 /* MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A64712452B2A100981143 /* MapContainerViewController.swift */; };
+		B85A64722452B2A100981143 /* CLV_MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A64712452B2A100981143 /* CLV_MapContainerViewController.swift */; };
 		B871879F2453AEC40022B983 /* CallImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871879E2453AEC40022B983 /* CallImageViewController.swift */; };
+		B87562C92459BE740050AFD7 /* AAV_MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87562C82459BE740050AFD7 /* AAV_MapContainerViewController.swift */; };
 		B88C24622450751B00B32D5D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C24582450751A00B32D5D /* MainViewController.swift */; };
 		B88C24632450751B00B32D5D /* SignUpView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C24592450751A00B32D5D /* SignUpView1Controller.swift */; };
 		B88C24642450751B00B32D5D /* SignUpView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */; };
@@ -27,6 +28,7 @@
 		B896F82024506A86002F3090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B896F81F24506A86002F3090 /* Assets.xcassets */; };
 		B896F82324506A86002F3090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B896F82124506A86002F3090 /* LaunchScreen.storyboard */; };
 		B896F82B24506AAF002F3090 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B896F82A24506AAF002F3090 /* GoogleService-Info.plist */; };
+		B8A042962459797800305A68 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A042952459797800305A68 /* CurrentLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +37,9 @@
 		B85A6446245284B900981143 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B85A6468245288BD00981143 /* ShowAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAdViewController.swift; sourceTree = "<group>"; };
 		B85A646A245288C700981143 /* AddAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdViewController.swift; sourceTree = "<group>"; };
-		B85A64712452B2A100981143 /* MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerViewController.swift; sourceTree = "<group>"; };
+		B85A64712452B2A100981143 /* CLV_MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLV_MapContainerViewController.swift; sourceTree = "<group>"; };
 		B871879E2453AEC40022B983 /* CallImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallImageViewController.swift; sourceTree = "<group>"; };
+		B87562C82459BE740050AFD7 /* AAV_MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAV_MapContainerViewController.swift; sourceTree = "<group>"; };
 		B88C24582450751A00B32D5D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B88C24592450751A00B32D5D /* SignUpView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView1Controller.swift; sourceTree = "<group>"; };
 		B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView2Controller.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		B896F82224506A86002F3090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B896F82424506A86002F3090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B896F82A24506AAF002F3090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B8A042952459797800305A68 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
 		D3F9983A1C087502B8803492 /* Pods_prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,7 +134,9 @@
 				B85A646A245288C700981143 /* AddAdViewController.swift */,
 				B871879E2453AEC40022B983 /* CallImageViewController.swift */,
 				B88C245B2450751A00B32D5D /* LoginViewController.swift */,
-				B85A64712452B2A100981143 /* MapContainerViewController.swift */,
+				B85A64712452B2A100981143 /* CLV_MapContainerViewController.swift */,
+				B8A042952459797800305A68 /* CurrentLocationViewController.swift */,
+				B87562C82459BE740050AFD7 /* AAV_MapContainerViewController.swift */,
 				B88C24582450751A00B32D5D /* MainViewController.swift */,
 				B85A6446245284B900981143 /* MyPageViewController.swift */,
 				B88C245C2450751A00B32D5D /* ResetPasswordViewController.swift */,
@@ -288,8 +294,10 @@
 				B871879F2453AEC40022B983 /* CallImageViewController.swift in Sources */,
 				B88C24642450751B00B32D5D /* SignUpView2Controller.swift in Sources */,
 				B85A646B245288C700981143 /* AddAdViewController.swift in Sources */,
-				B85A64722452B2A100981143 /* MapContainerViewController.swift in Sources */,
+				B85A64722452B2A100981143 /* CLV_MapContainerViewController.swift in Sources */,
 				B88C24662450751B00B32D5D /* ResetPasswordViewController.swift in Sources */,
+				B8A042962459797800305A68 /* CurrentLocationViewController.swift in Sources */,
+				B87562C92459BE740050AFD7 /* AAV_MapContainerViewController.swift in Sources */,
 				B896F81724506A85002F3090 /* AppDelegate.swift in Sources */,
 				B896F81924506A85002F3090 /* SceneDelegate.swift in Sources */,
 				B88C24622450751B00B32D5D /* MainViewController.swift in Sources */,

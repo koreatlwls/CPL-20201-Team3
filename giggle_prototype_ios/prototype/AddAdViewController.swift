@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class AddAdViewController: UIViewController {
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var inputTextField: UITextField!
+    
+    @IBAction func locationSearch(_ sender: UIButton) {
+        let vc = AAV_MapContainerViewController(nibName: "AAV_MapContainerViewController", bundle: nil)
+        vc.searchLocation(address: inputTextField.text ?? "")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true

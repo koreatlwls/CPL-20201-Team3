@@ -502,7 +502,6 @@
         <!--Navigation Controller-->
         <scene sceneID="kyc-yw-iNQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b0f-qi-bzL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rXe-Jw-Ha0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kdf-zL-sOO">
@@ -514,6 +513,7 @@
                         <segue destination="hs7-aO-4Y1" kind="relationship" relationship="rootViewController" id="Crt-og-HRi"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b0f-qi-bzL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2862" y="-534"/>
         </scene>
@@ -708,7 +708,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="syC-6d-BbH">
-                                <rect key="frame" x="57" y="120" width="300" height="432"/>
+                                <rect key="frame" x="57" y="120" width="300" height="474"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-BX-esy">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
@@ -755,7 +755,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CzI-YQ-APl">
-                                        <rect key="frame" x="0.0" y="100" width="300" height="332"/>
+                                        <rect key="frame" x="0.0" y="100" width="300" height="374"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HA-cx-u0Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="24"/>
@@ -763,16 +763,45 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcG-hD-UdJ">
-                                                <rect key="frame" x="0.0" y="32" width="300" height="300"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="R6V-jm-19r"/>
-                                                    <constraint firstAttribute="width" constant="300" id="npI-Wm-6Dg"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="z8o-cX-z7c" kind="embed" id="n7k-cP-iTM"/>
-                                                </connections>
-                                            </containerView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bv3-r5-pLr">
+                                                <rect key="frame" x="0.0" y="32" width="300" height="342"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vNF-Xv-1B6">
+                                                        <rect key="frame" x="16" y="0.0" width="268" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ZP-Vd-YPf">
+                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="200" id="uUP-Qt-LhN"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDi-5M-f5q">
+                                                                <rect key="frame" x="208" y="2" width="60" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="mUh-IT-ZWE"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Search"/>
+                                                                <connections>
+                                                                    <action selector="locationSearch:" destination="eHQ-Z5-tdc" eventType="touchUpInside" id="8UY-9L-CGR"/>
+                                                                    <action selector="locationSearch:" destination="EZU-Aw-Kqv" eventType="touchUpInside" id="lUq-D5-XgN"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcG-hD-UdJ">
+                                                        <rect key="frame" x="0.0" y="42" width="300" height="300"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="300" id="R6V-jm-19r"/>
+                                                            <constraint firstAttribute="width" constant="300" id="npI-Wm-6Dg"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <segue destination="z8o-cX-z7c" kind="embed" id="HVJ-5b-b6v"/>
+                                                        </connections>
+                                                    </containerView>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -789,6 +818,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="광고 등록" id="Cse-iZ-o78"/>
                     <navigationItem key="navigationItem" title="광고 등록" id="ZkP-Wj-9qw"/>
+                    <connections>
+                        <outlet property="inputTextField" destination="2ZP-Vd-YPf" id="5rH-dE-SS7"/>
+                        <outlet property="searchButton" destination="YDi-5M-f5q" id="mW8-Vn-Cgh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jl-GJ-CkM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -814,7 +847,7 @@
         <!--Map Container View Controller-->
         <scene sceneID="rVL-Fy-RUo">
             <objects>
-                <viewController id="z8o-cX-z7c" customClass="MapContainerViewController" customModule="prototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="z8o-cX-z7c" customClass="AAV_MapContainerViewController" customModule="prototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gUW-Nt-2Bg">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -824,34 +857,69 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9u-XP-fh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6148" y="-534"/>
+            <point key="canvasLocation" x="6147.826086956522" y="-534.375"/>
         </scene>
         <!--현재 위치-->
         <scene sceneID="RZZ-oh-Ywa">
             <objects>
-                <viewController id="eHQ-Z5-tdc" sceneMemberID="viewController">
+                <viewController id="eHQ-Z5-tdc" customClass="CurrentLocationViewController" customModule="prototype" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XvC-u0-Vfb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-PK-Hpb">
-                                <rect key="frame" x="0.0" y="44" width="414" height="671"/>
-                                <connections>
-                                    <segue destination="tU1-yg-UP7" kind="embed" id="qeN-M4-6oe"/>
-                                </connections>
-                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bCU-d0-ltV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DaC-nB-IZj">
+                                        <rect key="frame" x="73" y="0.0" width="268" height="45"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hj9-nB-7sf">
+                                                <rect key="frame" x="0.0" y="5.5" width="200" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="fdy-lU-67N"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsM-lH-3uU">
+                                                <rect key="frame" x="208" y="7.5" width="60" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="0Tl-ff-TBd"/>
+                                                </constraints>
+                                                <state key="normal" title="Search"/>
+                                                <connections>
+                                                    <action selector="locationSearch:" destination="eHQ-Z5-tdc" eventType="touchUpInside" id="bvS-CY-xY2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-PK-Hpb">
+                                        <rect key="frame" x="0.0" y="53" width="414" height="755"/>
+                                        <connections>
+                                            <segue destination="l1I-Er-4HJ" kind="embed" identifier="showMapSegue" id="CHB-pD-nCc"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DbI-PK-Hpb" firstAttribute="leading" secondItem="bCU-d0-ltV" secondAttribute="leadingMargin" id="NBX-wk-Ez9"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="DbI-PK-Hpb" firstAttribute="top" secondItem="WNJ-3f-jmp" secondAttribute="top" id="0tN-Jq-PJL"/>
-                            <constraint firstItem="DbI-PK-Hpb" firstAttribute="leading" secondItem="WNJ-3f-jmp" secondAttribute="leading" id="CAd-Zx-hX4"/>
-                            <constraint firstItem="WNJ-3f-jmp" firstAttribute="bottom" secondItem="DbI-PK-Hpb" secondAttribute="bottom" id="kFO-1R-xeT"/>
-                            <constraint firstItem="WNJ-3f-jmp" firstAttribute="trailing" secondItem="DbI-PK-Hpb" secondAttribute="trailing" id="zR9-xj-1zg"/>
+                            <constraint firstItem="bCU-d0-ltV" firstAttribute="leading" secondItem="WNJ-3f-jmp" secondAttribute="leading" id="DQa-pM-nJ1"/>
+                            <constraint firstItem="bCU-d0-ltV" firstAttribute="top" secondItem="WNJ-3f-jmp" secondAttribute="top" id="kP9-o8-DK7"/>
+                            <constraint firstItem="bCU-d0-ltV" firstAttribute="centerX" secondItem="XvC-u0-Vfb" secondAttribute="centerX" id="rGq-tw-luV"/>
+                            <constraint firstItem="bCU-d0-ltV" firstAttribute="centerY" secondItem="XvC-u0-Vfb" secondAttribute="centerY" id="uhV-9p-PfX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WNJ-3f-jmp"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="현재 위치" id="Pr3-nT-mPe"/>
                     <navigationItem key="navigationItem" id="NHp-p8-Pdc"/>
+                    <connections>
+                        <outlet property="inputTextField" destination="hj9-nB-7sf" id="FBb-LJ-e9g"/>
+                        <outlet property="searchButton" destination="WsM-lH-3uU" id="qJP-Gg-mFB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Yv-s0-n61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -878,21 +946,6 @@
             </objects>
             <point key="canvasLocation" x="4438" y="139"/>
         </scene>
-        <!--Map Container View Controller-->
-        <scene sceneID="eNj-ke-2gp">
-            <objects>
-                <viewController id="tU1-yg-UP7" customClass="MapContainerViewController" customModule="prototype" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BY0-4H-AKL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="671"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="uuF-R3-uv7"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dgt-0B-FyG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4438" y="-1146"/>
-        </scene>
         <!--Call Image View Controller-->
         <scene sceneID="vei-rL-SbQ">
             <objects>
@@ -912,6 +965,7 @@
                             <constraint firstItem="cXn-NE-WeD" firstAttribute="top" secondItem="hHa-rw-JC8" secondAttribute="topMargin" id="Wx5-Eu-KK0"/>
                             <constraint firstItem="cXn-NE-WeD" firstAttribute="centerX" secondItem="hHa-rw-JC8" secondAttribute="centerX" id="aQs-tM-Ia4"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="2iY-gM-dxI"/>
                     </view>
                     <navigationItem key="navigationItem" id="0h3-cf-DBw"/>
                     <connections>
@@ -921,6 +975,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5I-DP-knb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6231.884057971015" y="138.61607142857142"/>
+        </scene>
+        <!--Map Container View Controller-->
+        <scene sceneID="73e-gs-IAW">
+            <objects>
+                <viewController id="l1I-Er-4HJ" customClass="CLV_MapContainerViewController" customModule="prototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vJk-Yd-QXr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3He-th-nri"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybM-Lh-oz9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4438" y="-1173"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
