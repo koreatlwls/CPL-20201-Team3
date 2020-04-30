@@ -10,9 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
-
     <application
 
         android:allowBackup="true"
@@ -30,9 +27,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
-
-
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,18 +44,21 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".SignUpActivity1" />
-        <activity android:name=".SignUpActivity2" />
-        <activity android:name=".ResetActivity" />
-        <uses-library android:name="org.apache.http.legacy"
-            android:required="false"/>
+
+        <activity android:name=".MainActivity"
+            android:label="Map">
+        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBBAGMHO44HqgOqsmT46BrZPGvOjsPHNiw" />
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".SignUpActivity1" />
+        <activity android:name=".SignUpActivity2" />
+        <activity android:name=".ResetActivity" />
+
     </application>
 
 </manifest>
