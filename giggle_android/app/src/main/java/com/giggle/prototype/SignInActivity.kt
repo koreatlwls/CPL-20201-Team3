@@ -9,6 +9,7 @@ import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -23,7 +24,11 @@ import org.jetbrains.anko.yesButton
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.View
 import android.widget.EditText
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.internal.NavigationMenu
 import java.io.IOException
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
@@ -54,19 +59,20 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         //as를 통해 형변환.
         mapFragment.getMapAsync(this)
+
+
         //Async 비동기(타이밍을 맞추지 않고 처리)
         //전화기, 무전기.
+
         if(hasPermissions()) {
             locationInit()
         }
         else{
             ActivityCompat.requestPermissions(this,PERMISSIONS,1)
         }
-        btn_getlocation.setOnClickListener{onMyLocationButtonClick() }
-        btn_mypage.setOnClickListener{OnMypageButtonClick()}
-
 
     }
+
     fun searchLocation(view:View){
         val locationSearch:EditText=findViewById(R.id.search)
         lateinit var location:String
@@ -90,6 +96,7 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             Toast.makeText(applicationContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
         }
     }
+
 
  fun onMyLocationButtonClick(){
     when{
@@ -168,6 +175,18 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         super.onResume()
         addLocationListener()
 
+        transitonNavigationBottomView(bottom_nav, supportFragmentManager)
+    }
+    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManager: FragmentManager){
+        bottomView.setOnNavigationItemSelectedListener {
+            it.isChecked = true
+            when(it.itemId){
+                R.id.menu_myPage -> {
+                    fragmentManager.beginTransaction().replace(R.id.main_con, MyPage()).commit()
+                }
+            }
+            Log.d("test", "final") == 0
+        }
     }
     override fun onPause() {
         super.onPause()

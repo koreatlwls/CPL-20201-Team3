@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 
 class MyPageActivity : AppCompatActivity() {
 
