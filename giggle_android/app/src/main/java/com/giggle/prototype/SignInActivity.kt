@@ -2,6 +2,7 @@ package com.giggle.prototype
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -62,6 +63,7 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             ActivityCompat.requestPermissions(this,PERMISSIONS,1)
         }
         btn_getlocation.setOnClickListener{onMyLocationButtonClick() }
+        btn_mypage.setOnClickListener{OnMypageButtonClick()}
 
 
     }
@@ -88,7 +90,8 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             Toast.makeText(applicationContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
         }
     }
-fun onMyLocationButtonClick(){
+
+ fun onMyLocationButtonClick(){
     when{
         hasPermissions()->{
             fusedLocationProviderClient.requestLocationUpdates(
@@ -104,6 +107,10 @@ fun onMyLocationButtonClick(){
        }
     }
 }
+    fun OnMypageButtonClick(){
+        val nextIntent= Intent(this,MyPageActivity::class.java)
+        startActivity(nextIntent)
+    }
     private fun hasPermissions():Boolean{
         for(permission in PERMISSIONS){
             if(ActivityCompat.checkSelfPermission(this,permission)!=PackageManager.PERMISSION_GRANTED){

@@ -48,7 +48,7 @@
             android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btn_AD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -59,7 +59,7 @@
             android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_mypage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
