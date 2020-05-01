@@ -73,7 +73,7 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         location=locationSearch.text.toString()
         var addressList:List<Address>?=null
 
-        if(location==null||location==""){
+        if(location==""){
             Toast.makeText(applicationContext,"provide location",Toast.LENGTH_SHORT).show()
         }
         else{
@@ -85,8 +85,8 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             }
             val address=addressList!![0]
             val latLng=LatLng(address.latitude,address.longitude)
-            mMap!!.addMarker(MarkerOptions().position(latLng).title(location))
-            mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
+            mMap.addMarker(MarkerOptions().position(latLng).title(location))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
             Toast.makeText(applicationContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
         }
     }

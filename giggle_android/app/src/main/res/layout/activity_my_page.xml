@@ -4,14 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MyPageActivity">
 
     <ImageView
         android:id="@+id/img_user"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="88dp"
-        android:layout_marginBottom="591dp"
+        android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/btn_star"
+        android:layout_gravity="center"
         tools:layout_editor_absoluteX="189dp" />
+
+    <Button
+        android:id="@+id/btn_parttime"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="진행중인 아르바이트" />
+
+    <Button
+        android:id="@+id/btn_saved"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="아르바이트 내역" />
+
+    <Button
+        android:id="@+id/btn_saved2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="채용 내역" />
+
+    <Button
+        android:id="@+id/btn_info_modify"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="회원 정보 수정" />
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/btn_user"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="통합 회원 신청" />
+
 </LinearLayout>
