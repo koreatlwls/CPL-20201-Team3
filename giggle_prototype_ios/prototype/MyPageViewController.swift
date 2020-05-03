@@ -13,6 +13,10 @@ import MobileCoreServices
 
 class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var memberStateLabel: UILabel!
     @IBOutlet weak var requestIntegrationButton: UIButton!
     @IBOutlet weak var ongoingPartTimeJobButton: UIButton!
     @IBOutlet weak var listOfPartTimeJobButton: UIButton!
@@ -59,12 +63,25 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         print("MyPageViewController : view will appear")
+        
+        //Navigation Bar 숨기기
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
+        
+        //회원 상태에 따른 Label 업데이트
+        if LoginViewController.user.member_state == 0 {
+            memberStateLabel.text = "구직 회원"
+        }
+        else {
+            memberStateLabel.text = "통합 회원"
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameLabel.text = LoginViewController.user.name
+        emailLabel.text = LoginViewController.user.email
         
         profileImageView.layer.cornerRadius = 0.5*profileImageView.bounds.width
         if profileImageView.image == nil {
@@ -87,10 +104,25 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
+                CurrentLocationViewController.childView.removeFromParent()
+                AddAdViewController.childView.removeFromParent()
+                self.performSegue(withIdentifier: identifier, sender: nil)
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
-            self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+        }
+        else if identifier == "MemberIntegrationSegue" {
+            if LoginViewController.user.member_state == 1 {
+                let alert = UIAlertController(title: "오류", message: "이미 통합 회원 입니다.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "확인", style: .default, handler: {
+                    (action) in
+                })
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
+                self.performSegue(withIdentifier: identifier, sender: nil)
+            }
         }
         else {
             self.performSegue(withIdentifier: identifier, sender: nil)

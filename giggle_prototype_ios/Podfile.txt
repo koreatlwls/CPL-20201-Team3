@@ -6,8 +6,22 @@ target 'prototype' do
   use_frameworks!
 
   # Pods for prototype
+
+  # Firestore
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+
+  # Google Analytics
   pod 'Firebase/Analytics'
+
+  # Google Authentification
   pod 'Firebase/Auth'
+
+  # Google Maps
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+
+
+
 end

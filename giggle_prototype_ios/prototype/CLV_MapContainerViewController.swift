@@ -41,14 +41,19 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        print("CLV_MapContainerViewController : view will appear")
+        
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("view did load")
+        print("CLV_MapContainerViewController : view did load")
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -57,12 +62,11 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("did Change Authorizations")
+        print("CLV_MapContainerViewController : did Change Authorizations")
         if CLLocationManager.locationServicesEnabled() {
-            print("location Services Enabled")
+            print("CLV_MapContainerViewController : location Services Enabled")
             locationManager.startUpdatingLocation()
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -70,7 +74,7 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations called")
+        print("CLV_MapContainerViewController : didUpdateLocations called")
         let coor = locationManager.location?.coordinate
         if coor != nil {
             let latitude = coor!.latitude

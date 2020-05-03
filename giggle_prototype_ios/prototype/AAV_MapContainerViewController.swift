@@ -20,6 +20,7 @@ class AAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     let locationManager = CLLocationManager()
     let geocoder = GMSGeocoder()
     let address: String = ""
+    var coordinate: CLLocationCoordinate2D!
     //let test_address = "1 Infinite Loop, CA, USA"
     
     func searchLocation(address: String) {
@@ -32,17 +33,21 @@ class AAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
             if (placemarks?.count)! > 0 {
                 let placemark = placemarks?[0]
                 let location = placemark?.location
-                let coordinate = location?.coordinate
+                self.coordinate = location?.coordinate
                 
-                let camera = GMSCameraPosition(latitude: coordinate!.latitude, longitude: coordinate!.longitude, zoom: 18)
+                let camera = GMSCameraPosition(latitude: self.coordinate!.latitude, longitude: self.coordinate!.longitude, zoom: 18)
                 AAV_MapContainerViewController.mapView.camera = camera
             }
         })
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
+        
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidLoad() {
@@ -62,7 +67,6 @@ class AAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
             print("location Services Enabled")
             locationManager.startUpdatingLocation()
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
