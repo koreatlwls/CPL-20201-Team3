@@ -34,7 +34,6 @@ import com.google.firebase.auth.FirebaseAuth
 class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
 
     private lateinit var editText:EditText
-
     private lateinit var mMap: GoogleMap
     //mMap은 앱에서 볼 지도를 가리킴.
     //지도 조작을 위한 객체임.
@@ -52,7 +51,7 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        editText=findViewById(R.id.search)
+        editText = findViewById(R.id.search)
 
 
         val mapFragment = supportFragmentManager
@@ -64,14 +63,16 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         //Async 비동기(타이밍을 맞추지 않고 처리)
         //전화기, 무전기.
 
-        if(hasPermissions()) {
+        if (hasPermissions()) {
             locationInit()
+        } else {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, 1)
         }
-        else{
-            ActivityCompat.requestPermissions(this,PERMISSIONS,1)
-        }
+        btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
+        btn_MyPage.setOnClickListener{OnMypageButtonClick()}
 
     }
+
 
     fun searchLocation(view:View){
         val locationSearch:EditText=findViewById(R.id.search)
@@ -98,7 +99,7 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
     }
 
 
- fun onMyLocationButtonClick(){
+ fun OnMyLocationButtonClick(){
     when{
         hasPermissions()->{
             fusedLocationProviderClient.requestLocationUpdates(
@@ -174,20 +175,8 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
     override fun onResume() {//잠깐 쉴 때
         super.onResume()
         addLocationListener()
+    }
 
-        transitonNavigationBottomView(bottom_nav, supportFragmentManager)
-    }
-    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManager: FragmentManager){
-        bottomView.setOnNavigationItemSelectedListener {
-            it.isChecked = true
-            when(it.itemId){
-                R.id.menu_myPage -> {
-                    fragmentManager.beginTransaction().replace(R.id.main_con, MyPage()).commit()
-                }
-            }
-            Log.d("test", "final") == 0
-        }
-    }
     override fun onPause() {
         super.onPause()
         removeLocationListener()
