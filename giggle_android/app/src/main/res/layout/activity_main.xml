@@ -43,15 +43,15 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         tools:context=".MainActivity" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        map:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         map:itemIconTint="@color/colorGreen"
         map:itemTextColor="#ffffff"
-        map:menu="@menu/bottom_nav"
-        />
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:menu="@menu/bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
