@@ -9,86 +9,84 @@
     tools:context=".SignInActivity">
 
     <EditText
+        android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:hint="검색어를 입력하세요"
         android:inputType="text"
-        map:layout_constraintTop_toTopOf="parent"
         map:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/search"/>
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="searchLocation"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_toEndOf="@id/search"
-        map:layout_constraintLeft_toRightOf="@id/search"
-        map:layout_constraintTop_toTopOf="parent"
+        android:layout_toRightOf="@id/search"
+        android:onClick="searchLocation"
         android:text="Search"
-        android:layout_toRightOf="@id/search" />
+        map:layout_constraintBaseline_toBaselineOf="@+id/search"
+        map:layout_constraintLeft_toRightOf="@id/search"
+        map:layout_constraintStart_toEndOf="@+id/search" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_MyLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        map:layout_constraintRight_toRightOf="@+id/map"
-        map:layout_constraintBottom_toBottomOf="@+id/map"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
+        map:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintRight_toRightOf="@+id/map"
         map:srcCompat="@android:drawable/ic_menu_mylocation" />
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        map:layout_constraintBottom_toTopOf="@+id/menu_layout"
-        map:layout_constraintTop_toBottomOf="@+id/search"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintLeft_toLeftOf="parent"
         map:layout_constraintRight_toRightOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/button"
         map:layout_constraintVertical_weight="9"
         tools:context=".MainActivity" />
-<<<<<<< HEAD
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         map:itemIconTint="@color/colorGreen"
         map:itemTextColor="#ffffff"
         map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
         map:menu="@menu/bottom_nav" />
-=======
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    map:layout_constraintBottom_toBottomOf="parent"
-    map:layout_constraintTop_toBottomOf="@+id/map"
-    map:layout_constraintVertical_weight="1"
-    android:id="@+id/menu_layout"
-    android:orientation="horizontal"
-    android:weightSum="2"
-    >
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:id="@+id/btn_addAD"
-        android:textColor="#ffffff"
-        android:text="광고 등록"
-        android:textSize="25dp"
-        android:layout_weight="1" />
-    <Button
-        android:id="@+id/btn_MyPage"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:textColor="#ffffff"
-        android:textSize="25dp"
-        android:text="마이 페이지"
-        android:layout_weight="1"/>
-</LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        map:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.0"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="1.0">
 
+    </FrameLayout>
 
->>>>>>> df6d754cedb144728b964047a30bfdd3343f9696
 </androidx.constraintlayout.widget.ConstraintLayout>
 

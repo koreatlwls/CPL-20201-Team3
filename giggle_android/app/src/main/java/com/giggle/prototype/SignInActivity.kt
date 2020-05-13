@@ -68,8 +68,10 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, 1)
         }
-        btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
-        btn_MyPage.setOnClickListener{OnMypageButtonClick()}
+
+        // FIXME
+        // btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
+        // btn_MyPage.setOnClickListener{OnMypageButtonClick()}
 
     }
 
