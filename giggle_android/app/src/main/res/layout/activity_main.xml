@@ -12,7 +12,6 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#CF7171"
         map:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.0"
@@ -63,11 +62,11 @@
         map:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <fragment
-        android:visibility="gone"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintLeft_toLeftOf="parent"

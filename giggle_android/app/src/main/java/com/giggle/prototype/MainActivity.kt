@@ -3,9 +3,6 @@ package com.giggle.prototype
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -15,56 +12,16 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
-
-    private fun loadFragment(fragment: Fragment) {
-        // load fragment
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(MypageFragment())
-
-        val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_current_loc -> {
-                    // current_loc
-                    // Toast.makeText(this, "currentLoc", Toast.LENGTH_LONG).show()
-                    val currentLocFragment = currentLocFragment.newInstance()
-                    loadFragment(currentLocFragment)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.menu_addAD -> {
-                    // addAD
-                    // Toast.makeText(this, "addAD", Toast.LENGTH_LONG).show()
-                    val addADFragment = addADFragment.newInstance()
-                    loadFragment(addADFragment)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.menu_myPage -> {
-                    // myPage
-                    // Toast.makeText(this, "myPage", Toast.LENGTH_LONG).show()
-                    val mypageFragment = MypageFragment.newInstance()
-                    loadFragment(mypageFragment)
-                    return@setOnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        // val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        // mapFragment.getMapAsync(this)
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     /**
