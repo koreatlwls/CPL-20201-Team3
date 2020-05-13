@@ -8,6 +8,20 @@
     android:weightSum="10"
     tools:context=".SignInActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#CF7171"
+        map:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.0"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="1.0">
+
+    </FrameLayout>
+
     <EditText
         android:id="@+id/search"
         android:layout_width="wrap_content"
@@ -49,6 +63,7 @@
         map:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <fragment
+        android:visibility="gone"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
@@ -73,20 +88,6 @@
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:menu="@menu/bottom_nav" />
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        map:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintHorizontal_bias="0.0"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="1.0">
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -14,16 +16,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 
-
-class MainActivity : AppCompatActivity(), OnMapReadyCallback, BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     private fun loadFragment(fragment: Fragment) {
         // load fragment
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
+        transaction.replace(R.id.fragment_container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
@@ -31,41 +31,40 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, BottomNavigationVi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /**
-         * add eventlistener to bottom_nav
-         */
-        val bottomNavigationView = findViewById<View>(R.id.bottom_nav) as BottomNavigationView
-        bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
-        bottom_nav.setOnNavigationItemSelectedListener {
+        loadFragment(MypageFragment())
+
+        val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
+        bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_current_loc -> {
                     // current_loc
+                    // Toast.makeText(this, "currentLoc", Toast.LENGTH_LONG).show()
+                    val currentLocFragment = currentLocFragment.newInstance()
+                    loadFragment(currentLocFragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_addAD -> {
                     // addAD
+                    // Toast.makeText(this, "addAD", Toast.LENGTH_LONG).show()
+                    val addADFragment = addADFragment.newInstance()
+                    loadFragment(addADFragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_myPage -> {
-//                    loadFragment()
-                    val mypageFragment = MypageFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mypageFragment).commit()
+                    // myPage
+                    // Toast.makeText(this, "myPage", Toast.LENGTH_LONG).show()
+                    val mypageFragment = MypageFragment.newInstance()
+                    loadFragment(mypageFragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
             }
             false
         }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-    }
-
-    /**
-     * BottomNavigationView trigger here
-     */
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        return true
+        // val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        // mapFragment.getMapAsync(this)
     }
 
     /**
