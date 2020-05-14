@@ -24,6 +24,7 @@ import org.jetbrains.anko.yesButton
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.View
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.internal.NavigationMenu
@@ -47,9 +48,50 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
     val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var lntlng:LatLng
+
+
+    private fun loadFragment(fragment: Fragment) {
+        // load fragment
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit()
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
+        when (it.itemId) {
+            R.id.menu_current_loc -> {
+                // current_loc
+                // Toast.makeText(this, "currentLoc", Toast.LENGTH_LONG).show()
+                val currentLocFragment = CurrentLocFragment.newInstance()
+                loadFragment(currentLocFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_addAD -> {
+                // addAD
+                // Toast.makeText(this, "addAD", Toast.LENGTH_LONG).show()
+                val addADFragment = AddADFragment.newInstance()
+                loadFragment(addADFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_myPage -> {
+                // myPage
+                // Toast.makeText(this, "myPage", Toast.LENGTH_LONG).show()
+                val mypageFragment = MypageFragment.newInstance()
+                loadFragment(mypageFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val mypageFragment = MypageFragment.newInstance()
+        loadFragment(mypageFragment)
+
+        val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         editText = findViewById(R.id.search)
 
@@ -68,8 +110,10 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, 1)
         }
-        btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
-        btn_MyPage.setOnClickListener{OnMypageButtonClick()}
+
+        // FIXME
+        // btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
+        // btn_MyPage.setOnClickListener{OnMypageButtonClick()}
 
     }
 
