@@ -32,7 +32,7 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".LoginActivity">
+        <activity android:name=".AddJobAdActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,6 +75,7 @@
         <activity android:name=".SignUpActivity2" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".MyPageActivity" />
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>

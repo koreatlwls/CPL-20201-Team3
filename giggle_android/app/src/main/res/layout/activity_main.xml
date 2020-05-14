@@ -45,7 +45,7 @@
         map:layout_constraintRight_toRightOf="parent"
         map:layout_constraintVertical_weight="9"
         tools:context=".MainActivity" />
-<<<<<<< HEAD
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
