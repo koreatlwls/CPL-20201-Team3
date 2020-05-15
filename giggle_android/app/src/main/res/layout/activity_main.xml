@@ -16,7 +16,7 @@
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.0"
         map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintTop_toBottomOf="@id/search"
         map:layout_constraintVertical_bias="1.0">
 
     </FrameLayout>
@@ -42,12 +42,12 @@
         android:layout_marginLeft="16dp"
         android:layout_toEndOf="@id/search"
         android:layout_toRightOf="@id/search"
-        android:onClick="searchLocation"
         android:text="Search"
         map:layout_constraintBaseline_toBaselineOf="@+id/search"
         map:layout_constraintLeft_toRightOf="@id/search"
         map:layout_constraintStart_toEndOf="@+id/search" />
 
+<<<<<<< HEAD
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_MyLocation"
         android:layout_width="wrap_content"
@@ -78,6 +78,8 @@
 
 =======
 >>>>>>> f02f53c9bc39b0df4d207e07881949a3171e3582
+=======
+>>>>>>> b6bcbe9863a324664ff9bc3ada50031e277c1b00
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

@@ -45,7 +45,7 @@ class SignUpView2Controller: UIViewController, UIScrollViewDelegate {
                     self.present(alert, animated: true, completion: nil)
                 }
                 else {
-                    print(error)
+                    print(error!)
                     self.showToast(message: "account already exists")
                 }
             }

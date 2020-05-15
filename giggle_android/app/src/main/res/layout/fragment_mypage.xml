@@ -2,20 +2,167 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DC7777"
-    tools:context=".MypageFragment">
+    android:orientation="vertical"
+    tools:context=".MyPageActivity">
+
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="128dp"
+        android:layout_height="129dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_account" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/text_parttime"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="아르바이트 신청"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/text_saved_parttime"
+        app:layout_constraintTop_toBottomOf="@id/btn_parttime" />
+
+    <ImageButton
+        android:id="@+id/btn_parttime"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/btn_blue"
+        app:layout_constraintRight_toLeftOf="@id/btn_saved_parttime"
+        app:layout_constraintTop_toBottomOf="@id/img_user" />
+
+    <TextView
+        android:id="@+id/text_saved_parttime"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="아르바이트 내역"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/text_parttime"
+        app:layout_constraintRight_toLeftOf="@id/text_saved_AD"
+        app:layout_constraintTop_toBottomOf="@id/btn_parttime" />
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toRightOf="@id/btn_parttime"
+        app:layout_constraintTop_toTopOf="@id/btn_parttime"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintRight_toLeftOf="@id/btn_saved_AD"
+        android:background="@drawable/btn_blue"
+        android:id="@+id/btn_saved_parttime"/>
+
+    <TextView
+        android:id="@+id/text_saved_AD"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="채용 내역"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/text_saved_parttime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_parttime" />
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toRightOf="@id/btn_saved_parttime"
+        app:layout_constraintTop_toTopOf="@id/btn_saved_parttime"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/btn_blue"
+        android:src="@android:drawable/btn_star"
+        android:id="@+id/btn_saved_AD"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_modify"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/btn_blue"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintLeft_toRightOf="@id/btn_ing"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_request" />
+
+    <ImageButton
+        android:id="@+id/btn_request"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/btn_blue"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_saved_parttime"
+        app:layout_constraintTop_toBottomOf="@id/btn_parttime" />
+
+    <TextView
+        android:id="@+id/text_request"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="통합회원 신청"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/text_saved_parttime"
+        app:layout_constraintTop_toBottomOf="@id/btn_request" />
+
+    <TextView
+        android:id="@+id/text_modify"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="회원정보 수정"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintLeft_toRightOf="@id/text_saved_parttime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_modify" />
+
+    <TextView
+        android:id="@+id/text_ing"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="진행중인 알바"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintLeft_toRightOf="@id/text_parttime"
+        app:layout_constraintRight_toLeftOf="@id/text_saved_AD"
+        app:layout_constraintTop_toBottomOf="@id/btn_ing" />
+
+    <ImageButton
+        android:id="@+id/btn_ing"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/btn_blue"
+        android:src="@android:drawable/btn_star"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintLeft_toRightOf="@id/btn_parttime"
+        app:layout_constraintRight_toLeftOf="@id/btn_saved_AD"
+        app:layout_constraintTop_toTopOf="@id/btn_request" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="name"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@+id/img_user"
+        app:layout_constraintLeft_toRightOf="@id/img_user"
+        tools:layout_editor_absoluteX="168dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="email"
+        app:layout_constraintLeft_toRightOf="@id/img_user"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@+id/img_user"
+        tools:layout_editor_absoluteX="169dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

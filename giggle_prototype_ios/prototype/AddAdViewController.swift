@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MobileCoreServices
 import CoreLocation
+import Firebase
 
 class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     static var childView: UIViewController!
@@ -17,7 +18,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     //상점 정보 관련
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var fieldTextField: UITextField!
+    @IBOutlet weak var typeTextField: UITextField!
     
     //ImageView 관련
     let empty_image = UIImage(named: "empty_profile_image.jpg")
@@ -25,12 +26,14 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var captureImage: UIImage!
     var flagImageSave = false
     var currentImageViewIndex = 0
+    var selectedImageViewIndex = 0
     @IBOutlet var shopImageCollection: [UIImageView]!
+    var imageURLs = [URL]()
     
     //위치 관련
     @IBOutlet weak var inputTextField: UITextField!
-    var latitude: CLLocationDegrees!
-    var longitude: CLLocationDegrees!
+    var latitude: Double!
+    var longitude: Double!
     @IBOutlet weak var rangeTextField: UITextField!
     
     //모집 분야&인원 필드 추가 관련
@@ -74,7 +77,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             warning.message = "상점 이름 항목을 입력해주세요."
             errorDetected = 1
         }
-        else if isTextFieldEmpty(fieldTextField) {
+        else if isTextFieldEmpty(typeTextField) {
             warning.message = "상점 업종 항목을 입력해주세요."
             errorDetected = 1
         }
@@ -169,6 +172,98 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let checkAlert = UIAlertController(title: "광고 등록", message: "이상의 내용으로 광고를 등록하시겠습니까?", preferredStyle: .alert)
             let yesAction = UIAlertAction(title: "등록", style: .default) {
                 (action) in
+                //저장 데이터 가공
+                let dateformatter = DateFormatter()
+                dateformatter.dateStyle = .short
+                dateformatter.timeStyle = .short
+                var minAge: Int!
+                var maxAge: Int!
+                if self.ageSegmentedControl.selectedSegmentIndex == 1 {
+                    minAge = -1
+                    maxAge = -1
+                }
+                else {
+                    minAge = Int(self.minAgeTextField.text!)!
+                    maxAge = Int(self.maxAgeTextField.text!)!
+                }
+                let range = Int(self.rangeTextField.text!)!
+                //DB 저장 작업
+                let db = Firestore.firestore()
+                var ref: DocumentReference? = nil
+                ref = db.collection("AdData").addDocument(data: [
+                    "Uploader": LoginViewController.user.email!,
+                    "state": 0,
+                    "name": self.nameTextField.text!,
+                    "type": self.typeTextField.text!,
+                    "latitude": self.latitude!,
+                    "longitude": self.longitude!,
+                    "range": range,
+                    "startDate": dateformatter.string(from: self.startDatePicker.date),
+                    "endDate": dateformatter.string(from: self.endDatePicker.date),
+                    "wage": Int(self.wageTextField.text!)!,
+                    "workInfo": self.workInfoTextView.text!,
+                    "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
+                    "preferMinAge": minAge!,
+                    "preferMaxAge": maxAge!,
+                    "preferInfo": self.preferenceTextView.text!,
+                    "fieldCount": self.currentInputFieldCount,
+                    "imageCount": self.currentImageViewIndex
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
+                }
+                for index in 0..<Int(self.currentInputFieldCount) {
+                    db.collection("AdData").document(ref!.documentID).updateData([
+                        "field"+String(index+1): (self.parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField).text!,
+                        "numberOfPeople"+String(index+1): Int((self.parentInputFieldStackView.subviews[index+1].subviews[1].subviews[1] as! UITextField).text!)!
+                    ])
+                }
+                let storage = Storage.storage()
+                let storageRef = storage.reference()
+                for index in 0..<self.currentImageViewIndex {
+                    let imageRef = storageRef.child("Ad/" + ref!.documentID + "/shop_image_" + String(index+1) + ".jpg")
+                    let metadata = StorageMetadata()
+                    metadata.contentType = "image/jpeg"
+                    
+                    let uploadTask = imageRef.putFile(from: self.imageURLs[index], metadata: metadata)
+                    uploadTask.observe(.failure) { snapshot in
+                        if let error = snapshot.error as NSError? {
+                            switch (StorageErrorCode(rawValue: error.code)!) {
+                            case .objectNotFound:
+                                print("object Not Found")
+                                break
+                            case .unauthorized:
+                                print("unauthorized")
+                                break
+                            case .cancelled:
+                                print("cancelled")
+                                break
+                            case .unknown:
+                                print("unknown")
+                                break
+                            default:
+                                print("default: retry to upload")
+                                break
+                            }
+                        }
+                    }
+                }
+                let content = UNMutableNotificationContent()
+                content.title = "구인 광고 알림"
+                content.subtitle = "근처의 가게에서 구인 광고 알림이 도착했습니다."
+                content.body = ""
+                content.badge = 1
+                
+                self.initForm()
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: "NotifyNewAd", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
             let noAction = UIAlertAction(title: "취소", style: .default) {
                 (action) in
@@ -220,7 +315,21 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    @objc func touchImageView() {
+    @objc func touchImageView_0() {
+        touchImageView_actual(index: 0)
+    }
+    
+    @objc func touchImageView_1() {
+        touchImageView_actual(index: 1)
+    }
+    
+    @objc func touchImageView_2() {
+        touchImageView_actual(index: 2)
+    }
+    
+    func touchImageView_actual(index: Int) {
+        selectedImageViewIndex = index
+        print(selectedImageViewIndex)
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "사진 보기", style: .default, handler: { (action) in
             self.performSegue(withIdentifier: "CallImageViewSegue", sender: nil)
@@ -239,34 +348,10 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         present(alert, animated: true)
     }
     
-    @IBAction func initForm(_ sender: UIButton) {
+    @IBAction func checkInitForm(_ sender: UIButton) {
         let check = UIAlertController(title: "입력 내용 초기화", message: "입력한 내용을 초기화하겠습니까?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "초기화", style: .default, handler: { (action) in
-            self.nameTextField.text = ""
-            self.fieldTextField.text = ""
-            for index in 0..<self.currentImageViewIndex {
-                self.shopImageCollection[index].image = self.empty_image
-            }
-            self.latitude = nil
-            self.longitude = nil
-            self.rangeTextField.text = ""
-            (self.parentInputFieldStackView.subviews[1].subviews[0].subviews[1] as! UITextField).text = ""
-            (self.parentInputFieldStackView.subviews[1].subviews[1].subviews[1] as! UITextField).text = ""
-            for _ in 2...Int(self.currentInputFieldCount) {
-                self.parentInputFieldStackView.subviews[2].removeFromSuperview()
-            }
-            print("end for")
-            self.currentInputFieldCount = 1.0
-            self.startDatePicker.date = Date()
-            self.endDatePicker.date = Date()
-            self.wageTextField.text = ""
-            self.workInfoTextView.text = ""
-            self.genderSegmentedControl.selectedSegmentIndex = 0
-            self.minAgeTextField.text = ""
-            self.maxAgeTextField.text = ""
-            self.ageSegmentedControl.selectedSegmentIndex = 0
-            self.setAgeInput(self.ageSegmentedControl)
-            self.preferenceTextView.text = ""
+            self.initForm()
             self.showToast(message: "모든 입력 항목을 초기화했습니다.")
         })
         let noAction = UIAlertAction(title: "취소", style: .default, handler: { (action) in })
@@ -275,6 +360,35 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.present(check, animated: true, completion: nil)
     }
     
+    private func initForm()
+    {
+        self.nameTextField.text = ""
+        self.typeTextField.text = ""
+        for index in 0..<self.currentImageViewIndex {
+            self.shopImageCollection[index].image = self.empty_image
+        }
+        self.latitude = nil
+        self.longitude = nil
+        self.rangeTextField.text = ""
+        (self.parentInputFieldStackView.subviews[1].subviews[0].subviews[1] as! UITextField).text = ""
+        (self.parentInputFieldStackView.subviews[1].subviews[1].subviews[1] as! UITextField).text = ""
+        if self.currentInputFieldCount >= 2 {
+            for _ in 2...Int(self.currentInputFieldCount) {
+                self.parentInputFieldStackView.subviews[2].removeFromSuperview()
+            }
+        }
+        self.currentInputFieldCount = 1.0
+        self.startDatePicker.date = Date()
+        self.endDatePicker.date = Date()
+        self.wageTextField.text = ""
+        self.workInfoTextView.text = ""
+        self.genderSegmentedControl.selectedSegmentIndex = 0
+        self.minAgeTextField.text = ""
+        self.maxAgeTextField.text = ""
+        self.ageSegmentedControl.selectedSegmentIndex = 0
+        self.setAgeInput(self.ageSegmentedControl)
+        self.preferenceTextView.text = ""
+    }
     
     private func isTextFieldEmpty(_ textField: UITextField) -> Bool
     {
@@ -293,18 +407,22 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if (currentImageViewIndex < 3)
-        {
-            let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! NSString
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! NSString
+        
+        if mediaType.isEqual(to: kUTTypeImage as NSString as String) {
+            captureImage = (info[.originalImage] as! UIImage)
             
-            if mediaType.isEqual(to: kUTTypeImage as NSString as String) {
-                captureImage = (info[UIImagePickerController.InfoKey.originalImage] as! UIImage)
-                
+            let imageURL = info[.imageURL] as? URL
+            if (currentImageViewIndex < 3) {
+                imageURLs.append(imageURL!)
                 shopImageCollection[currentImageViewIndex].image = captureImage
                 currentImageViewIndex += 1
+            } else {
+                shopImageCollection[selectedImageViewIndex].image = captureImage
+                imageURLs[selectedImageViewIndex] = imageURL!
             }
-            self.dismiss(animated: true, completion: nil)
         }
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -319,11 +437,15 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         //ImageView Gesture 등록
         for index in 0..<shopImageCollection.count {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchImageView))
             shopImageCollection[index].image = empty_image
             shopImageCollection[index].isUserInteractionEnabled = true
-            shopImageCollection[index].addGestureRecognizer(tapGesture)
         }
+        let tapGesture_0 = UITapGestureRecognizer(target: self, action: #selector(touchImageView_0))
+        shopImageCollection[0].addGestureRecognizer(tapGesture_0)
+        let tapGesture_1 = UITapGestureRecognizer(target: self, action: #selector(touchImageView_1))
+        shopImageCollection[1].addGestureRecognizer(tapGesture_1)
+        let tapGesture_2 = UITapGestureRecognizer(target: self, action: #selector(touchImageView_2))
+        shopImageCollection[2].addGestureRecognizer(tapGesture_2)
         
         //Stepper 최소값 설정
         inputFieldStepper.minimumValue = minimumInputFieldCount

@@ -32,22 +32,14 @@ import java.io.IOException
 import com.google.firebase.auth.FirebaseAuth
 
 
-class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
+class SignInActivity : AppCompatActivity() {
 
     private lateinit var editText:EditText
-    private lateinit var mMap: GoogleMap
+
     //mMap은 앱에서 볼 지도를 가리킴.
     //지도 조작을 위한 객체임.
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    //위치값 얻어오기 객체
-    lateinit var locationRequest: LocationRequest
-    //위치 요청
-    lateinit var locationCallback: MyLocationCallback
-    //내부 클래스, 위치 변경 후 지도에 표시
 
-    val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
-    val REQUEST_ACCESS_FINE_LOCATION = 1000
-    private lateinit var lntlng:LatLng
+
 
 
     private fun loadFragment(fragment: Fragment) {
@@ -87,15 +79,13 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mypageFragment = MypageFragment.newInstance()
-        loadFragment(mypageFragment)
+        val currentLocFragment = CurrentLocFragment.newInstance()
+        loadFragment(currentLocFragment)
 
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        editText = findViewById(R.id.search)
-
-
+/*
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         //as를 통해 형변환.
@@ -114,10 +104,10 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         // FIXME
         // btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
         // btn_MyPage.setOnClickListener{OnMypageButtonClick()}
-
+*/
     }
 
-
+/*
     fun searchLocation(view:View){
         val locationSearch:EditText=findViewById(R.id.search)
         lateinit var location:String
@@ -159,10 +149,8 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
        }
     }
 }
-    fun OnMypageButtonClick(){
-        val nextIntent= Intent(this,MyPageActivity::class.java)
-        startActivity(nextIntent)
-    }
+ */
+    /*
     private fun hasPermissions():Boolean{
         for(permission in PERMISSIONS){
             if(ActivityCompat.checkSelfPermission(this,permission)!=PackageManager.PERMISSION_GRANTED){
@@ -215,17 +203,15 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
-
+*/
     override fun onResume() {//잠깐 쉴 때
         super.onResume()
-        addLocationListener()
     }
 
     override fun onPause() {
         super.onPause()
-        removeLocationListener()
     }
-
+/*
     fun removeLocationListener() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }//어플이 종료되면 지도 요청 해제
@@ -267,5 +253,6 @@ class SignInActivity : AppCompatActivity(),OnMapReadyCallback {
             }
         }
     }
+ */
 }
 

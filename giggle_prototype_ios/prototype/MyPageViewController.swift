@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
-import Firebase
 import MobileCoreServices
+import SDWebImage
+import Firebase
 
 class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -56,6 +57,36 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         if mediaType.isEqual(to: kUTTypeImage as NSString as String) {
             captureImage = (info[UIImagePickerController.InfoKey.originalImage] as! UIImage)
             
+            let imageURL = info[.imageURL] as? URL
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let imageRef = storageRef.child("Profile/" + LoginViewController.user.docID + "/profile_image.jpg")
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            let uploadTask = imageRef.putFile(from: imageURL!, metadata: metadata)
+            uploadTask.observe(.failure) { snapshot in
+                if let error = snapshot.error as NSError? {
+                    switch (StorageErrorCode(rawValue: error.code)!) {
+                    case .objectNotFound:
+                        print("object Not Found")
+                        break
+                    case .unauthorized:
+                        print("unauthorized")
+                        break
+                    case .cancelled:
+                        print("cancelled")
+                        break
+                    case .unknown:
+                        print("unknown")
+                        break
+                    default:
+                        print("default: retry to upload")
+                        break
+                    }
+                }
+            }
+            
             profileImageView.image = captureImage
         }
         self.dismiss(animated: true, completion: nil)
@@ -70,7 +101,7 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         //회원 상태에 따른 Label 업데이트
         if LoginViewController.user.member_state == 0 {
-            memberStateLabel.text = "구직 회원"
+            memberStateLabel.text = "구인 회원"
         }
         else {
             memberStateLabel.text = "통합 회원"
@@ -83,10 +114,20 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         nameLabel.text = LoginViewController.user.name
         emailLabel.text = LoginViewController.user.email
         
+        //프로필 이미지 불러오기
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imageRef = storageRef.child("Profile/" + LoginViewController.user.docID + "/profile_image.jpg")
+        imageRef.downloadURL(completion: {(url, error) in
+            if error != nil {
+                self.profileImageView.image = UIImage(named: "empty_profile_image.jpg")
+            } else {
+                self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_profile_image.jpg"))
+                
+            }
+        })
+        
         profileImageView.layer.cornerRadius = 0.5*profileImageView.bounds.width
-        if profileImageView.image == nil {
-            profileImageView.image = UIImage(named: "empty_profile_image.jpg")
-        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchImageView))
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(tapGesture)
@@ -104,8 +145,12 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                CurrentLocationViewController.childView.removeFromParent()
-                AddAdViewController.childView.removeFromParent()
+                if CurrentLocationViewController.childView != nil {
+                    CurrentLocationViewController.childView.removeFromParent()
+                }
+                if AddAdViewController.childView != nil {
+                    AddAdViewController.childView.removeFromParent()
+                }
                 self.performSegue(withIdentifier: identifier, sender: nil)
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)

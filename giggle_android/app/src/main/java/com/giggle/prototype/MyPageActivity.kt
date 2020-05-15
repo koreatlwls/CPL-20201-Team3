@@ -23,4 +23,5 @@ class MyPageActivity : AppCompatActivity() {
         // TODO: here
 
     }
+
 }
