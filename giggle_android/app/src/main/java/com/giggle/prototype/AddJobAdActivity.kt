@@ -18,39 +18,44 @@ class AddJobAdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_jobad)
 
+        // 현재 날짜 받기
         var c = Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
         var month = c.get(Calendar.MONTH)
         var day = c.get(Calendar.DAY_OF_MONTH)
 
+        // 현재 날짜로 초기화
         datePicker.init(year,month,day, DatePicker.OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->  })
         starttp.setIs24HourView(true)
         finishtp.setIs24HourView(true)
 
+        //초기화 버튼
         btReset.setOnClickListener({
             resetText()
         })
+
+        //등록 버튼
         btRegister.setOnClickListener() {
-            val shopname: String = edShopName.text.toString()
-            val shopposition: String = edPosition.text.toString()
-            val businessinfo: String = edBusinessInfo.text.toString()
-            val priorityreq: String = edPriorityReq.text.toString()
-            val hourlypay = parseInt(edHourlyPay.text.toString())
+            val shopname: String = edShopName.text.toString()//가게 이름
+            val shopposition: String = edPosition.text.toString()//가게 위치
+            val businessinfo: String = edBusinessInfo.text.toString()//업무 내용
+            val priorityreq: String = edPriorityReq.text.toString()//우대 요건
+            val hourlypay = parseInt(edHourlyPay.text.toString())//시급
             val age3:String = edAge1.text.toString()
             val age4:String = edAge2.text.toString()
-            val age1:Int
-            val age2:Int
+            val age1:Int//최소 나이
+            val age2:Int//최대 나이
             val year = datePicker.year
             val month = datePicker.month+1
             val day = datePicker.dayOfMonth
-            val date = year*10000 + month*100 + day
+            val date = year*10000 + month*100 + day//알바 날짜
             val stHour = starttp.hour
             val stMinute = starttp.minute
-            var stTime = ""
+            var stTime = ""//알바 시작 시간
             val fnHour = finishtp.hour
             val fnMinute = finishtp.minute
-            var fnTime = ""
-            var sex = ""
+            var fnTime = ""//알바 종료 시간
+            var sex = ""//성별
 
             if(age3.isEmpty()&&age4.isEmpty()) {
                 age1 = 0
@@ -68,6 +73,7 @@ class AddJobAdActivity : AppCompatActivity() {
                 age1 = parseInt(age3)
                 age2 = parseInt(age4)
             }
+
             if(shopname.isEmpty())
             Toast.makeText(this,"가게 이름을 입력해주세요.", Toast.LENGTH_LONG).show()
             if(shopposition.isEmpty())
@@ -106,6 +112,7 @@ class AddJobAdActivity : AppCompatActivity() {
                 sex = btWomen.text.toString()
             }
 
+            //DB에 저장
             jobAddb(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,date,stTime,fnTime,sex)
         }
     }
