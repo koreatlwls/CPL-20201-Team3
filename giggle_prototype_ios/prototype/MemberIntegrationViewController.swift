@@ -19,23 +19,14 @@ class MemberIntegrationViewController: UIViewController {
         let alert = UIAlertController(title: "통합 회원 전환", message: "통합 회원으로 전환하시겠습니까?", preferredStyle: .alert)
         let alert_yesAction = UIAlertAction(title: "전환", style: .default, handler: {
             (action) in
-            let db = Firestore.firestore()
-            db.collection("UserData").whereField("email", isEqualTo: LoginViewController.user.email!).getDocuments() {
-                (querySnapshot, err) in
-                if querySnapshot!.documents.count == 1 {
-                    let docID = querySnapshot!.documents[0].documentID
-                    LoginViewController.user.member_state = 1
-                    db.collection("UserData").document(docID).updateData([
-                        "member_state": 1
-                    ])
-                    let complete_alert = UIAlertController(title: "통합 회원 전환 완료", message: "통합 회원으로 전환이 완료되었습니다. 이제부터 구인 관련 기능을 이용하실 수 있습니다.", preferredStyle: .alert)
-                    let complete_okAction = UIAlertAction(title: "확인", style: .default, handler: {
+            LoginViewController.user.member_state = 1
+            LoginViewController.user.updateIntegerField(field: "member_state", value: LoginViewController.user.member_state)
+            let complete_alert = UIAlertController(title: "통합 회원 전환 완료", message: "통합 회원으로 전환이 완료되었습니다. 이제부터 구직 관련 기능을 이용하실 수 있습니다.", preferredStyle: .alert)
+            let complete_okAction = UIAlertAction(title: "확인", style: .default, handler: {
                         (action) in
                     })
-                    complete_alert.addAction(complete_okAction)
-                    self.present(complete_alert, animated: true, completion: nil)
-                }
-            }
+            complete_alert.addAction(complete_okAction)
+            self.present(complete_alert, animated: true, completion: nil)
         })
         let alert_noAction = UIAlertAction(title: "취소", style: .default, handler: {
             (action) in

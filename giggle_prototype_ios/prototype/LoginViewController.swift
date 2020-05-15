@@ -14,8 +14,6 @@ import GoogleMaps
 class LoginViewController: UIViewController {
     static var user: User!
     
-    let locationManager = CLLocationManager()
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -51,17 +49,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         signupButton.layer.cornerRadius = 6
         loginButton.layer.cornerRadius = 6
         resetPasswordButton.layer.cornerRadius = 6
+        
         //Location Authorization Check
         let status = CLLocationManager.authorizationStatus()
         
-        if status == CLAuthorizationStatus.notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-        }
-        else if status == CLAuthorizationStatus.denied || status == CLAuthorizationStatus.restricted {
+        if status == CLAuthorizationStatus.denied || status == CLAuthorizationStatus.restricted {
             let warning = UIAlertController(title: "위치 접근 허용이 '안 함'으로 설정되어있습니다.", message: "[설정 - 개인 정보 보호 - 위치 서비스 - Giggle]에서 '앱을 사용하는 동안' 또는 '항상'으로 설정해주세요.", preferredStyle: UIAlertController.Style.alert)
             let yesAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) {
                 (action) in exit(0)
@@ -93,7 +90,8 @@ class LoginViewController: UIViewController {
                                         //닉네임 중복 확인 필요 없을 시
                                         self.addDocumentToCollection(db: db, nickname: nickname_alert.textFields?[0].text ?? "", email: self.emailTextField.text ?? "")
                                         LoginViewController.user = User.init(name: nickname_alert.textFields?[0].text ?? "", email: self.emailTextField.text ?? "", member_state: 0)
-                                        let notify_alert = UIAlertController(title: "안내", message: "구인 활동을 하려면 마이 페이지에서 통합 회원 신청을 해주세요.", preferredStyle: .alert)
+                                        LoginViewController.user.docID = querySnapshot!.documents[0].documentID
+                                        let notify_alert = UIAlertController(title: "안내", message: "구직 활동을 하려면 마이 페이지에서 통합 회원 신청을 해주세요.", preferredStyle: .alert)
                                         let notify_okAction = UIAlertAction(title: "확인", style: .default, handler: { (action) in
                                             self.performSegue(withIdentifier: "loginSegue", sender: nil)
                                         })
@@ -124,6 +122,9 @@ class LoginViewController: UIViewController {
                                 let email = querySnapshot!.documents[0].data()["email"] as! String
                                 let member_state = querySnapshot!.documents[0].data()["member_state"] as! Int
                                 LoginViewController.user = User.init(name: name, email: email, member_state: member_state)
+                                LoginViewController.user.docID = querySnapshot!.documents[0].documentID
+                                LoginViewController.user.lat = querySnapshot!.documents[0].data()["lat"] as? CLLocationDegrees
+                                LoginViewController.user.lng = querySnapshot!.documents[0].data()["lng"] as? CLLocationDegrees
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }
                         }

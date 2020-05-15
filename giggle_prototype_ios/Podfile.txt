@@ -7,7 +7,7 @@ target 'prototype' do
 
   # Pods for prototype
 
-  # Firestore
+  # Google Firestore
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
@@ -22,6 +22,12 @@ target 'prototype' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
 
+  # Google Cloud Storage
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
+  pod 'SDWebImage'
 
+  # Google Cloud Messaging
+  pod 'Firebase/Messaging'
 
 end
