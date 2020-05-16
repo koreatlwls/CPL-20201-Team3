@@ -47,7 +47,6 @@
         map:layout_constraintLeft_toRightOf="@id/search"
         map:layout_constraintStart_toEndOf="@+id/search" />
 
-<<<<<<< HEAD
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_MyLocation"
         android:layout_width="wrap_content"
