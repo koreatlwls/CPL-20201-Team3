@@ -34,6 +34,37 @@ class MypageFragment : Fragment() {
 
         nameText.text = name
         emailText.text = email
+
+        btn_parttime.setOnClickListener {
+            // Toast.makeText(activity,"아르바이트 신청", Toast.LENGTH_LONG).show()
+
+        }
+
+        btn_saved_parttime.setOnClickListener {
+            // Toast.makeText(activity,"아르바이트 내역", Toast.LENGTH_LONG).show()
+
+        }
+
+        btn_saved_AD.setOnClickListener {
+            // Toast.makeText(activity,"채용 내역", Toast.LENGTH_LONG).show()
+
+        }
+
+        btn_request.setOnClickListener {
+            // Toast.makeText(activity,"통합회원 신청", Toast.LENGTH_LONG).show()
+
+        }
+
+        btn_ing.setOnClickListener {
+            // Toast.makeText(activity,"진행중인 알바", Toast.LENGTH_LONG).show()
+
+        }
+
+        btn_modify.setOnClickListener {
+            // Toast.makeText(activity,"회원정보 수정", Toast.LENGTH_LONG).show()
+
+        }
+
     }
 
     override fun onAttach(context: Context) {
