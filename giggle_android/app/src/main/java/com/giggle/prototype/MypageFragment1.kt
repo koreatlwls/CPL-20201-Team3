@@ -13,16 +13,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
-class MypageFragment : Fragment() {
+class MypageFragment1 : Fragment() {
     private val user = FirebaseAuth.getInstance().currentUser
     private val storage = FirebaseStorage.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_mypage, container, false)
+        return inflater.inflate(R.layout.fragment_mypage1, container, false)
     }
 
     companion object {
-        fun newInstance(): MypageFragment = MypageFragment()
+        fun newInstance(): MypageFragment1 = MypageFragment1()
     }
 
     // TODO: icon size on fragment_mypage.xml
@@ -53,7 +53,7 @@ class MypageFragment : Fragment() {
 
         // button listeners
         bt_change.setOnClickListener{
-            val nextIntent = Intent(activity, SignInActivity1::class.java)
+            val nextIntent = Intent(activity, SignInActivity::class.java)
             startActivity(nextIntent)
         }
     }

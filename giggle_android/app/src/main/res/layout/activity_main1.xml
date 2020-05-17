@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    tools:context=".SignInActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        map:layout_constraintBottom_toTopOf="@+id/bottom_nav1"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.0"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="1.0">
+
+    </FrameLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        map:itemIconTint="@color/colorGreen"
+        map:itemTextColor="#ffffff"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:menu="@menu/bottom_nav1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
