@@ -1,37 +1,35 @@
 package com.giggle.prototype
 
 import android.Manifest
-import android.content.Context
+import android.app.Activity
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.location.*
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_current_loc.*
+import java.io.IOException
 
 
 class CurrentLocFragment : Fragment(),OnMapReadyCallback{
-
     private lateinit var rootView:View
-    private lateinit var mContext:FragmentActivity
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var mContext:FragmentActivity
+
     //위치값 얻어오기 객체
     lateinit var locationRequest: LocationRequest
     //위치 요청
@@ -46,11 +44,21 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         mapView=rootView.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        mContext=FragmentActivity()
+        lntlng=LatLng(39.0, 39.0)
 
         return rootView
     }
 
+    override fun onAttach(activity: Activity) {
+        mContext = activity as FragmentActivity
+        super.onAttach(activity)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
+        btn_search.setOnClickListener{searchLocation()}
+        super.onViewCreated(view, savedInstanceState)
+    }
     fun CurrentLocFragment() {}
 
     companion object {
@@ -60,8 +68,15 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
 
     override fun onMapReady(googleMap: GoogleMap) {
         //지도가 준비되었다면 호출.MapsInitializer.initialize(mContext)
-        mMap = googleMap
 
+        mMap = googleMap
+        locationInit()
+        fun addLocationListener() {
+            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
+            //위치 권한을 요청해야 함.
+            // 액티비티가 잠깐 쉴 때,
+            // 자신의 위치를 확인하고, 갱신된 정보를 요청
+        }
         val sydney = LatLng(-34.0, 151.0) //위도 경도, 변수에 저장
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         //지도에 표시를 하고 제목을 추가.
@@ -72,6 +87,12 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
 
 
 
+    fun addLocationListener() {
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
+        //위치 권한을 요청해야 함.
+        // 액티비티가 잠깐 쉴 때,
+        // 자신의 위치를 확인하고, 갱신된 정보를 요청
+    }
     fun OnMyLocationButtonClick(){
         when{
             hasPermissions()->{
@@ -89,6 +110,33 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         }
     }
 
+    fun searchLocation(){
+
+        lateinit var location:String
+        location=search.text.toString()
+        var addressList:List<Address>?=null
+
+        if(location==""){
+            Toast.makeText(mContext,"provide location",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            val geoCoder= Geocoder(mContext)
+            try{
+                addressList=geoCoder.getFromLocationName(location,1)
+            }catch(e: IOException){
+                e.printStackTrace()
+            }
+            val address=addressList!![0]
+            val latLng=LatLng(address.latitude,address.longitude)
+            mMap.addMarker(MarkerOptions().position(latLng).title(location))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
+            Toast.makeText(mContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
+        }
+    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        MapsInitializer.initialize(mContext)
+    }
     private fun hasPermissions():Boolean{
         for(permission in PERMISSIONS){
             if(ActivityCompat.checkSelfPermission(mContext,permission)!= PackageManager.PERMISSION_GRANTED){
@@ -124,8 +172,9 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }//어플이 종료되면 지도 요청 해제
 
+
     fun locationInit() {
-        fusedLocationProviderClient = FusedLocationProviderClient(mContext)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext)
         //현재 사용자 위치를 저장.
         locationCallback = MyLocationCallback()
         //내부 클래스 조작용 객체 생성
@@ -147,7 +196,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         super.onStop()
         mapView.onStop()
     }
-
     override fun onResume() {
         super.onResume()
        mapView.onResume()
@@ -167,4 +215,5 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         mapView.onDestroy()
         super.onDestroy()
     }
+
 }
