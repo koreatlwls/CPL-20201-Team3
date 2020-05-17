@@ -15,9 +15,26 @@ class ModifyUserActivity : AppCompatActivity() {
 
         // Toast.makeText(this, "toast", Toast.LENGTH_LONG).show()
 
+        // get user's info
+        val name = user?.displayName
+        val email = user?.email
+        val photoUrl = user?.photoUrl
+
         // TODO: see docs/auth/web/manage-users, split into two parts, construct linearlayout
 
+        // initialize fields
+        NameText.setText(name)
+        EmailText.setText(name)
+        // PasswordText.setText("")
+
+
+
         ModifyUserOK.setOnClickListener {
+            // TODO: work on updateProfile, updateEmail, updatePassword
+
+
+            // if password is not empty, update password too
+
 
             // Toast.makeText(this, "회원정보 수정이 완료되었습니다.", Toast.LENGTH_LONG).show()
         }
