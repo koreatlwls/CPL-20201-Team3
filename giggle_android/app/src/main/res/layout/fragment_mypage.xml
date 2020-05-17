@@ -14,7 +14,8 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="28dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account"/>
 
     <TextView
         android:id="@+id/text_parttime"
@@ -173,6 +174,7 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@id/img_user"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

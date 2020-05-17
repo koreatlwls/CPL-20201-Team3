@@ -4,16 +4,20 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint.UNDERLINE_TEXT_FLAG
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -223,17 +227,39 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     override fun onViewCreated(view:View, savedInstanceState: Bundle?){
         super.onViewCreated(view,savedInstanceState)
         btn_MyLocation1.setOnClickListener{OnMyLocationButtonClick()}
-        //현재 날짜 받아오기
-        var c = Calendar.getInstance()
-        var year = c.get(Calendar.YEAR)
-        var month = c.get(Calendar.MONTH)
-        var day = c.get(Calendar.DAY_OF_MONTH)
+
+        //알바 시작 종료 numberpicker세팅
+        val hourArray :Array<String> = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24")
+        val minuteArray :Array<String> =arrayOf("00","05","10","15","20","25","30","35","40","45","50","55")
+        stDay.minValue=1
+        stDay.maxValue=31
+        stHour.minValue=1
+        stHour.maxValue=24
+        stHour.displayedValues = hourArray
+        stMinute.minValue=1
+        stMinute.maxValue=12
+        stMinute.displayedValues = minuteArray
+        fnDay.minValue=1
+        fnDay.maxValue=31
+        fnHour.minValue=1
+        fnHour.maxValue=24
+        fnHour.displayedValues = hourArray
+        fnMinute.minValue=1
+        fnMinute.maxValue=12
+        fnMinute.displayedValues = minuteArray
+
+        //오늘날짜로 초기화
+        val instance = Calendar.getInstance()
+        val day = Integer.parseInt(instance.get(Calendar.DAY_OF_MONTH).toString())
+        stDay.value = day+1
+        fnDay.value = day+1
 
         //인증
         auth = FirebaseAuth.getInstance()
 
         //firestorage
         storage = FirebaseStorage.getInstance()
+
         //사진을 클릭했을때
         add_photo.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
@@ -261,11 +287,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
         }
 
-        // 현재 날짜로 초기화
-        datePicker.init(year,month,day, DatePicker.OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->  })
-        starttp.setIs24HourView(true)
-        finishtp.setIs24HourView(true)
-
         //초기화 버튼
         btReset.setOnClickListener({
             resetText()
@@ -277,69 +298,45 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             val shopposition: String = edPosition.text.toString()//가게 위치
             val businessinfo: String = edBusinessInfo.text.toString()//업무 내용
             val priorityreq: String = edPriorityReq.text.toString()//우대 요건
-            val hourlypay = Integer.parseInt(edHourlyPay.text.toString())//시급
-            val age3:String = edAge1.text.toString()
-            val age4:String = edAge2.text.toString()
-            val age1:Int//최소 나이
-            val age2:Int//최대 나이
-            val year = datePicker.year
-            val month = datePicker.month+1
-            val day = datePicker.dayOfMonth
-            val date = year*10000 + month*100 + day//알바 날짜
-            val stHour = starttp.hour
-            val stMinute = starttp.minute
-            var stTime = ""//알바 시작 시간
-            val fnHour = finishtp.hour
-            val fnMinute = finishtp.minute
-            var fnTime = ""//알바 종료 시간
+            var hourlypay = 0 //시급
+            var age1:Int = 0 //최소 나이
+            var age2:Int = 0 //최대 나이
+            var numperson:Int = 0
             var sex = ""//성별
+            val stday = stDay.value //시작 날짜
+            val sthour = stHour.value//시작 시간
+            val stminute = stMinute.value*5//시작 분
+            val fnday = fnDay.value//종료 날짜
+            val fnhour = fnHour.value//종료 시간
+            val fnminute = fnMinute.value*5//종료 분
+            val st:String  = stday.toString() + "일" + sthour.toString() + "시" + stminute.toString() + "분"//알바시작
+            val fn:String  = fnday.toString() + "일" + fnhour.toString() + "시" + fnminute.toString() + "분"//알바종료
 
             //입력값 확인
-            if(age3.isEmpty()&&age4.isEmpty()) {
-                age1 = 0
-                age2 = 0
+            if(edPerson.text.isNotEmpty()){
+                numperson = Integer.parseInt(edPerson.text.toString())
             }
-            else if(age3.isEmpty()&&age4.isNotEmpty()){
-                age1 = 0
-                age2 = Integer.parseInt(age4)
+            if(edAge1.text.isNotEmpty()){
+                age1 = Integer.parseInt(edAge1.text.toString())
             }
-            else if(age4.isEmpty()&&age3.isNotEmpty()){
-                age1 = Integer.parseInt(age3)
-                age2 = 0
+            if(edAge2.text.isNotEmpty()){
+                age2 = Integer.parseInt(edAge2.text.toString())
             }
-            else {
-                age1 = Integer.parseInt(age3)
-                age2 = Integer.parseInt(age4)
+            if(edHourlyPay.text.isNotEmpty()){
+                hourlypay = Integer.parseInt(edHourlyPay.text.toString())
             }
-            if(shopname.isEmpty())
-                Toast.makeText(activity,"가게이름을 입력해주세요.", Toast.LENGTH_LONG).show()
-            if(shopposition.isEmpty())
-                Toast.makeText(activity,"가게위치를 입력해주세요.", Toast.LENGTH_LONG).show()
-            if(businessinfo.isEmpty())
-                Toast.makeText(activity,"업무내용을 입력해주세요.", Toast.LENGTH_LONG).show()
-            if(hourlypay<8590)
-                Toast.makeText(activity,"최저시급을 확인해주세요.", Toast.LENGTH_LONG).show()
-            if(stHour*60+stMinute>fnHour*60+fnMinute)
-                Toast.makeText(activity,"시작시간과 종료시간을 확인해주세요.", Toast.LENGTH_LONG).show()
+            if(shopname.isEmpty()||shopposition.isEmpty()||businessinfo.isEmpty()){
+                edShopName.setBackgroundResource(R.drawable.red_edittext)
+                edPosition.setBackgroundResource(R.drawable.red_edittext)
+                edBusinessInfo.setBackgroundResource(R.drawable.red_edittext)
+                Toast.makeText(mContext,"주요 항목들을 입력해주세요.", Toast.LENGTH_LONG).show()
+            }
+            if(hourlypay<8590){
+                edHourlyPay.setBackgroundResource(R.drawable.red_edittext)
+                Toast.makeText(mContext,"올해의 최저시급은 8590원 입니다.", Toast.LENGTH_LONG).show()
+            }
             if(age2!=0&&age1>age2)
-                Toast.makeText(activity,"최소나이와 최대나이를 확인해주세요.", Toast.LENGTH_LONG).show()
-            if(stHour<10 && stMinute<10)
-                stTime = "0$stHour:0$stMinute"
-            else if(stHour<10 && stMinute>=10)
-                stTime = "0$stHour:$stMinute"
-            else if(stHour>=10 && stMinute<10)
-                stTime = "$stHour:0$stMinute"
-            else
-                stTime = "$stHour:$stMinute"
-            if(fnHour<10 && fnMinute<10)
-                fnTime = "0$fnHour:0$fnMinute"
-            else if(fnHour<10 && fnMinute>=10)
-                fnTime = "0$fnHour:$fnMinute"
-            else if(fnHour>=10 && fnMinute<10)
-                fnTime = "$fnHour:0$fnMinute"
-            else
-                fnTime = "$fnHour:$fnMinute"
-
+                Toast.makeText(mContext,"최소나이와 최대나이를 확인해주세요.", Toast.LENGTH_LONG).show()
             if (btMan.isChecked){
                 sex = btMan.text.toString()
             }
@@ -347,9 +344,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 sex = btWomen.text.toString()
             }
 
-
             //DB에 저장
-            if(shopname.isNotEmpty()) {
+            if(shopname.isNotEmpty()&&shopposition.isNotEmpty()&&businessinfo.isNotEmpty()&&hourlypay>8590) {
                 jobAddb(
                     shopname,
                     shopposition,
@@ -358,10 +354,10 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                     hourlypay,
                     age1,
                     age2,
-                    date,
-                    stTime,
-                    fnTime,
-                    sex
+                    st,
+                    fn,
+                    sex,
+                    numperson
                 )
                 currentUpload() //사진 등록
             }
@@ -439,6 +435,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             }
         }
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     fun resetText(){
         edShopName.setText(null)
         edPosition.setText(null)
@@ -446,20 +443,16 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         edBusinessInfo.setText(null)
         btMan.setChecked(false)
         btWomen.setChecked(false)
-        edAge1.setText(null)
-        edAge2.setText(null)
         edPriorityReq.setText(null)
-        add_photo.setImageURI(null)
-        add_photo1.setImageURI(null)
-        add_photo2.setImageURI(null)
-        add_photo3.setImageURI(null)
-        add_photo4.setImageURI(null)
-        var c = Calendar.getInstance()
-        var year = c.get(Calendar.YEAR)
-        var month = c.get(Calendar.MONTH)
-        var day = c.get(Calendar.DAY_OF_MONTH)
-        datePicker.init(year,month,day, DatePicker.OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->  })
-
+        add_photo.setImageResource(android.R.drawable.ic_menu_crop)
+        add_photo1.setImageResource(android.R.drawable.ic_menu_crop)
+        add_photo2.setImageResource(android.R.drawable.ic_menu_crop)
+        add_photo3.setImageResource(android.R.drawable.ic_menu_crop)
+        add_photo4.setImageResource(android.R.drawable.ic_menu_crop)
+        val instance = Calendar.getInstance()
+        val day = Integer.parseInt(instance.get(Calendar.DAY_OF_MONTH).toString())
+        stDay.value = day+1
+        fnDay.value = day+1
     }
     @RequiresApi(Build.VERSION_CODES.M)
     fun jobAddb(
@@ -470,18 +463,17 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         hourlypay:Int,
         age1:Int,
         age2:Int,
-        date: Int,
-        stTime:String,
-        fnTime:String,
-        sex:String) {
+        st:String,
+        fn:String,
+        sex:String,
+        numperson:Int) {
         val db = FirebaseFirestore.getInstance()
-        val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,date,stTime,fnTime)
+        val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson)
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }
 
     companion object {
         fun newInstance(): AddADFragment = AddADFragment()
-
     }
 
 

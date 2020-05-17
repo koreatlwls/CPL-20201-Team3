@@ -9,11 +9,11 @@ public class JobAd {
     private Integer hourlypay;
     private Integer age1;
     private Integer age2;
-    private Integer date;
-    private String sttime;
-    private String fntime;
+    private String st;
+    private String fn;
+    private Integer numofperson;
 
-    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,Integer date,String sttime,String fntime){
+    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson){
         this.shopname = shopname;
         this.shopposition = shopposition;
         this.businessinfo = businessinfo;
@@ -22,9 +22,9 @@ public class JobAd {
         this.hourlypay = hourlypay;
         this.age1 = age1;
         this.age2 = age2;
-        this.date = date;
-        this.sttime = sttime;
-        this.fntime = fntime;
+        this.st = st;
+        this.fn = fn;
+        this.numofperson = numofperson;
     }
 
     public String getShopname(){
@@ -75,22 +75,22 @@ public class JobAd {
     public void setSex(){
         this.sex = sex;
     }
-    public Integer getDate(){
-        return this.date;
+    public String getSt(){
+        return this.st;
     }
-    public void setDate(){
-        this.date=date;
+    public void setSt(){
+        this.st= st;
     }
-    public String getstTime(){
-        return this.sttime;
+    public String getFn(){
+        return this.fn;
     }
-    public void setstTime(){
-        this.sttime=sttime;
+    public void setFn(){
+        this.fn= fn;
     }
-    public String getfnTime(){
-        return this.fntime;
+    public Integer getNumofperson(){
+        return this.numofperson;
     }
-    public void setfnTime(){
-        this.sttime=fntime;
+    public void setNumofperson(){
+        this.numofperson= numofperson;
     }
 }
