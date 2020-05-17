@@ -21,6 +21,8 @@ class MypageFragment : Fragment() {
         fun newInstance(): MypageFragment = MypageFragment()
     }
 
+    // TODO: icon size on fragment_mypage.xml
+
     override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
