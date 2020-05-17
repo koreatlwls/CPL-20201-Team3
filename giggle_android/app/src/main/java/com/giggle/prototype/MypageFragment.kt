@@ -1,14 +1,12 @@
 package com.giggle.prototype
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
@@ -62,7 +60,8 @@ class MypageFragment : Fragment() {
 
         btn_modify.setOnClickListener {
             // Toast.makeText(activity,"회원정보 수정", Toast.LENGTH_LONG).show()
-
+            val nextIntent = Intent(activity, ModifyUserBeforeActivity::class.java)
+            startActivity(nextIntent)
         }
 
     }
