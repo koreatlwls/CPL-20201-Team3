@@ -16,6 +16,7 @@
 		B871879F2453AEC40022B983 /* CallImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871879E2453AEC40022B983 /* CallImageViewController.swift */; };
 		B87519EE245D9D3800ABBC4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87519ED245D9D3800ABBC4D /* User.swift */; };
 		B87562C92459BE740050AFD7 /* AAV_MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87562C82459BE740050AFD7 /* AAV_MapContainerViewController.swift */; };
+		B8766805246E23280019FCD4 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8766804246E23280019FCD4 /* PushKit.framework */; };
 		B87A2FE1245EA73900FC7A37 /* MemberIntegrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A2FE0245EA73900FC7A37 /* MemberIntegrationViewController.swift */; };
 		B87A2FE3245EC75500FC7A37 /* Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A2FE2245EC75500FC7A37 /* Ad.swift */; };
 		B88C24622450751B00B32D5D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C24582450751A00B32D5D /* MainViewController.swift */; };
@@ -46,6 +47,8 @@
 		B871879E2453AEC40022B983 /* CallImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallImageViewController.swift; sourceTree = "<group>"; };
 		B87519ED245D9D3800ABBC4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B87562C82459BE740050AFD7 /* AAV_MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAV_MapContainerViewController.swift; sourceTree = "<group>"; };
+		B8766803246E16F10019FCD4 /* prototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = prototype.entitlements; sourceTree = "<group>"; };
+		B8766804246E23280019FCD4 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		B87A2FE0245EA73900FC7A37 /* MemberIntegrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberIntegrationViewController.swift; sourceTree = "<group>"; };
 		B87A2FE2245EC75500FC7A37 /* Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ad.swift; sourceTree = "<group>"; };
 		B88C24582450751A00B32D5D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F2B7865EC7948EC929B8A37 /* Pods_prototype.framework in Frameworks */,
+				B8766805246E23280019FCD4 /* PushKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +96,7 @@
 		B40D65A800C463C323B53DA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8766804246E23280019FCD4 /* PushKit.framework */,
 				D3F9983A1C087502B8803492 /* Pods_prototype.framework */,
 			);
 			name = Frameworks;
@@ -136,6 +141,7 @@
 		B896F81524506A85002F3090 /* prototype */ = {
 			isa = PBXGroup;
 			children = (
+				B8766803246E16F10019FCD4 /* prototype.entitlements */,
 				B88C245D2450751B00B32D5D /* resources */,
 				B896F81624506A85002F3090 /* AppDelegate.swift */,
 				B896F81824506A85002F3090 /* SceneDelegate.swift */,
@@ -463,6 +469,7 @@
 			baseConfigurationReference = AD0C57B28A07CA306B27C36C /* Pods-prototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = prototype/prototype.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6TZYQEGM5;
 				INFOPLIST_FILE = prototype/Info.plist;
@@ -482,6 +489,7 @@
 			baseConfigurationReference = 41C7B283ED82382174E2F05B /* Pods-prototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = prototype/prototype.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6TZYQEGM5;
 				INFOPLIST_FILE = prototype/Info.plist;

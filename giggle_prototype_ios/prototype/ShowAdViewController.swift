@@ -17,18 +17,15 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("ShowAdViewController : view did load")
         updateAds()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        print("ShowAdViewController : view will appear")
         navigationController?.isNavigationBarHidden = true
         navigationItem.hidesBackButton = true
-        
-        self.AdTableView.dataSource = self
-        self.AdTableView.delegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,16 +55,16 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
                 let startDateString = data["startDate"] as! String
                 let endDateString = data["endDate"] as! String
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateStyle = .short
-                dateFormatter.timeStyle = .short
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 let startDate = dateFormatter.date(from: startDateString)
                 let endDate = dateFormatter.date(from: endDateString)
-                
                 let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, start: startDate!, end: endDate!, wage: data["wage"] as! Int, workInfo: data["workInfo"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
                 
                 self.ads.append(ad)
                 print("updateAds : ", self.ads.count)
             }
         }
+        self.AdTableView.dataSource = self
+        self.AdTableView.delegate = self
     }
 }

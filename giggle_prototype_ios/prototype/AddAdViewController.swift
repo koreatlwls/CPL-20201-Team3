@@ -16,6 +16,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     static var childView: UIViewController!
     var errorDetected: Int!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     //상점 정보 관련
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var typeTextField: UITextField!
@@ -64,7 +66,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func setCurrentLocation(_ sender: UIButton) {
         latitude = AAV_MapContainerViewController.mapView.camera.target.latitude
         longitude = AAV_MapContainerViewController.mapView.camera.target.longitude
-        showToast(message: "지정한 위치로 설정되었습니다.")
+        CommonFuncs.showToast(message: "지정한 위치로 설정되었습니다.", view: self.view)
     }
     
     @IBAction func addAd(_ sender: UIButton) {
@@ -110,8 +112,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if errorDetected == 0 {
                 let dateformatter = DateFormatter()
-                dateformatter.dateStyle = .short
-                dateformatter.timeStyle = .short
+                dateformatter.dateFormat = "yyyy-MM-dd HH:mm"
                 
                 let curDate = Date()
                 let startDate = startDatePicker.date
@@ -174,8 +175,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 (action) in
                 //저장 데이터 가공
                 let dateformatter = DateFormatter()
-                dateformatter.dateStyle = .short
-                dateformatter.timeStyle = .short
+                dateformatter.dateFormat = "yyyy-MM-dd HH:mm"
                 var minAge: Int!
                 var maxAge: Int!
                 if self.ageSegmentedControl.selectedSegmentIndex == 1 {
@@ -251,19 +251,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
-                let content = UNMutableNotificationContent()
-                content.title = "구인 광고 알림"
-                content.subtitle = "근처의 가게에서 구인 광고 알림이 도착했습니다."
-                content.body = ""
-                content.badge = 1
-                
                 self.initForm()
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: "NotifyNewAd", content: content, trigger: trigger)
-                
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
             let noAction = UIAlertAction(title: "취소", style: .default) {
                 (action) in
@@ -285,10 +273,12 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if sender.value > currentInputFieldCount {
             do {
                 let newInputFieldStackView = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(NSKeyedArchiver.archivedData(withRootObject: inputFieldStackView!, requiringSecureCoding: false)) as! UIStackView
-                
-                parentInputFieldStackView.insertArrangedSubview(newInputFieldStackView, at: parentInputFieldStackView.subviews.count)
-                (parentInputFieldStackView.subviews[parentInputFieldStackView.subviews.count-1].subviews[0].subviews[1] as! UITextField).text = ""
-                (parentInputFieldStackView.subviews[parentInputFieldStackView.subviews.count-1].subviews[1].subviews[1] as! UITextField).text = ""
+                let index = parentInputFieldStackView.subviews.count
+                parentInputFieldStackView.insertArrangedSubview(newInputFieldStackView, at: index)
+                (parentInputFieldStackView.subviews[index].subviews[0].subviews[1] as! UITextField).text = ""
+                (parentInputFieldStackView.subviews[index].subviews[1].subviews[1] as! UITextField).text = ""
+                (parentInputFieldStackView.subviews[index].subviews[0].subviews[1] as! UITextField).delegate = self
+                (parentInputFieldStackView.subviews[index].subviews[1].subviews[1] as! UITextField).delegate = self
                 currentInputFieldCount = sender.value
             } catch {
                 print(error)
@@ -352,7 +342,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let check = UIAlertController(title: "입력 내용 초기화", message: "입력한 내용을 초기화하겠습니까?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "초기화", style: .default, handler: { (action) in
             self.initForm()
-            self.showToast(message: "모든 입력 항목을 초기화했습니다.")
+            CommonFuncs.showToast(message: "모든 입력 항목을 초기화했습니다.", view: self.view)
         })
         let noAction = UIAlertAction(title: "취소", style: .default, handler: { (action) in })
         check.addAction(yesAction)
@@ -388,6 +378,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.ageSegmentedControl.selectedSegmentIndex = 0
         self.setAgeInput(self.ageSegmentedControl)
         self.preferenceTextView.text = ""
+        self.inputTextField.text = ""
     }
     
     private func isTextFieldEmpty(_ textField: UITextField) -> Bool
@@ -453,31 +444,125 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         //TextView UI 설정
         workInfoTextView.layer.cornerRadius = 6
         workInfoTextView.layer.borderWidth = 1
-        workInfoTextView.layer.borderColor = UIColor.black.cgColor
+        workInfoTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         preferenceTextView.layer.cornerRadius = 6
         preferenceTextView.layer.borderWidth = 1
-        preferenceTextView.layer.borderColor = UIColor.black.cgColor
+        preferenceTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         // 버튼 UI 설정
         addButton.layer.cornerRadius = 6
         initButton.layer.cornerRadius = 6
         
+        //TextField Delegate 설정
+        nameTextField.delegate = self
+        typeTextField.delegate = self
+        (self.parentInputFieldStackView.subviews[1].subviews[0].subviews[1] as! UITextField).delegate = self
+        (self.parentInputFieldStackView.subviews[1].subviews[1].subviews[1] as! UITextField).delegate = self
+        wageTextField.delegate = self
+        minAgeTextField.delegate = self
+        maxAgeTextField.delegate = self
+        inputTextField.delegate = self
+        rangeTextField.delegate = self
+        
+        //TextView Delegate 설정
+        workInfoTextView.delegate = self
+        preferenceTextView.delegate = self
+        
+        addKeyboardNotification()
+        
+        //ScrollView Gesture 추가
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+        
         AddAdViewController.childView = self.children[0]
     }
     
-    func showToast(message: String) {
-        let width_variable: CGFloat = 10
-        let toastLabel = UILabel(frame: CGRect(x: width_variable, y: self.view.frame.size.height-100, width: view.frame.size.width-2*width_variable, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
-        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.clipsToBounds = true
-        toastLabel.layer.cornerRadius = 6
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview()})
+    @objc private func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    private func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.cgRectValue.height - 80, right: 0.0)
+            scrollView.contentInset = contentInsets
+            scrollView.scrollIndicatorInsets = contentInsets
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.scrollView.endEditing(true)
+    }
+}
+
+extension AddAdViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        var scrollViewYOffset = 0
+        if textField == nameTextField {
+            scrollViewYOffset = 0
+        }
+        else if textField == typeTextField {
+            scrollViewYOffset = 50
+        }
+        else if textField == wageTextField {
+            scrollViewYOffset = 630 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        else if textField == minAgeTextField || textField == maxAgeTextField {
+            scrollViewYOffset = 981 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        else if textField == inputTextField {
+            scrollViewYOffset = 1270 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        else if textField == rangeTextField {
+            scrollViewYOffset = 1300 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        else {
+            for index in 0..<Int(self.currentInputFieldCount) {
+                print(index)
+                if textField == (self.parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField) {
+                    scrollViewYOffset = 340 + index*100
+                    break
+                }
+                else if textField ==
+                    (self.parentInputFieldStackView.subviews[index+1].subviews[1].subviews[1] as! UITextField) {
+                    scrollViewYOffset = 390 + index*100
+                    break
+                }
+            }
+        }
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: true)
+        return true
+    }
+}
+
+extension AddAdViewController: UITextViewDelegate {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        var scrollViewYOffset = 0
+        if textView == workInfoTextView {
+            scrollViewYOffset = 725 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        else if textView == preferenceTextView {
+            scrollViewYOffset = 1076 + (Int(self.currentInputFieldCount)-1)*100
+        }
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: true)
+        return true
     }
 }

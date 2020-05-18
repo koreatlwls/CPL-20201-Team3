@@ -21,6 +21,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var loginStackView: UIStackView!
+    
+    private var keyboardStatus = false
+    private var keyboardHeight: CGFloat!
+    private var keyboardOffset: CGFloat!
+    
     override func viewWillAppear(_ animated: Bool) {
         guard let navigationController = self.navigationController else { return }
         var navigationArray = navigationController.viewControllers
@@ -47,13 +53,43 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        if !keyboardStatus {
+            keyboardStatus = true
+            if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardRectangle = keyboardFrame.cgRectValue
+                keyboardHeight = keyboardRectangle.height / 3 + 10
+                self.view.frame.origin.y -= keyboardHeight
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        if keyboardStatus {
+            keyboardStatus = false
+            self.view.frame.origin.y += keyboardHeight
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        //Button UI Setting
         signupButton.layer.cornerRadius = 6
         loginButton.layer.cornerRadius = 6
         resetPasswordButton.layer.cornerRadius = 6
+        
+        //TextField Delegate 설정
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        addKeyboardNotification()
         
         //Location Authorization Check
         let status = CLLocationManager.authorizationStatus()
@@ -167,6 +203,22 @@ class LoginViewController: UIViewController {
             performSegue(withIdentifier: identifier, sender: nil)
         }
         return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            passwordTextField.resignFirstResponder()
+            performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
+        return true
     }
 }
 

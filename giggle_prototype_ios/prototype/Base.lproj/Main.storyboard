@@ -132,6 +132,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Mdm-eI-suZ" id="CaC-Ci-2LA"/>
                         <outlet property="loginButton" destination="zsO-o0-jTl" id="427-Jd-5LH"/>
+                        <outlet property="loginStackView" destination="7hq-Bx-g4B" id="Lxn-Kl-Pw4"/>
                         <outlet property="passwordTextField" destination="Cr1-b2-nNV" id="1T6-9w-hf6"/>
                         <outlet property="resetPasswordButton" destination="0Z0-qR-W8N" id="H6Q-H9-Fiz"/>
                         <outlet property="signupButton" destination="T4R-Af-bkf" id="MH9-cW-czU"/>
@@ -1290,6 +1291,7 @@
                         <outlet property="parentInputFieldStackView" destination="MvJ-ga-xNa" id="ylw-yY-2Tk"/>
                         <outlet property="preferenceTextView" destination="u6D-cZ-qYR" id="shi-MH-Ijf"/>
                         <outlet property="rangeTextField" destination="ir5-Fj-ZfK" id="jmn-9f-bgE"/>
+                        <outlet property="scrollView" destination="e8G-es-WZJ" id="9Kj-Ti-w5g"/>
                         <outlet property="startDatePicker" destination="Qac-eb-mLN" id="UHy-GI-h5v"/>
                         <outlet property="typeTextField" destination="d60-OP-t6P" id="Tka-0e-L1K"/>
                         <outlet property="wageTextField" destination="5Qp-js-eKd" id="JYh-7w-Cph"/>
