@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Paint.UNDERLINE_TEXT_FLAG
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -15,10 +16,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -34,6 +32,10 @@ import kotlinx.android.synthetic.main.fragment_add_ad.*
 import kotlinx.android.synthetic.main.fragment_current_loc.*
 import java.io.IOException
 import java.util.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
     private lateinit var rootView:View
@@ -41,7 +43,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var mContext:FragmentActivity
-
+    private var Location_finded:String="location"
     //위치값 얻어오기 객체
     lateinit var locationRequest: LocationRequest
     //위치 요청
@@ -82,12 +84,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
 
         mMap = googleMap
         locationInit()
-        fun addLocationListener() {
-            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
-            //위치 권한을 요청해야 함.
-            // 액티비티가 잠깐 쉴 때,
-            // 자신의 위치를 확인하고, 갱신된 정보를 요청
-        }
+
         val sydney = LatLng(-34.0, 151.0) //위도 경도, 변수에 저장
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         //지도에 표시를 하고 제목을 추가.
@@ -95,12 +92,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
-    fun addLocationListener() {
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
-        //위치 권한을 요청해야 함.
-        // 액티비티가 잠깐 쉴 때,
-        // 자신의 위치를 확인하고, 갱신된 정보를 요청
-    }
+
     fun OnMyLocationButtonClick(){
         when{
             hasPermissions()->{
@@ -108,20 +100,30 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                     locationRequest,
                     locationCallback, null
                 )
+                var addressList:List<Address>?=null
+                val geoCoder=Geocoder(mContext)
+                addressList=geoCoder.getFromLocation(lntlng.latitude,lntlng.longitude,1)
+                Location_finded=addressList!![0].getAddressLine(0)
+                Location_View.setText(Location_finded)
                 mMap.clear()
                 mMap.addMarker(MarkerOptions().position(lntlng))
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lntlng,17f))
+
             }
             else ->{
                 Toast.makeText(mContext,"위치사용권한 설정에 동의해주세요", Toast.LENGTH_LONG).show()
             }
         }
     }
+    fun OnSearchButtonClick(){
+        searchLocation()
+    }
 
     fun searchLocation(){
 
+
         lateinit var location:String
-        location=search.text.toString()
+        location=edPosition.text.toString()
         var addressList:List<Address>?=null
 
         if(location==""){
@@ -131,14 +133,28 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             val geoCoder= Geocoder(mContext)
             try{
                 addressList=geoCoder.getFromLocationName(location,1)
+
             }catch(e: IOException){
                 e.printStackTrace()
             }
-            val address=addressList!![0]
-            val latLng=LatLng(address.latitude,address.longitude)
-            mMap.addMarker(MarkerOptions().position(latLng).title(location))
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
-            Toast.makeText(mContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
+            if(addressList!!.size==1) {
+                val address = addressList!![0]
+                val latLng = LatLng(address.latitude, address.longitude)
+                Location_finded = address.getAddressLine(0)
+                mMap.clear()
+                mMap.addMarker(MarkerOptions().position(latLng).title(location))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                Toast.makeText(
+                    mContext,
+                    address.latitude.toString() + " " + address.longitude,
+                    Toast.LENGTH_LONG
+                ).show()
+                Location_View.setText(Location_finded)
+            }
+            else
+            {
+                Toast.makeText(mContext,"해당하는 위치 정보가 없습니다.",Toast.LENGTH_LONG).show()
+            }
         }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -152,6 +168,10 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             }
         }
         return true
+    }
+    private fun requestPermissions(){
+
+
     }
     inner class MyLocationCallback : LocationCallback() {
         override fun onLocationResult(p0: LocationResult?) {
@@ -176,9 +196,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             }
         }
     }
-    fun removeLocationListener() {
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
-    }//어플이 종료되면 지도 요청 해제
+
 
 
     fun locationInit() {
@@ -227,7 +245,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     override fun onViewCreated(view:View, savedInstanceState: Bundle?){
         super.onViewCreated(view,savedInstanceState)
         btn_MyLocation1.setOnClickListener{OnMyLocationButtonClick()}
-
+        btn_search1.setOnClickListener{OnSearchButtonClick()}
         //알바 시작 종료 numberpicker세팅
         val hourArray :Array<String> = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24")
         val minuteArray :Array<String> =arrayOf("00","05","10","15","20","25","30","35","40","45","50","55")
@@ -295,7 +313,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         //등록 버튼
         btRegister.setOnClickListener() {
             val shopname: String = edShopName.text.toString()//가게 이름
-            val shopposition: String = edPosition.text.toString()//가게 위치
+            val shopposition: String = Location_View.text.toString()
             val businessinfo: String = edBusinessInfo.text.toString()//업무 내용
             val priorityreq: String = edPriorityReq.text.toString()//우대 요건
             var hourlypay = 0 //시급
