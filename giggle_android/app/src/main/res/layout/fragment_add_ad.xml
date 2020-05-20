@@ -7,207 +7,242 @@
     android:background="#ffffff"
     tools:context=".AddADFragment">
 
+
     <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideOverlay">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/textView4"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/txshopinfo"
                 android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:textColor="#fff"
+                android:background="@color/colorBlue"
                 android:layout_height="wrap_content"
-                android:text="상점 정보"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:text="광고 등록"
+                android:textSize="30dp"
+                android:textStyle="normal" />
 
             <LinearLayout
+                android:id="@+id/firstlayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txshopinfo">
 
                 <TextView
                     android:id="@+id/txShopname"
-                    android:layout_width="30dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="이름"
-                    android:textSize="18sp" />
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
 
                 <EditText
+
                     android:id="@+id/edShopName"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1"
+                    android:background="@drawable/border_dark"
                     android:ems="10"
                     android:hint="내용을 입력하세요."
-                    android:inputType="text"
-                    android:background="@drawable/white_edittext"/>
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/txlocation"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:weightSum="4"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/firstlayout">
 
                 <TextView
                     android:id="@+id/txPosition"
-                    android:layout_width="30dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:text="위치"
-                    android:textSize="18sp" />
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edPosition"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="2"
+                    android:background="@drawable/border_dark"
                     android:ems="10"
                     android:hint="내용을 입력하세요."
-                    android:inputType="textPersonName"
-                    android:background="@drawable/white_edittext"/>
-                <Button
+                    android:inputType="textPersonName" />
+
+                <ImageButton
+                    android:src="@android:drawable/ic_menu_search"
                     android:id="@+id/btn_search1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
+                    android:layout_width="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="#fff"
                     android:layout_height="wrap_content"
-                    android:text="Search"
-                    />
+                    android:text="Search" />
+
 
             </LinearLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@id/txlocation"
+                android:id="@+id/Location_finded_layout"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                tools:context=".AddADFragment">
-                <LinearLayout
-                    android:id="@+id/Location_finded_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/mapView"
-                    android:orientation="horizontal"
-                    android:weightSum="4"
-                    >
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                >
+
                 <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
                     android:id="@+id/검색_결과"
-                    android:textSize="18sp"
+                    android:layout_width="100dp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="검색 결과"
-                    android:layout_weight="1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    android:textSize="18dp" />
+
                 <TextView
-                    android:layout_weight="3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/mapView"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:hint="검색 결과가 없습니다."
-                    android:id="@+id/Location_View"
-                    />
-                </LinearLayout>
+                    android:background="@drawable/border_dark"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
+                    android:textSize="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:ems="10"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/Location_View" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/maplayout"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Location_finded_layout"
+                tools:context=".AddADFragment">
+
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/mapView"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    app:layout_constraintTop_toBottomOf="@id/Location_finded_layout"
+                    android:layout_height="400dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btn_MyLocation1"
+                    srcCompat="@android:drawable/ic_menu_mylocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:clickable="true"
-                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    srcCompat="@android:drawable/ic_menu_mylocation" />
+                    app:layout_constraintRight_toRightOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toBottomOf="@id/maplayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="사진"
+                android:textSize="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:id="@+id/txaddImg"
+                android:textStyle="bold"
+                />
+
             <LinearLayout
+                android:id="@+id/imglayout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txaddImg">
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal" >
+                        android:weightSum="5"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/add_photo"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
                             android:layout_weight="1"
-                            android:src="@android:drawable/ic_menu_crop" />
+                            android:src="@android:drawable/ic_menu_add" />
 
                         <ImageView
                             android:id="@+id/add_photo1"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
                             android:layout_weight="1"
-                            android:src="@android:drawable/ic_menu_crop" />
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_add" />
 
                         <ImageView
+                            android:layout_weight="1"
                             android:id="@+id/add_photo2"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_weight="1"
-                            android:src="@android:drawable/ic_menu_crop" />
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_add" />
 
                         <ImageView
+                            android:layout_weight="1"
                             android:id="@+id/add_photo3"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_weight="1"
-                            android:src="@android:drawable/ic_menu_crop" />
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_add" />
 
                         <ImageView
-                            android:id="@+id/add_photo4"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
                             android:layout_weight="1"
-                            android:src="@android:drawable/ic_menu_crop" />
+                            android:id="@+id/add_photo4"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_add" />
                     </LinearLayout>
-                </HorizontalScrollView>
-
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/txworkinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="근무 정보"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textColor="#000"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imglayout" />
+
             <LinearLayout
+                android:id="@+id/datelayout"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txworkinfo">
 
                 <TextView
                     android:id="@+id/textView3"
@@ -239,9 +274,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/timeinfolayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/datelayout">
 
                 <TextView
                     android:id="@+id/textView"
@@ -265,10 +303,14 @@
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/endlayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/timeinfolayout">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -286,15 +328,20 @@
                     android:id="@+id/fnHour"
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
+
                 <NumberPicker
                     android:id="@+id/fnMinute"
                     android:layout_width="100dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/wagelayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/endlayout">
 
                 <TextView
                     android:id="@+id/txHourlypay"
@@ -313,16 +360,20 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/white_edittext"
                     android:ems="10"
                     android:hint="8590"
-                    android:inputType="number"
-                    android:background="@drawable/white_edittext"/>
+                    android:inputType="number" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/numlayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wagelayout">
 
                 <TextView
                     android:id="@+id/txperson"
@@ -345,14 +396,17 @@
                     android:inputType="number" />
 
             </LinearLayout>
+
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/workinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:paddingLeft="25dp"
                 android:text="업무 내용"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numlayout" />
 
             <EditText
                 android:id="@+id/edBusinessInfo"
@@ -360,11 +414,13 @@
                 android:layout_height="88dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/white_edittext"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="내용을 입력하세요."
                 android:inputType="textMultiLine"
-                android:background="@drawable/white_edittext"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workinfo" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -374,12 +430,14 @@
                 android:layout_marginBottom="5dp"
                 android:text="기타 우대사항"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -418,7 +476,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -466,7 +525,8 @@
                 android:layout_marginBottom="10dp"
                 android:paddingLeft="25dp"
                 android:text="우대 요건"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <EditText
                 android:id="@+id/edPriorityReq"
@@ -475,16 +535,18 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/white_edittext"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="내용을 입력하세요."
                 android:inputType="textMultiLine"
-                android:background="@drawable/white_edittext"/>
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <Button
                     android:id="@+id/btRegister"
@@ -501,7 +563,7 @@
                     android:text="초기화" />
 
             </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 
