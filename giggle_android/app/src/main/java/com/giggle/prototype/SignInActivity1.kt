@@ -51,8 +51,8 @@ class SignInActivity1 : AppCompatActivity() {
             R.id.menu_listAD -> {
                 // addAD
                 // Toast.makeText(this, "addAD", Toast.LENGTH_LONG).show()
-                val listADFragment = ListADFragment.newInstance()
-                loadFragment(listADFragment)
+                val addADFragment = AddADFragment.newInstance()
+                loadFragment(addADFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.menu_myPage -> {
@@ -76,6 +76,9 @@ class SignInActivity1 : AppCompatActivity() {
 
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav1)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+
+
     }
 
 
