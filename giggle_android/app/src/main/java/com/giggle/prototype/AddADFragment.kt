@@ -2,17 +2,16 @@ package com.giggle.prototype
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Paint.UNDERLINE_TEXT_FLAG
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.style.UnderlineSpan
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,13 +28,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_add_ad.*
-import kotlinx.android.synthetic.main.fragment_current_loc.*
 import java.io.IOException
 import java.util.*
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
     private lateinit var rootView:View
@@ -269,8 +263,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         //오늘날짜로 초기화
         val instance = Calendar.getInstance()
         val day = Integer.parseInt(instance.get(Calendar.DAY_OF_MONTH).toString())
-        stDay.value = day+1
-        fnDay.value = day+1
+        stDay.value = day
+        fnDay.value = day
 
         //인증
         auth = FirebaseAuth.getInstance()
@@ -364,20 +358,31 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
 
             //DB에 저장
             if(shopname.isNotEmpty()&&shopposition.isNotEmpty()&&businessinfo.isNotEmpty()&&hourlypay>8590) {
-                jobAddb(
-                    shopname,
-                    shopposition,
-                    businessinfo,
-                    priorityreq,
-                    hourlypay,
-                    age1,
-                    age2,
-                    st,
-                    fn,
-                    sex,
-                    numperson
-                )
-                currentUpload() //사진 등록
+                val builder = AlertDialog.Builder(ContextThemeWrapper(activity,R.style.Theme_AppCompat_Light_Dialog))
+                builder.setTitle("등록")
+                builder.setMessage("등록하시겠습니까?")
+                builder.setPositiveButton("확인"){_,_->
+                    jobAddb(
+                        shopname,
+                        shopposition,
+                        businessinfo,
+                        priorityreq,
+                        hourlypay,
+                        age1,
+                        age2,
+                        st,
+                        fn,
+                        sex,
+                        numperson
+                    )
+                    currentUpload() //사진 등록
+                    Toast.makeText(activity,"등록 성공",Toast.LENGTH_SHORT).show()
+                    resetText()//초기화
+                }
+                builder.setNegativeButton("취소"){_,_->
+
+                }
+                builder.show()
             }
         }
     }
@@ -425,31 +430,26 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         if(photoUri!=null){
             val storageRef = storage?.reference?.child("shopimages/"+shopname)?.child(imageFileName)
             storageRef?.putFile(photoUri!!)?.addOnSuccessListener{taskSnapshot ->
-                Toast.makeText(activity,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
         }
         if(photoUri1!=null){
             val storageRef1 = storage?.reference?.child("shopimages/"+shopname)?.child(imageFileName1)
             storageRef1?.putFile(photoUri1!!)?.addOnSuccessListener{taskSnapshot ->
-                Toast.makeText(activity,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
         }
         if(photoUri2!=null){
             val storageRef2 = storage?.reference?.child("shopimages/"+shopname)?.child(imageFileName2)
             storageRef2?.putFile(photoUri2!!)?.addOnSuccessListener{taskSnapshot ->
-                Toast.makeText(activity,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
         }
        if(photoUri3!=null){
             val storageRef3 = storage?.reference?.child("shopimages/"+shopname)?.child(imageFileName3)
             storageRef3?.putFile(photoUri3!!)?.addOnSuccessListener{taskSnapshot ->
-                Toast.makeText(activity,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
         }
         if(photoUri4!=null){
             val storageRef4 = storage?.reference?.child("shopimages")?.child(imageFileName4)
             storageRef4?.putFile(photoUri4!!)?.addOnSuccessListener{taskSnapshot ->
-                Toast.makeText(activity,"업로드 성공",Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -467,6 +467,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         add_photo2.setImageResource(android.R.drawable.ic_menu_crop)
         add_photo3.setImageResource(android.R.drawable.ic_menu_crop)
         add_photo4.setImageResource(android.R.drawable.ic_menu_crop)
+        Location_View.setText(null)
         val instance = Calendar.getInstance()
         val day = Integer.parseInt(instance.get(Calendar.DAY_OF_MONTH).toString())
         stDay.value = day+1

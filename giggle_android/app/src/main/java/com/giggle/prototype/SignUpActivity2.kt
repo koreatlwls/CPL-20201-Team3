@@ -19,8 +19,7 @@ class SignUpActivity2 : AppCompatActivity() {
 
         signup_button.setOnClickListener {
             if(email_edittext.text.toString().isEmpty() || password_edittext1.text.toString()
-                    .isEmpty() || password_edittext2.text.toString().isEmpty() || nickname_edittext.text.toString()
-                    .isEmpty()
+                    .isEmpty() || password_edittext2.text.toString().isEmpty()
             ){
                 Toast.makeText(this, "모두 채워주십시요.", Toast.LENGTH_SHORT).show()
             } else if(password_edittext1.text.toString().length<8){
@@ -47,7 +46,6 @@ class SignUpActivity2 : AppCompatActivity() {
                             email_edittext.text = null
                             password_edittext1.text = null
                             password_edittext2.text = null
-                            nickname_edittext.text = null
                             email.requestFocus()
                         }
                     }

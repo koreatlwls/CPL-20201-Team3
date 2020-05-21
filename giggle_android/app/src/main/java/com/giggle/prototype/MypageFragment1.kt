@@ -1,7 +1,9 @@
 package com.giggle.prototype
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_mypage.*
 class MypageFragment1 : Fragment() {
     private val user = FirebaseAuth.getInstance().currentUser
     private val storage = FirebaseStorage.getInstance()
+    val PICK_IMAGE_FROM_ALBUM = 0
+    var photoUri: Uri? =null //프로필 사진
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_mypage1, container, false)
@@ -30,7 +34,6 @@ class MypageFragment1 : Fragment() {
     override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = user?.displayName
         val email = user?.email
         val uid = user?.uid
 
@@ -46,9 +49,13 @@ class MypageFragment1 : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(activity, "프로필 사진이 없습니다.", Toast.LENGTH_LONG).show()
         }
+        img_user.setOnClickListener{
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
+        }
 
         // set fields
-        nameText.text = name
         emailText.text = email
 
         // button listeners
@@ -57,7 +64,26 @@ class MypageFragment1 : Fragment() {
             startActivity(nextIntent)
         }
     }
+    fun currentUpload(){
+        val uid = user?.uid
+        val imageFileName = uid +".png"
+        if(photoUri!=null){
+            val storageRef = storage?.reference?.child("profile_image/")?.child(imageFileName)
+            storageRef?.putFile(photoUri!!)?.addOnSuccessListener{taskSnapshot ->
+            }
+        }
+    }
+    override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?){
 
+        if(requestCode == PICK_IMAGE_FROM_ALBUM)  {
+            if(resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri = data?.data
+                img_user.setImageURI(data?.data)
+                currentUpload()
+            }
+        }
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }
