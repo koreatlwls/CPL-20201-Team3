@@ -16,6 +16,13 @@ public class JobAd {
     private Integer numofperson;
     private String uid;
 
+    public JobAd() {}
+
+    public JobAd(String shopname, String shopposition) {
+        this.shopname = shopname;
+        this.shopposition = shopposition;
+    }
+
     public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson, String uid){
         this.shopname = shopname;
         this.shopposition = shopposition;
