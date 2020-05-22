@@ -1,16 +1,47 @@
 package com.giggle.prototype;
 
 public class members {
-    private String nickname;
+    private String name;
+    private String sex;
+    private String position;
+    private Integer age;
+    private String uid;
 
-    public members(String nickname){
-        this.nickname = nickname;
+    public members(String name, Integer age, String sex, String position, String uid){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.position = position;
+        this.uid = uid;
     }
-
-    public String getNickname(){
-        return this.nickname;
+    public String getUid(){
+        return this.uid;
     }
-    public void setNickname(String shopname){
-        this.nickname = nickname;
+    public void setUid(String uid){
+        this.uid = uid;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public Integer getAge(){
+        return this.age;
+    }
+    public void setAge(Integer age){
+        this.age = age;
+    }
+    public String getSex(){
+        return this.sex;
+    }
+    public void setSex(String sex){
+        this.sex = sex;
+    }
+    public String getPosition(){
+        return this.position;
+    }
+    public void setPosition(String position){
+        this.position = position;
     }
 }

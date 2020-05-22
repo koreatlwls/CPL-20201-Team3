@@ -49,39 +49,52 @@
                 android:layout_gravity="center"
                 android:text="구인구직전환" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/btn_ing"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_blue"
                 android:src="@android:drawable/ic_menu_my_calendar" />
-
-            <ImageButton
-                android:id="@+id/btn_modify"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/btn_blue"
-                android:src="@android:drawable/ic_menu_edit" />
 
             <ImageButton
                 android:id="@+id/btn_saved_ad"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_blue"
                 android:src="@android:drawable/ic_menu_recent_history" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="구직자"
-                android:textSize="30sp" />
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="진행중인 채용" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="채용 이력" />
         </LinearLayout>
     </LinearLayout>
 

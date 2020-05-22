@@ -1,5 +1,7 @@
 package com.giggle.prototype;
 
+import android.net.Uri;
+
 public class JobAd {
     private String shopname;
     private String shopposition;
@@ -12,8 +14,9 @@ public class JobAd {
     private String st;
     private String fn;
     private Integer numofperson;
+    private String uid;
 
-    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson){
+    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson, String uid){
         this.shopname = shopname;
         this.shopposition = shopposition;
         this.businessinfo = businessinfo;
@@ -25,8 +28,14 @@ public class JobAd {
         this.st = st;
         this.fn = fn;
         this.numofperson = numofperson;
+        this.uid = uid;
     }
-
+    public String getUid(){
+        return this.uid;
+    }
+    public void setUid(String uid){
+        this.uid = uid;
+    }
     public String getShopname(){
         return this.shopname;
     }

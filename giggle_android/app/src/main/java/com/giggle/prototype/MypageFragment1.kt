@@ -13,7 +13,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.fragment_mypage.*
+import kotlinx.android.synthetic.main.fragment_mypage1.*
 
 class MypageFragment1 : Fragment() {
     private val user = FirebaseAuth.getInstance().currentUser
@@ -61,6 +61,10 @@ class MypageFragment1 : Fragment() {
         // button listeners
         bt_change.setOnClickListener{
             val nextIntent = Intent(activity, SignInActivity::class.java)
+            startActivity(nextIntent)
+        }
+        btn_member.setOnClickListener{
+            val nextIntent = Intent(activity, MemberInfoActivity::class.java)
             startActivity(nextIntent)
         }
     }
