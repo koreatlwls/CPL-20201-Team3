@@ -116,7 +116,6 @@
                 android:text="여자" />
         </RadioGroup>
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/fourthlayout"
         android:layout_width="match_parent"
@@ -126,6 +125,59 @@
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/thirdlayout">
+
+        <TextView
+            android:id="@+id/txMemPhone"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="전화번호"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <EditText
+
+            android:id="@+id/edMemPhone1"
+            android:layout_width="67dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/border_dark"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edMemPhone2"
+            android:layout_width="67dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/border_dark"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edMemPhone3"
+            android:layout_width="67dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/border_dark"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fifthlayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourthlayout">
 
         <TextView
             android:id="@+id/txMemPosition"
