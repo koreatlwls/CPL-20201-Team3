@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingBottom="6dp"
-    android:paddingTop="6dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:text="Name"
+    <ImageView
+        android:id="@+id/shopimage"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/btn_darkblue" />
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/name_textview" android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="18sp"
-        android:textColor="@android:color/background_dark"/>
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/position_textview" android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/name_textview" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp" android:textColor="@android:color/darker_gray"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@+id/txshname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="New Text"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txshposition"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:singleLine="false"
+            android:text="New Text"
+            android:textColor="#666666"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</LinearLayout>
