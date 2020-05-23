@@ -80,6 +80,7 @@
         <activity android:name=".ResetActivity" />
         <activity android:name=".MemberInfoActivity" />
         <activity android:name=".IngAdActivity" />
+        <activity android:name=".IngAd_DetailActivity" />
     </application>
 
 </manifest>
