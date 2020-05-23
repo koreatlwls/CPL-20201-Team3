@@ -10,6 +10,8 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
@@ -24,12 +26,14 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_add_ad.*
 import java.io.IOException
 import java.util.*
+import android.animation.ObjectAnimator
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
     private lateinit var rootView:View
@@ -54,8 +58,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     var photoCnt:Int =0
     var storage: FirebaseStorage? = null
     private var auth: FirebaseAuth? = null
-
-
+    private var isFabOpen=false
     //위치값 얻어오기 객체
 
 
@@ -212,15 +215,15 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         super.onStart()
         mapView.onStart()
     }
-    override fun onStop() {
-        super.onStop()
-        mapView.onStop()
-    }
+
     override fun onResume() {
         super.onResume()
         mapView.onResume()
     }
-
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
     override fun onPause() {
         super.onPause()
         mapView.onPause()
@@ -235,11 +238,14 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         mapView.onDestroy()
         super.onDestroy()
     }
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view:View, savedInstanceState: Bundle?){
         super.onViewCreated(view,savedInstanceState)
         btn_MyLocation1.setOnClickListener{OnMyLocationButtonClick()}
         btn_search1.setOnClickListener{OnSearchButtonClick()}
+        textWatcher()
+        fabMain.setOnClickListener{toggleFab()}
         //알바 시작 종료 numberpicker세팅
         val hourArray :Array<String> = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24")
         val minuteArray :Array<String> =arrayOf("00","05","10","15","20","25","30","35","40","45","50","55")
@@ -303,7 +309,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         btReset.setOnClickListener({
             resetText()
         })
-
         //등록 버튼
         btRegister.setOnClickListener() {
             val shopname: String = edShopName.text.toString()//가게 이름
@@ -325,7 +330,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             val fn:String  = fnday.toString() + "일" + fnhour.toString() + "시" + fnminute.toString() + "분"//알바종료
 
             //입력값 확인
-            if(edPerson.text.isNotEmpty()){
+            if(edPerson.text!!.isNotEmpty()){
                 numperson = Integer.parseInt(edPerson.text.toString())
             }
             if(edAge1.text.isNotEmpty()){
@@ -334,17 +339,19 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             if(edAge2.text.isNotEmpty()){
                 age2 = Integer.parseInt(edAge2.text.toString())
             }
-            if(edHourlyPay.text.isNotEmpty()){
+            if(edHourlyPay.text!!.isNotEmpty()){
                 hourlypay = Integer.parseInt(edHourlyPay.text.toString())
             }
             if(shopname.isEmpty()||shopposition.isEmpty()||businessinfo.isEmpty()){
-                edShopName.setBackgroundResource(R.drawable.red_edittext)
-                edPosition.setBackgroundResource(R.drawable.red_edittext)
-                edBusinessInfo.setBackgroundResource(R.drawable.red_edittext)
+                if(shopname.isEmpty())
+                    txShopName.error="가게 이름을 입력해주세요!"
+                if(shopposition.isEmpty())
+                    txPosition.error="가게 위치를 입력해주세요!"
+                if(businessinfo.isEmpty())
+                    txBusinessInfo.error="업무 내용을 입력해주세요!"
                 Toast.makeText(mContext,"주요 항목들을 입력해주세요.", Toast.LENGTH_LONG).show()
             }
             if(hourlypay<8590){
-                edHourlyPay.setBackgroundResource(R.drawable.red_edittext)
                 Toast.makeText(mContext,"올해의 최저시급은 8590원 입니다.", Toast.LENGTH_LONG).show()
             }
             if(age2!=0&&age1>age2)
@@ -501,5 +508,52 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     }
 
 
+    private fun textWatcher(){
+        edShopName.addTextChangedListener(object:TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                if(edShopName.text!!.isEmpty()){
+                    txShopName.error="가게 이름을 입력해주세요."
+                }else{
+                    txShopName.error=null
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        Location_View.addTextChangedListener(object:TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                if(Location_View.text!!.isEmpty()){
+                    txPosition.error="위치를 입력해주세요"
+                }else{
+                    txPosition.error=null
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        edBusinessInfo.addTextChangedListener(object:TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                if(edBusinessInfo.text!!.isEmpty()){
+                    txBusinessInfo.error="업무 내용을 입력해주세요"
+                }else{
+                    txBusinessInfo.error=null
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+    }
 
+    private fun toggleFab(){
+        if(isFabOpen){
+            ObjectAnimator.ofFloat(btRegister, "translationY", 0f).apply { start() }
+        ObjectAnimator.ofFloat(btReset, "translationY", 0f).apply { start() }
+        fabMain.setImageResource(R.drawable.ic_action_addwhite)
+    } else {
+        ObjectAnimator.ofFloat(btRegister, "translationY", -200f).apply { start() }
+        ObjectAnimator.ofFloat(btReset, "translationY", -400f).apply { start() }
+        fabMain.setImageResource(R.drawable.ic_action_closewhite)
+    }
+        isFabOpen=!isFabOpen
+    }
 }

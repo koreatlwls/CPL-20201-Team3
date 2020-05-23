@@ -9,6 +9,8 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">#000</item>
+        <item name="colorControlNormal">#000</item>
+        <item name="colorControlActivated">#3a5994</item>
     </style>
 
 </resources>
