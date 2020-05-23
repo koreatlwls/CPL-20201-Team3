@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 
 class ListADFragment : Fragment() {
     // private val user = FirebaseAuth.getInstance().currentUser
-    private val db = FirebaseFirestore.getInstance()
+    private var db: FirebaseFirestore? = null
 
     private var adapter: FirestoreRecyclerAdapter<JobAd, JobADViewHolder>? = null
     private var firestoreListener: ListenerRegistration? = null
@@ -43,12 +43,15 @@ class ListADFragment : Fragment() {
     override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        db = FirebaseFirestore.getInstance()
+
         val mLayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
 
+        // starts from here
+        loadAdsList("")
 
-        loadAdsList("비비큐")
         firestoreListener = db!!.collection("jobads")
             .addSnapshotListener(EventListener { documentSnapshots, e ->
                 if (e != null) {
@@ -60,7 +63,7 @@ class ListADFragment : Fragment() {
                 if (documentSnapshots != null) {
                     for (doc in documentSnapshots) {
                         val ad = doc.toObject(JobAd::class.java)
-                        // ad.id = doc.id
+                        ad.shopname = doc.id
                         adsList.add(ad)
                     }
                 }
@@ -69,14 +72,13 @@ class ListADFragment : Fragment() {
                 recyclerView.adapter = adapter
             })
 
-
-
         searchBtn.setOnClickListener{
             if (searchText.text.isEmpty()) {
                 Toast.makeText(context, "검색어를 입력해주세요.", Toast.LENGTH_LONG).show()
             } else {
                 val text = searchText.text.toString()
 
+                // FIXME: calling loadAdsList multiple times does not working
                 loadAdsList(text)
 
 
@@ -113,7 +115,7 @@ class ListADFragment : Fragment() {
     }
 
     private fun loadAdsList(text: String) {
-        val query = db!!.collection("jobads")
+        val query = db!!.collection("jobads").whereEqualTo("test", text)
 
         val response = FirestoreRecyclerOptions.Builder<JobAd>()
             .setQuery(query, JobAd::class.java)
@@ -122,10 +124,8 @@ class ListADFragment : Fragment() {
         adapter = object : FirestoreRecyclerAdapter<JobAd, JobADViewHolder>(response) {
             override fun onBindViewHolder(holder: JobADViewHolder, position: Int, model: JobAd) {
                 val ad = adsList[position]
-
                 holder.title.text = ad.shopname
                 holder.content.text = ad.shopposition
-
                 // holder.edit.setOnClickListener { updateNote(note) }
                 // holder.delete.setOnClickListener { deleteNote(note.id!!) }
             }
@@ -133,7 +133,6 @@ class ListADFragment : Fragment() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobADViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_jobad, parent, false)
-
                 return JobADViewHolder(view)
             }
 
