@@ -498,7 +498,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         val user = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
         val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid
+            user?.uid,photoUri.toString()
         )
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }

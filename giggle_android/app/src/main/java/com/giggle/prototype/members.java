@@ -6,13 +6,21 @@ public class members {
     private String position;
     private Integer age;
     private String uid;
+    private String phonenumber;
 
-    public members(String name, Integer age, String sex, String position, String uid){
+    public members(String name, Integer age, String sex, String position, String uid, String phonenumber){
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.position = position;
         this.uid = uid;
+        this.phonenumber = phonenumber;
+    }
+    public String getPhonenumber(){
+        return this.phonenumber;
+    }
+    public void setPhonenumber(String phonenumber){
+        this.phonenumber = phonenumber;
     }
     public String getUid(){
         return this.uid;
