@@ -14,7 +14,7 @@ public class JobAd {
     private Integer numofperson;
     private String uid;
     private String photouri;
-
+    private Integer state;
 
     public JobAd() {}
 
@@ -22,7 +22,7 @@ public class JobAd {
         this.shopname = shopname;
         this.shopposition = shopposition;
     }
-    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson, String uid,String photouri){
+    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson, String uid,String photouri, Integer state){
         this.shopname = shopname;
         this.shopposition = shopposition;
         this.businessinfo = businessinfo;
@@ -36,6 +36,13 @@ public class JobAd {
         this.numofperson = numofperson;
         this.uid = uid;
         this.photouri = photouri;
+        this.state = state;
+    }
+    public Integer getState(){
+        return this.state;
+    }
+    public void setState(Integer state){
+        this.state = state;
     }
     public String getPhotouri(){
         return this.photouri;

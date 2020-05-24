@@ -470,6 +470,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         btWomen.setChecked(false)
         edPriorityReq.setText(null)
         edPerson.setText(null)
+        edAge1.setText(null)
+        edAge2.setText(null)
         add_photo.setImageResource(android.R.drawable.ic_menu_crop)
         add_photo1.setImageResource(android.R.drawable.ic_menu_crop)
         add_photo2.setImageResource(android.R.drawable.ic_menu_crop)
@@ -479,8 +481,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         photoCnt=0
         val instance = Calendar.getInstance()
         val day = Integer.parseInt(instance.get(Calendar.DAY_OF_MONTH).toString())
-        stDay.value = day+1
-        fnDay.value = day+1
+        stDay.value = day
+        fnDay.value = day
     }
     @RequiresApi(Build.VERSION_CODES.M)
     fun jobAddb(
@@ -498,7 +500,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         val user = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
         val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid,photoUri.toString()
+            user?.uid,photoUri.toString(),0
         )
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }

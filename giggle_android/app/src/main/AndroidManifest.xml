@@ -81,6 +81,7 @@
         <activity android:name=".MemberInfoActivity" />
         <activity android:name=".IngAdActivity" />
         <activity android:name=".IngAd_DetailActivity" />
+        <activity android:name=".CompleteAdActivity" />
     </application>
 
 </manifest>

@@ -66,6 +66,10 @@ class MypageFragment : Fragment() {
             val nextIntent = Intent(activity, IngAdActivity::class.java)
             startActivity(nextIntent)
         }
+        btn_saved_ad.setOnClickListener{
+            val nextIntent = Intent(activity, CompleteAdActivity::class.java)
+            startActivity(nextIntent)
+        }
     }
     fun currentUpload(){
         val uid = user?.uid

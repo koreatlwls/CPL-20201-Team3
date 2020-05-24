@@ -15,7 +15,7 @@ class Adadapter (val context: Context, val adlist: ArrayList<ad>) : BaseAdapter(
         val view: View = LayoutInflater.from(context).inflate(R.layout.ing_ad_listview,parent,false)
 
         val adname = view.findViewById<TextView>(R.id.txshname)
-        val adposition = view.findViewById<TextView>(R.id.txshposition)
+        val adtime = view.findViewById<TextView>(R.id.txtime)
         val image = view.findViewById<ImageView>(R.id.shopimage)
         val ingad = adlist[position]
 
@@ -23,7 +23,7 @@ class Adadapter (val context: Context, val adlist: ArrayList<ad>) : BaseAdapter(
 
         //리스트뷰 텍스트 이미지 세팅
         adname.text = ingad.adname
-        adposition.text = ingad.adposition
+        adtime.text = ingad.adtime
         Glide.with(view)
             .load(imageurl)
             .centerCrop()
