@@ -26,7 +26,6 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -499,8 +498,9 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         numperson:Int) {
         val user = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
+        val timestamp = System.currentTimeMillis()
         val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid,photoUri.toString(),0
+            user?.uid,photoUri.toString(),0,timestamp
         )
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }

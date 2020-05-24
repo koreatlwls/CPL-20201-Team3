@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
@@ -48,22 +49,23 @@ class MypageFragment : Fragment() {
         val uid = user?.uid
         var storageRef = storage.reference
         db.collection("jobads")
-            .whereEqualTo("uid", uid)//내가 올린 광고인지 체크
-            .whereEqualTo("state",0)//진행중인 광고인지 체크
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    if (i == 0) {
-                        shopname = document.data["shopname"].toString() //가게이름
-                        shopposition = document.data["shopposition"].toString()
-                        shopphoto = document.data["photouri"].toString() //이미지
-                        i = 1
-                        Glide.with(this)
-                            .load(shopphoto)
-                            .centerCrop()
-                            .into(imageview_main_image2)
-                        txshopname.setText(shopname)
-                        txshopposition.setText(shopposition)
+                    if(uid==document.data["uid"].toString()&&document.data["state"].toString()=="0") {
+                        if (i == 0) {
+                            shopname = document.data["shopname"].toString() //가게이름
+                            shopposition = document.data["shopposition"].toString()
+                            shopphoto = document.data["photouri"].toString() //이미지
+                            i = 1
+                            Glide.with(this)
+                                .load(shopphoto)
+                                .centerCrop()
+                                .into(imageview_main_image2)
+                            txshopname.setText(shopname)
+                            txshopposition.setText(shopposition)
+                        }
                     }
                 }
             }.addOnFailureListener { exception ->

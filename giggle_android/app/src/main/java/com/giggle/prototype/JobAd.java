@@ -15,6 +15,7 @@ public class JobAd {
     private String uid;
     private String photouri;
     private Integer state;
+    private Long timestamp;
 
     public JobAd() {}
 
@@ -22,7 +23,8 @@ public class JobAd {
         this.shopname = shopname;
         this.shopposition = shopposition;
     }
-    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2, String sex,String st,String fn, Integer numofperson, String uid,String photouri, Integer state){
+    public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2,
+                 String sex,String st,String fn, Integer numofperson, String uid,String photouri, Integer state, Long timestamp){
         this.shopname = shopname;
         this.shopposition = shopposition;
         this.businessinfo = businessinfo;
@@ -37,6 +39,13 @@ public class JobAd {
         this.uid = uid;
         this.photouri = photouri;
         this.state = state;
+        this.timestamp = timestamp;
+    }
+    public Long getTimestamp(){
+        return this.timestamp;
+    }
+    public void setTimestamp(){
+        this.timestamp=timestamp;
     }
     public Integer getState(){
         return this.state;

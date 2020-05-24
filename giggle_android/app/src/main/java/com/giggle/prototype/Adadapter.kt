@@ -1,14 +1,11 @@
 package com.giggle.prototype
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
 class Adadapter (val context: Context, val adlist: ArrayList<ad>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
