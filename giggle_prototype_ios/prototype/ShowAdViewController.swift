@@ -13,12 +13,26 @@ import SDWebImage
 
 class ShowAdViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var AdTableView: UITableView!
+    private var refreshControl = UIRefreshControl()
     var ads = [Ad]()
+    static var selectedAd: Ad!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ShowAdViewController : view did load")
-        updateAds()
+        
+        AdTableView.dataSource = self
+        AdTableView.delegate = self
+        updateAds {
+            self.AdTableView.reloadData()
+        }
+        //refresh 설정
+        if #available(iOS 10.0, *) {
+            AdTableView.refreshControl = refreshControl
+        } else {
+            AdTableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +42,13 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
         navigationItem.hidesBackButton = true
     }
     
+    @objc func refresh() {
+        updateAds {
+            self.AdTableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         print("tableView : ", ads.count)
@@ -35,36 +56,76 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "\(ads[indexPath.row].name ?? "")"
-        print(cell.textLabel?.text)
+        let cell = AdTableView.dequeueReusableCell(withIdentifier: "AdDetailCell", for: indexPath) as! AdDetailCell
+        cell.adTitleLabel.text = "\(ads[indexPath.row].adTitle ?? "")"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        cell.shopDayLabel.text = "\(dateFormatter.string(for: ads[indexPath.row].workDay) ?? "")"
+        dateFormatter.dateFormat = "HH:mm"
+        cell.shopTimeLabel.text = "\(dateFormatter.string(for: ads[indexPath.row].startTime) ?? "") ~ \(dateFormatter.string(from: ads[indexPath.row].endTime))"
+        cell.shopWageLabel.text = "\(ads[indexPath.row].wage ?? 0)원"
+        cell.shopImageView.image = ads[indexPath.row].images[0]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ShowAdViewController.selectedAd = ads[indexPath.row]
+        performSegue(withIdentifier: "adDetailSegue", sender: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func updateAds() {
+    func updateAds(success: @escaping ()->()) {
+        ads.removeAll()
         let db = Firestore.firestore()
         db.collection("AdData").whereField("state", isEqualTo: 0).getDocuments() {
             (querySnapshot, err) in
             for index in 0..<querySnapshot!.documents.count {
                 let document = querySnapshot!.documents[index]
                 let data = document.data()
-                let startDateString = data["startDate"] as! String
-                let endDateString = data["endDate"] as! String
+                let workDayString = data["workDay"] as! String
+                let startTimeString = data["startTime"] as! String
+                let endTimeString = data["endTime"] as! String
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                let startDate = dateFormatter.date(from: startDateString)
-                let endDate = dateFormatter.date(from: endDateString)
-                let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, start: startDate!, end: endDate!, wage: data["wage"] as! Int, workInfo: data["workInfo"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
-                
-                self.ads.append(ad)
-                print("updateAds : ", self.ads.count)
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let workDay = dateFormatter.date(from: workDayString)
+                dateFormatter.dateFormat = "HH:mm"
+                let startTime = dateFormatter.date(from: startTimeString)
+                let endTime = dateFormatter.date(from: endTimeString)
+                let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, title: data["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data["wage"] as! Int, workInfo: data["workInfo"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
+                //분야/인원
+                let fieldCount = data["fieldCount"] as! Int
+                ad.recruitFieldArr = [String]()
+                ad.recruitNumOfPeopleArr = [Int]()
+                for fcount in 0..<fieldCount {
+                    ad.recruitFieldArr.append(data["field"+String(fcount+1)] as! String)
+                    ad.recruitNumOfPeopleArr.append(data["numberOfPeople"+String(fcount+1)] as! Int)
+                }
+                //첫번째 이미지 불러오기
+                ad.imageCount = data["imageCount"] as? Int
+                ad.docID = document.documentID
+                ad.images = [UIImage]()
+                let storage = Storage.storage()
+                let storageRef = storage.reference()
+                let imageRef = storageRef.child("Ad/" + ad.docID + "/shop_image_1.jpg")
+                imageRef.downloadURL(completion: {(url, error) in
+                    if error != nil {
+                        ad.images.append(UIImage(named: "empty_profile_image.jpg")!)
+                    } else {
+                        if let imageURL = url {
+                            let urlContents = try? Data(contentsOf: imageURL)
+                            if let imageData = urlContents {
+                                ad.images.append(UIImage(data: imageData)!)
+                            }
+                        }
+                        self.ads.append(ad)
+                        print("updateAds : ", self.ads.count)
+                        success()
+                    }
+                })
             }
         }
-        self.AdTableView.dataSource = self
-        self.AdTableView.delegate = self
     }
 }

@@ -17,14 +17,17 @@ class Ad {
     
     var name: String!
     var type: String!
+    var imageCount: Int!
     var images: [UIImage]!
     var latitude: Double!
     var longitude: Double!
     var range: Int!
     var recruitFieldArr: [String]!
     var recruitNumOfPeopleArr: [Int]!
-    var startDate: Date!
-    var endDate: Date!
+    var adTitle: String!
+    var workDay: Date!
+    var startTime: Date!
+    var endTime: Date!
     var wage: Int!
     
     var workInfo: String!
@@ -37,15 +40,19 @@ class Ad {
     
     var preferInfo: String!
     
-    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, start startDate: Date, end endDate: Date, wage: Int, workInfo: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
+    var docID: String!
+    
+    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, day workDay: Date!, start startTime: Date, end endTime: Date, wage: Int, workInfo: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
         self.uploader = uploader
         self.name = name
         self.type = type
         self.latitude = latitude
         self.longitude = longitude
         self.range = range
-        self.startDate = startDate
-        self.endDate = endDate
+        self.adTitle = adTitle
+        self.workDay = workDay
+        self.startTime = startTime
+        self.endTime = endTime
         self.wage = wage
         self.workInfo = workInfo
         self.preferGender = preferGender

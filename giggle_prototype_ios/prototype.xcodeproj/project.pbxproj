@@ -19,7 +19,6 @@
 		B8766805246E23280019FCD4 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8766804246E23280019FCD4 /* PushKit.framework */; };
 		B87A2FE1245EA73900FC7A37 /* MemberIntegrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A2FE0245EA73900FC7A37 /* MemberIntegrationViewController.swift */; };
 		B87A2FE3245EC75500FC7A37 /* Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A2FE2245EC75500FC7A37 /* Ad.swift */; };
-		B88C24622450751B00B32D5D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C24582450751A00B32D5D /* MainViewController.swift */; };
 		B88C24632450751B00B32D5D /* SignUpView1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C24592450751A00B32D5D /* SignUpView1Controller.swift */; };
 		B88C24642450751B00B32D5D /* SignUpView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */; };
 		B88C24652450751B00B32D5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88C245B2450751A00B32D5D /* LoginViewController.swift */; };
@@ -34,6 +33,9 @@
 		B896F82324506A86002F3090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B896F82124506A86002F3090 /* LaunchScreen.storyboard */; };
 		B896F82B24506AAF002F3090 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B896F82A24506AAF002F3090 /* GoogleService-Info.plist */; };
 		B8A042962459797800305A68 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A042952459797800305A68 /* CurrentLocationViewController.swift */; };
+		B8E2820B24791A2C00E8EB97 /* SAV_MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */; };
+		B8F8962A24775741007A6ED1 /* AdDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8962924775741007A6ED1 /* AdDetailCell.swift */; };
+		B8F8962C24775EA1007A6ED1 /* AdDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +53,6 @@
 		B8766804246E23280019FCD4 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		B87A2FE0245EA73900FC7A37 /* MemberIntegrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberIntegrationViewController.swift; sourceTree = "<group>"; };
 		B87A2FE2245EC75500FC7A37 /* Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ad.swift; sourceTree = "<group>"; };
-		B88C24582450751A00B32D5D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B88C24592450751A00B32D5D /* SignUpView1Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView1Controller.swift; sourceTree = "<group>"; };
 		B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView2Controller.swift; sourceTree = "<group>"; };
 		B88C245B2450751A00B32D5D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +69,9 @@
 		B896F82424506A86002F3090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B896F82A24506AAF002F3090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8A042952459797800305A68 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
+		B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAV_MapContainerViewController.swift; sourceTree = "<group>"; };
+		B8F8962924775741007A6ED1 /* AdDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailCell.swift; sourceTree = "<group>"; };
+		B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailViewController.swift; sourceTree = "<group>"; };
 		D3F9983A1C087502B8803492 /* Pods_prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,10 +159,12 @@
 				B85A64712452B2A100981143 /* CLV_MapContainerViewController.swift */,
 				B8A042952459797800305A68 /* CurrentLocationViewController.swift */,
 				B85E932A246A9B88003E2004 /* CommonFuncs.swift */,
-				B88C24582450751A00B32D5D /* MainViewController.swift */,
 				B85A6446245284B900981143 /* MyPageViewController.swift */,
 				B88C245C2450751A00B32D5D /* ResetPasswordViewController.swift */,
 				B85A6468245288BD00981143 /* ShowAdViewController.swift */,
+				B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */,
+				B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */,
+				B8F8962924775741007A6ED1 /* AdDetailCell.swift */,
 				B88C24592450751A00B32D5D /* SignUpView1Controller.swift */,
 				B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */,
 				B896F81C24506A85002F3090 /* Main.storyboard */,
@@ -308,8 +314,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88C24652450751B00B32D5D /* LoginViewController.swift in Sources */,
+				B8F8962C24775EA1007A6ED1 /* AdDetailViewController.swift in Sources */,
 				B88C24632450751B00B32D5D /* SignUpView1Controller.swift in Sources */,
 				B871879F2453AEC40022B983 /* CallImageViewController.swift in Sources */,
+				B8E2820B24791A2C00E8EB97 /* SAV_MapContainerViewController.swift in Sources */,
+				B8F8962A24775741007A6ED1 /* AdDetailCell.swift in Sources */,
 				B88C24642450751B00B32D5D /* SignUpView2Controller.swift in Sources */,
 				B85A646B245288C700981143 /* AddAdViewController.swift in Sources */,
 				B85A64722452B2A100981143 /* CLV_MapContainerViewController.swift in Sources */,
@@ -322,7 +331,6 @@
 				B896F81724506A85002F3090 /* AppDelegate.swift in Sources */,
 				B87A2FE1245EA73900FC7A37 /* MemberIntegrationViewController.swift in Sources */,
 				B896F81924506A85002F3090 /* SceneDelegate.swift in Sources */,
-				B88C24622450751B00B32D5D /* MainViewController.swift in Sources */,
 				B85A6447245284B900981143 /* MyPageViewController.swift in Sources */,
 				B85A6469245288BD00981143 /* ShowAdViewController.swift in Sources */,
 			);

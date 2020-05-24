@@ -46,8 +46,10 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var minimumInputFieldCount = 1.0
     
     //근무 정보 관련
-    @IBOutlet weak var startDatePicker: UIDatePicker!
-    @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var adTitleTextField: UITextField!
+    @IBOutlet weak var workDayPicker: UIDatePicker!
+    @IBOutlet weak var startTimePicker: UIDatePicker!
+    @IBOutlet weak var endTimePicker: UIDatePicker!
     @IBOutlet weak var wageTextField: UITextField!
     @IBOutlet weak var workInfoTextView: UITextView!
     
@@ -96,7 +98,6 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             errorDetected = 1
         }
         else {
-            
             for index in 0..<Int(currentInputFieldCount) {
                 if isTextFieldEmpty(parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField) {
                     warning.message = "모집 분야를 입력해주세요."
@@ -112,23 +113,31 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if errorDetected == 0 {
                 let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyy-MM-dd HH:mm"
-                
+                dateformatter.dateFormat = "yyyy-MM-dd"
+                let curDateString = dateformatter.string(from: Date())
+                let workDayString = dateformatter.string(from: workDayPicker.date)
                 let curDate = Date()
-                let startDate = startDatePicker.date
-                let endDate = endDatePicker.date
-                
-                if Int(startDate.timeIntervalSince(curDate)) <= 0 {
-                    warning.message = "시작 시각이 현재 시각보다 늦습니다. 시작 시각을 재설정해주세요."
+                let startTime = startTimePicker.date
+                let endTime = endTimePicker.date
+                if isTextFieldEmpty(adTitleTextField) {
+                    warning.message = "광고 제목을 입력해주세요."
                     errorDetected = 1
                 }
-                else if Int(endDate.timeIntervalSince(curDate)) <= 0 {
-                    warning.message = "종료 시각이 현재 시각보다 늦습니다. 종료 시각을 재설정해주세요."
-                    errorDetected = 1
+                else if curDateString == workDayString {
+                    if Int(startTime.timeIntervalSince(curDate)) <= 0 {
+                        warning.message = "시작 시각이 현재 시각보다 늦습니다. 시작 시각을 재설정해주세요."
+                        errorDetected = 1
+                    }
+                    else if Int(endTime.timeIntervalSince(curDate)) <= 0 {
+                        warning.message = "종료 시각이 현재 시각보다 늦습니다. 종료 시각을 재설정해주세요."
+                        errorDetected = 1
+                    }
                 }
-                else if Int(endDate.timeIntervalSince(startDate)) <= 0 {
-                    warning.message = "종료 시각이 시작 시각보다 빠릅니다. 종료 시각을 재설정해주세요."
-                    errorDetected = 1
+                else {
+                    if Int(endTime.timeIntervalSince(startTime)) <= 0 {
+                        warning.message = "종료 시각이 시작 시각보다 빠릅니다. 종료 시각을 재설정해주세요."
+                        errorDetected = 1
+                    }
                 }
             }
             
@@ -174,8 +183,6 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let yesAction = UIAlertAction(title: "등록", style: .default) {
                 (action) in
                 //저장 데이터 가공
-                let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyy-MM-dd HH:mm"
                 var minAge: Int!
                 var maxAge: Int!
                 if self.ageSegmentedControl.selectedSegmentIndex == 1 {
@@ -187,6 +194,10 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     maxAge = Int(self.maxAgeTextField.text!)!
                 }
                 let range = Int(self.rangeTextField.text!)!
+                let dateformatter1 = DateFormatter()
+                let dateformatter2 = DateFormatter()
+                dateformatter1.dateFormat = "yyyy-MM-dd"
+                dateformatter2.dateFormat = "HH:mm"
                 //DB 저장 작업
                 let db = Firestore.firestore()
                 var ref: DocumentReference? = nil
@@ -198,8 +209,10 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     "latitude": self.latitude!,
                     "longitude": self.longitude!,
                     "range": range,
-                    "startDate": dateformatter.string(from: self.startDatePicker.date),
-                    "endDate": dateformatter.string(from: self.endDatePicker.date),
+                    "adTitle": self.adTitleTextField.text!,
+                    "workDay": dateformatter1.string(from: self.workDayPicker.date),
+                    "startTime": dateformatter2.string(from: self.startTimePicker.date),
+                    "endTime": dateformatter2.string(from: self.endTimePicker.date),
                     "wage": Int(self.wageTextField.text!)!,
                     "workInfo": self.workInfoTextView.text!,
                     "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
@@ -368,8 +381,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
         self.currentInputFieldCount = 1.0
-        self.startDatePicker.date = Date()
-        self.endDatePicker.date = Date()
+        self.adTitleTextField.text = ""
+        self.startTimePicker.date = Date()
+        self.endTimePicker.date = Date()
         self.wageTextField.text = ""
         self.workInfoTextView.text = ""
         self.genderSegmentedControl.selectedSegmentIndex = 0
@@ -476,6 +490,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         
         AddAdViewController.childView = self.children[0]
+        
+        //DatePicker 설정
+        workDayPicker.minimumDate = Date()
     }
     
     @objc private func hideKeyboard(_ sender: UITapGestureRecognizer) {
