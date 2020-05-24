@@ -1,129 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    >
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/border_round"
+        android:src="@drawable/ic_account"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:text="Nick Name"
+        app:layout_constraintLeft_toLeftOf="@id/emailText"
+        app:layout_constraintBottom_toTopOf="@id/emailText"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        />
 
-    <LinearLayout
+    <TextView
+        app:layout_constraintLeft_toRightOf="@id/img_user"
+        app:layout_constraintTop_toTopOf="@id/img_user"
+        android:id="@+id/emailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:text="Loading email..."
+        android:textSize="18dp" />
+
+    <RatingBar
+        android:id="@+id/Rating_Bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize=".5"
+        android:numStars="5"
+        android:rating="5"
+        android:layout_marginTop="10dp"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        app:layout_constraintTop_toBottomOf="@id/img_user"
+        app:layout_constraintLeft_toLeftOf="@id/img_user"
+        app:layout_constraintRight_toRightOf="@id/img_user"
+        />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Rating_Bar"
+        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="Menu"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:id="@+id/textMenu"
+        />
+    <ImageButton
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_saved_ad"
+        app:layout_constraintTop_toBottomOf="@id/textMenu"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_ing"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_action_ingad"
+        />
+    <ImageButton
+        app:layout_constraintLeft_toRightOf="@id/btn_ing"
+        app:layout_constraintRight_toLeftOf="@id/btn_member"
+        app:layout_constraintTop_toTopOf="@id/btn_ing"
+        android:id="@+id/btn_saved_ad"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_action_savedad" />
+    <TextView
+        android:id="@+id/texting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintRight_toRightOf="@id/btn_ing"
+        app:layout_constraintTop_toBottomOf="@id/btn_ing"
+        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+        android:text="진행중인 알바"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:textColor="#000"
+        />
+    <TextView
+        android:id="@+id/textsaved_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_saved_ad"
+        app:layout_constraintLeft_toLeftOf="@id/btn_saved_ad"
+        app:layout_constraintRight_toRightOf="@id/btn_saved_ad"
+        android:text="아르바이트 이력" />
+
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/btn_member"
+        app:layout_constraintLeft_toRightOf="@id/btn_saved_ad"
+        app:layout_constraintRight_toLeftOf="@id/bt_change"
+        app:layout_constraintTop_toTopOf="@id/btn_ing"
+        android:background="#fff"
+        android:src="@drawable/ic_action_modifyuser"
+        android:scaleType="centerCrop"
+        />
+    <TextView
+        android:id="@+id/textmodifyuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_member"
+        app:layout_constraintLeft_toLeftOf="@id/btn_member"
+        app:layout_constraintRight_toRightOf="@id/btn_member"
+        android:text="구인 정보 등록" />
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/bt_change"
+        android:background="#fff"
+        app:layout_constraintLeft_toRightOf="@id/btn_member"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_ing"
+        android:src="@drawable/ic_action_changemode"
+        android:scaleType="centerCrop"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/bt_change"
+        app:layout_constraintLeft_toLeftOf="@id/bt_change"
+        app:layout_constraintRight_toRightOf="@id/bt_change"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="구인자 전환"
+        android:textSize="10dp"
+        android:id="@+id/txchangemode"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txchangemode"
+        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="가장 최근 광고"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:id="@+id/textRecentAd"
+        />
+
+    <androidx.cardview.widget.CardView
+        card_view:layout_constraintTop_toBottomOf="@id/textRecentAd"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">>
+        android:layout_height="250dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardUseCompatPadding="true">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/img_user"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="28dp"
-                app:srcCompat="@drawable/ic_account" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/emailText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Loading email..."
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/bt_change"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="구인구직전환" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="푸쉬알림" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btn_ing"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/btn_blue"
-                android:src="@android:drawable/ic_menu_my_calendar" />
-
-            <ImageButton
-                android:id="@+id/btn_saved_ad"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/btn_blue"
-                android:src="@android:drawable/ic_menu_recent_history" />
-
-            <ImageButton
-                android:id="@+id/btn_member"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/btn_blue"
-                android:src="@android:drawable/ic_menu_edit" />
-
-        </LinearLayout>
-
-        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            >
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageview_main_image2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius_top_left="20dp"
+                app:riv_corner_radius_top_right="20dp"
+                android:src="@drawable/img_sample"
+                app:riv_border_color="#333333"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:text="진행중인 알바" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:text="알바 이력" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:text="구인 정보 등록" />
+                android:id="@+id/textRecentAdCardView"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="가장 최근 광고 제목이 들어갈 곳" />
         </LinearLayout>
-    </LinearLayout>
-
-
-
-
-
-
-
-</RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
