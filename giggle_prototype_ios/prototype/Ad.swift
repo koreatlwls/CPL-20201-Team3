@@ -30,7 +30,7 @@ class Ad {
     var endTime: Date!
     var wage: Int!
     
-    var workInfo: String!
+    var workDetail: String!
     var preferGender: Int!
     //0:남자 1:여자 2:무관
     
@@ -42,7 +42,7 @@ class Ad {
     
     var docID: String!
     
-    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, day workDay: Date!, start startTime: Date, end endTime: Date, wage: Int, workInfo: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
+    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, day workDay: Date!, start startTime: Date, end endTime: Date, wage: Int, workDetail: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
         self.uploader = uploader
         self.name = name
         self.type = type
@@ -54,7 +54,7 @@ class Ad {
         self.startTime = startTime
         self.endTime = endTime
         self.wage = wage
-        self.workInfo = workInfo
+        self.workDetail = workDetail
         self.preferGender = preferGender
         self.preferMinAge = preferMinAge
         self.preferMaxAge = preferMaxAge

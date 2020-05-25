@@ -19,6 +19,19 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var adTitleLabel: UILabel!
     @IBOutlet weak var wageLabel: UILabel!
+    @IBOutlet weak var workDayLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var workDetailLabel: UILabel!
+    @IBOutlet weak var parentFieldStackView: UIStackView!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var preferenceDetailLabel: UILabel!
+    @IBOutlet weak var shopNameLabel: UILabel!
+    
+    @IBAction func backToMarker(_ sender: UIButton) {
+        SAV_MapContainerViewController.updateCamera()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +69,7 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
         imagePageControl.pageIndicatorTintColor = UIColor.lightGray
         imagePageControl.currentPageIndicatorTintColor = UIColor.black
         
-        //
+        //상세 내용 설정
         typeLabel.text = ShowAdViewController.selectedAd.type
         adTitleLabel.text = ShowAdViewController.selectedAd.adTitle
         adTitleLabel.numberOfLines = 0
@@ -64,6 +77,50 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
         wageLabel.text = "\(String(ShowAdViewController.selectedAd.wage))원"
         wageLabel.clipsToBounds = true
         wageLabel.layer.cornerRadius = 6
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy년 MM월 dd일"
+        workDayLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.workDay)
+        dateformatter.dateFormat = "HH시 mm분"
+        startTimeLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.startTime)
+        endTimeLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.endTime)
+        workDetailLabel.text = ShowAdViewController.selectedAd.workDetail
+        workDetailLabel.numberOfLines = 0
+        workDetailLabel.lineBreakMode = .byWordWrapping
+        (parentFieldStackView.subviews[1].subviews[0] as! UILabel).text = ShowAdViewController.selectedAd.recruitFieldArr[0]
+        (parentFieldStackView.subviews[1].subviews[1] as! UILabel).text = "\(String(ShowAdViewController.selectedAd.recruitNumOfPeopleArr[0]))명"
+        for index in 1..<ShowAdViewController.selectedAd.recruitFieldArr.count {
+            do {
+                let newFieldStackView = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(NSKeyedArchiver.archivedData(withRootObject: parentFieldStackView.subviews[1], requiringSecureCoding: false)) as! UIStackView
+                let index2 = parentFieldStackView.subviews.count
+                parentFieldStackView.insertArrangedSubview(newFieldStackView, at: index2)
+                (parentFieldStackView.subviews[index2].subviews[0] as! UILabel).text = ShowAdViewController.selectedAd.recruitFieldArr[index]
+                (parentFieldStackView.subviews[index2].subviews[1] as! UILabel).text = "\(String(ShowAdViewController.selectedAd.recruitNumOfPeopleArr[index]))명"
+            } catch {
+                print(error)
+            }
+        }
+        switch ShowAdViewController.selectedAd.preferGender {
+        case 0: genderLabel.text = "남자"
+            break
+        case 1: genderLabel.text = "여자"
+            break
+        case 2: genderLabel.text = "무관"
+            break
+        case .none:
+            break
+        case .some(_):
+            break
+        }
+        if ShowAdViewController.selectedAd.preferMinAge == -1 && ShowAdViewController.selectedAd.preferMaxAge == -1 {
+            ageLabel.text = "무관"
+        }
+        else {
+            ageLabel.text = "\(String(ShowAdViewController.selectedAd.preferMinAge)) ~ \(String(ShowAdViewController.selectedAd.preferMaxAge))세"
+        }
+        preferenceDetailLabel.text = ShowAdViewController.selectedAd.preferInfo
+        shopNameLabel.text = ShowAdViewController.selectedAd.name
+        shopNameLabel.numberOfLines = 0
+        shopNameLabel.lineBreakMode = .byWordWrapping
     }
     
     private func updateScrollView() {

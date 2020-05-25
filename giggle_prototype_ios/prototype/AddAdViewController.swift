@@ -51,7 +51,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var endTimePicker: UIDatePicker!
     @IBOutlet weak var wageTextField: UITextField!
-    @IBOutlet weak var workInfoTextView: UITextView!
+    @IBOutlet weak var workDetailTextView: UITextView!
     
     //기타 우대사항 관련
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
@@ -146,7 +146,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     warning.message = "시급을 입력해주세요."
                     errorDetected = 1
                 }
-                else if isTextViewEmpty(workInfoTextView) {
+                else if isTextViewEmpty(workDetailTextView) {
                     warning.message = "근무 내용을 입력해주세요."
                     errorDetected = 1
                 }
@@ -214,7 +214,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     "startTime": dateformatter2.string(from: self.startTimePicker.date),
                     "endTime": dateformatter2.string(from: self.endTimePicker.date),
                     "wage": Int(self.wageTextField.text!)!,
-                    "workInfo": self.workInfoTextView.text!,
+                    "workDetail": self.workDetailTextView.text!,
                     "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
                     "preferMinAge": minAge!,
                     "preferMaxAge": maxAge!,
@@ -385,7 +385,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.startTimePicker.date = Date()
         self.endTimePicker.date = Date()
         self.wageTextField.text = ""
-        self.workInfoTextView.text = ""
+        self.workDetailTextView.text = ""
         self.genderSegmentedControl.selectedSegmentIndex = 0
         self.minAgeTextField.text = ""
         self.maxAgeTextField.text = ""
@@ -456,9 +456,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         inputFieldStepper.minimumValue = minimumInputFieldCount
         
         //TextView UI 설정
-        workInfoTextView.layer.cornerRadius = 6
-        workInfoTextView.layer.borderWidth = 1
-        workInfoTextView.layer.borderColor = UIColor.lightGray.cgColor
+        workDetailTextView.layer.cornerRadius = 6
+        workDetailTextView.layer.borderWidth = 1
+        workDetailTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         preferenceTextView.layer.cornerRadius = 6
         preferenceTextView.layer.borderWidth = 1
@@ -480,7 +480,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         rangeTextField.delegate = self
         
         //TextView Delegate 설정
-        workInfoTextView.delegate = self
+        workDetailTextView.delegate = self
         preferenceTextView.delegate = self
         
         addKeyboardNotification()
@@ -573,7 +573,7 @@ extension AddAdViewController: UITextFieldDelegate {
 extension AddAdViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         var scrollViewYOffset = 0
-        if textView == workInfoTextView {
+        if textView == workDetailTextView {
             scrollViewYOffset = 725 + (Int(self.currentInputFieldCount)-1)*100
         }
         else if textView == preferenceTextView {

@@ -17,6 +17,7 @@ class SAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     var marker = GMSMarker()
     let locationManager = CLLocationManager()
     let geocoder = GMSGeocoder()
+    static let mapView = GMSMapView()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -40,18 +41,21 @@ class SAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
             locationManager.requestWhenInUseAuthorization()
         }
         
-        let mapView = GMSMapView()
-        mapView.camera = GMSCameraPosition(latitude: ShowAdViewController.selectedAd.latitude, longitude: ShowAdViewController.selectedAd.longitude, zoom: 18)
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
-        mapView.delegate = self
+        SAV_MapContainerViewController.mapView.camera = GMSCameraPosition(latitude: ShowAdViewController.selectedAd.latitude, longitude: ShowAdViewController.selectedAd.longitude, zoom: 18)
+        SAV_MapContainerViewController.mapView.settings.myLocationButton = true
+        SAV_MapContainerViewController.mapView.isMyLocationEnabled = true
+        SAV_MapContainerViewController.mapView.delegate = self
         
-        self.view = mapView
+        self.view = SAV_MapContainerViewController.mapView
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: ShowAdViewController.selectedAd.latitude, longitude: ShowAdViewController.selectedAd.longitude)
         marker.title = ShowAdViewController.selectedAd.name
-        marker.map = mapView
+        marker.map = SAV_MapContainerViewController.mapView
+    }
+    
+    static func updateCamera() {
+        SAV_MapContainerViewController.mapView.camera = GMSCameraPosition(latitude: ShowAdViewController.selectedAd.latitude, longitude: ShowAdViewController.selectedAd.longitude, zoom: 18)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

@@ -94,7 +94,7 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
                 dateFormatter.dateFormat = "HH:mm"
                 let startTime = dateFormatter.date(from: startTimeString)
                 let endTime = dateFormatter.date(from: endTimeString)
-                let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, title: data["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data["wage"] as! Int, workInfo: data["workInfo"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
+                let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, title: data["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data["wage"] as! Int, workDetail: data["workDetail"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
                 //분야/인원
                 let fieldCount = data["fieldCount"] as! Int
                 ad.recruitFieldArr = [String]()

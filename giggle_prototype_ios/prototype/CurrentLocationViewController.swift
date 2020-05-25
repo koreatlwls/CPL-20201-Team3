@@ -50,5 +50,4 @@ class CurrentLocationViewController: UIViewController
             self.present(location_alert, animated: true, completion: nil)
         }
     }
-    
 }
