@@ -25,6 +25,9 @@ class SignUpView2Controller: UIViewController, UIScrollViewDelegate {
             Auth.auth().createUser(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") {
                 (user, error) in
                 if user != nil {
+                    let db = Firestore.firestore()
+                    self.addDocumentToCollection(db: db, nickname: self.nicknameTextField.text ?? "", email: self.emailTextField.text ?? "")
+                    
                     let alert = UIAlertController(title: "회원가입 성공", message: "작성하신 이메일로 인증 메일을 발송했습니다. 이메일 인증을 진행해주세요.", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "확인", style: .default) {
                         (action) in
@@ -75,5 +78,22 @@ class SignUpView2Controller: UIViewController, UIScrollViewDelegate {
         toastLabel.layer.cornerRadius = 6
         self.view.addSubview(toastLabel)
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview()})
+    }
+    
+    func addDocumentToCollection(db: Firestore, nickname: String, email: String) {
+        var ref: DocumentReference? = nil
+        ref = db.collection("UserData").addDocument(data: [
+            "nickname": nickname,
+            "email": email,
+            "member_state": 0,
+            "lat": -1,
+            "lng": -1
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
     }
 }

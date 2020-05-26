@@ -37,6 +37,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var latitude: Double!
     var longitude: Double!
     @IBOutlet weak var rangeTextField: UITextField!
+    @IBOutlet weak var availableLabel: UILabel!
+    var availableCount: Int!
     
     //모집 분야&인원 필드 추가 관련
     @IBOutlet weak var inputFieldStepper: UIStepper!
@@ -64,6 +66,52 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var initButton: UIButton!
     
+    @IBAction func searchAvailablePeople(_ sender: UIButton) {
+        availableCount = 0
+        let db = Firestore.firestore()
+        db.collection("UserData").whereField("member_state", isEqualTo: 1).getDocuments() {
+            (querySnapshot, err) in
+            let userCount = querySnapshot!.documents.count
+            for index in 0..<userCount {
+                let data = querySnapshot!.documents[index].data()
+                if (data["email"] as! String) == LoginViewController.user.email {
+                    continue
+                }
+                let user_lat = data["lat"] as! Double
+                let user_lng = data["lng"] as! Double
+                if self.latitude == nil || self.longitude == nil {
+                    CommonFuncs.showToast(message: "위치를 설정해주세요.", view: self.view)
+                    continue
+                }
+                if user_lat == -1 && user_lng == -1 {
+                    continue
+                }
+                let dist = self.calcDistBetweenTwoPoint(lat1: self.latitude, lng1: self.longitude, lat2: data["lat"] as! Double, lng2: data["lng"] as! Double)
+                let range_text: String = self.rangeTextField.text!
+                if range_text == "" {
+                    CommonFuncs.showToast(message: "구인범위를 설정해주세요.", view: self.view)
+                    continue
+                }
+                let range_double = Double(range_text)
+                if dist.isLessThanOrEqualTo(range_double ?? -1) {
+                    self.availableCount += 1
+                }
+            }
+            self.updateAvailableLabel()
+        }
+    }
+    
+    func updateAvailableLabel() {
+        availableLabel.text = "\(String(availableCount))명의 구직자가 범위 내에 있습니다."
+    }
+    
+    func calcDistBetweenTwoPoint(lat1: Double, lng1: Double, lat2: Double, lng2: Double) -> Double {
+        return acos(cos(degree2radian(90-lat1)) * cos(degree2radian(90-lat2)) + sin(degree2radian(90-lat1)) * sin(degree2radian(90-lat2)) * cos(degree2radian(lng1-lng2))) * 6378.137
+    }
+    
+    func degree2radian(_ degree: Double) -> Double {
+        return degree * .pi / 180
+    }
     
     @IBAction func setCurrentLocation(_ sender: UIButton) {
         latitude = AAV_MapContainerViewController.mapView.camera.target.latitude
@@ -493,6 +541,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         //DatePicker 설정
         workDayPicker.minimumDate = Date()
+        
+        availableLabel.numberOfLines = 0
+        availableLabel.lineBreakMode = .byWordWrapping
     }
     
     @objc private func hideKeyboard(_ sender: UITapGestureRecognizer) {

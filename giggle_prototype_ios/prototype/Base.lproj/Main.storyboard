@@ -713,7 +713,7 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="720"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="7PT-n2-m9v">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1925"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1953.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WsH-c7-kXe">
                                                 <rect key="frame" x="57" y="0.0" width="300" height="284"/>
@@ -1166,7 +1166,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CzI-YQ-APl">
-                                                <rect key="frame" x="57" y="1405" width="300" height="434"/>
+                                                <rect key="frame" x="57" y="1405" width="300" height="462.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToZ-Es-hKY">
                                                         <rect key="frame" x="0.0" y="0.0" width="52" height="36"/>
@@ -1239,17 +1239,24 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="plu-XV-29h">
                                                                 <rect key="frame" x="94.5" y="0.0" width="205.5" height="40"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ir5-Fj-ZfK">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="40"/>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ir5-Fj-ZfK">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="98" height="40"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km 이내" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="687-g1-6yv">
-                                                                        <rect key="frame" x="148" y="0.0" width="57.5" height="40"/>
+                                                                        <rect key="frame" x="108" y="0.0" width="57.5" height="40"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POp-RQ-yF6">
+                                                                        <rect key="frame" x="175.5" y="0.0" width="30" height="40"/>
+                                                                        <state key="normal" title="검색"/>
+                                                                        <connections>
+                                                                            <action selector="searchAvailablePeople:" destination="EZU-Aw-Kqv" eventType="touchUpInside" id="ySk-2U-OuW"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
@@ -1257,10 +1264,16 @@
                                                             <constraint firstAttribute="width" constant="300" id="p35-eg-5j0"/>
                                                         </constraints>
                                                     </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0명의 구직자가 범위 내에 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWf-Jx-adU">
+                                                        <rect key="frame" x="0.0" y="442" width="238.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="f0T-ct-oZ3">
-                                                <rect key="frame" x="57" y="1889" width="300" height="36"/>
+                                                <rect key="frame" x="57" y="1917.5" width="300" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gb6-n4-E6m">
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="36"/>
@@ -1319,6 +1332,7 @@
                         <outlet property="adTitleTextField" destination="Ae7-8C-p3S" id="zjv-Pf-opJ"/>
                         <outlet property="addButton" destination="Gb6-n4-E6m" id="aEs-xp-d0v"/>
                         <outlet property="ageSegmentedControl" destination="0qU-si-Vkk" id="meI-4w-3EZ"/>
+                        <outlet property="availableLabel" destination="YWf-Jx-adU" id="ZnB-mJ-0Bb"/>
                         <outlet property="endTimePicker" destination="n6E-lU-NCp" id="jQt-dv-QFi"/>
                         <outlet property="genderSegmentedControl" destination="1cI-mI-zQ6" id="iVb-5R-dJX"/>
                         <outlet property="initButton" destination="Bpz-H5-rwX" id="xwn-fz-vkN"/>
@@ -1508,7 +1522,6 @@
                                                 </constraints>
                                                 <state key="normal" title="설정"/>
                                                 <connections>
-                                                    <action selector="locationSearch:" destination="eHQ-Z5-tdc" eventType="touchUpInside" id="Utg-fH-2Bn"/>
                                                     <action selector="setCurrentLocation:" destination="eHQ-Z5-tdc" eventType="touchUpInside" id="OgV-qz-TDJ"/>
                                                 </connections>
                                             </button>

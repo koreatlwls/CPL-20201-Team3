@@ -46,6 +46,7 @@ class AAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
         
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
+        AAV_MapContainerViewController.mapView.clear()
         
         locationManager.startUpdatingLocation()
     }

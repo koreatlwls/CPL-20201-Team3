@@ -34,7 +34,7 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
                 let location = placemark?.location
                 let coordinate = location?.coordinate
                 
-                let camera = GMSCameraPosition(latitude: coordinate!.latitude, longitude: coordinate!.longitude, zoom: 18)
+                let camera = GMSCameraPosition(latitude: coordinate!.latitude, longitude: coordinate!.longitude, zoom: 16)
                 CLV_MapContainerViewController.mapView.camera = camera
             }
         })
@@ -45,6 +45,7 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
         
         print("CLV_MapContainerViewController : view will appear")
         
+        CLV_MapContainerViewController.mapView.clear()
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
         locationManager.startUpdatingLocation()
@@ -98,11 +99,13 @@ class CLV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        print("CLV_MapContainerViewController : mapView.clear()")
         mapView.clear()
     }
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         geocoder.reverseGeocodeCoordinate(position.target, completionHandler: { (response, error) in
+            print("CLV_MapContainerViewController : mapView marker")
             guard error == nil else { return }
             if let result = response?.firstResult() {
                 let marker = GMSMarker()

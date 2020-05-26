@@ -38,21 +38,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func addDocumentToCollection(db: Firestore, nickname: String, email: String) {
-        var ref: DocumentReference? = nil
-        ref = db.collection("UserData").addDocument(data: [
-            "nickname": nickname,
-            "email": email,
-            "member_state": 0
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-    }
-    
     private func addKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -115,43 +100,10 @@ class LoginViewController: UIViewController {
                         db.collection("UserData").whereField("email", isEqualTo: self.emailTextField.text ?? "").getDocuments() {
                             (querySnapshot, err) in
                             if querySnapshot!.documents.count == 0 {
-                                let nickname_alert = UIAlertController(title: "닉네임 설정", message: "닉네임 설정이 필요합니다.", preferredStyle: .alert)
-                                    nickname_alert.addTextField(configurationHandler: {
-                                        (textField) in
-                                        textField.placeholder = "닉네임을 입력해주세요."
-                                    })
-                                let nickname_verifyAction = UIAlertAction(title: "확인", style: .default) {
-                                    (action) in
-                                    db.collection("UserData").whereField("nickname", isEqualTo: nickname_alert.textFields?[0].text ?? "").getDocuments() { (querySnapshot, err2) in
-                                        //닉네임 중복 확인 필요 없을 시
-                                        self.addDocumentToCollection(db: db, nickname: nickname_alert.textFields?[0].text ?? "", email: self.emailTextField.text ?? "")
-                                        LoginViewController.user = User.init(name: nickname_alert.textFields?[0].text ?? "", email: self.emailTextField.text ?? "", member_state: 0)
-                                        LoginViewController.user.docID = querySnapshot!.documents[0].documentID
-                                        let notify_alert = UIAlertController(title: "안내", message: "구직 활동을 하려면 마이 페이지에서 통합 회원 신청을 해주세요.", preferredStyle: .alert)
-                                        let notify_okAction = UIAlertAction(title: "확인", style: .default, handler: { (action) in
-                                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                                        })
-                                        notify_alert.addAction(notify_okAction)
-                                        self.present(notify_alert, animated: true, completion: nil)
-                                        
-                                        //닉네임 중복 확인 필요 시
-                                        /*if querySnapshot!.documents.count == 0 {
-                                            self.addDocumentToCollection(db: db, nickname: nickname_alert.textFields?[0].text ?? "", email: self.emailTextField.text ?? "")
-                                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                                        }
-                                        else {
-                                            let nickname_duplicated_alert = UIAlertController(title: "닉네임 중복 확인", message: "이미 존재하는 닉네임 입니다.", preferredStyle: .alert)
-                                            let nickname_duplicated_okAction = UIAlertAction(title: "확인", style: .default, handler: {
-                                                (action) in
-                                                self.present(nickname_alert, animated: true, completion: nil)
-                                            })
-                                            nickname_duplicated_alert.addAction(nickname_duplicated_okAction)
-                                            self.present(nickname_duplicated_alert, animated: true, completion: nil)
-                                        }*/
-                                    }
-                                }
-                                nickname_alert.addAction(nickname_verifyAction)
-                                self.present(nickname_alert, animated: true, completion: nil)
+                                let error_alert = UIAlertController(title: "DB 오류", message: "해당 계정 정보를 DB에서 불러올 수 없습니다. 관리자에게 문의해주세요.", preferredStyle: .alert)
+                                let error_okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                                error_alert.addAction(error_okAction)
+                                self.present(error_alert, animated: true, completion: nil)
                             }
                             else {
                                 let name = querySnapshot!.documents[0].data()["nickname"] as! String

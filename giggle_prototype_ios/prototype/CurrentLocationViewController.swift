@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
 
 class CurrentLocationViewController: UIViewController
 {
@@ -41,7 +42,7 @@ class CurrentLocationViewController: UIViewController
         print("CurrentLocationViewController : view did load")
         CurrentLocationViewController.childView = self.children[0]
         
-        if LoginViewController.user.lat == nil || LoginViewController.user.lng == nil {
+        if LoginViewController.user.lat == -1 && LoginViewController.user.lng == -1 {
             let location_alert = UIAlertController(title: "활동 위치 설정", message: "활동 위치가 설정되어있지 않습니다. 현재 위치 탭에서 원하는 위치로 이동하여 상단의 설정 버튼을 눌러 활동 위치를 설정해주세요.", preferredStyle: .alert)
             let location_ok_action = UIAlertAction(title: "확인", style: .default, handler: {
                 (action) in
