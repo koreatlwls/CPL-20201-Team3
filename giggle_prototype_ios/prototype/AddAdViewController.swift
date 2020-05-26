@@ -418,6 +418,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         for index in 0..<self.currentImageViewIndex {
             self.shopImageCollection[index].image = self.empty_image
         }
+        self.currentImageViewIndex = 0
+        self.selectedImageViewIndex = 0
+        self.imageURLs.removeAll()
         self.latitude = nil
         self.longitude = nil
         self.rangeTextField.text = ""
