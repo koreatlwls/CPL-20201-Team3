@@ -126,8 +126,7 @@ class ListADFragment : Fragment() {
                 val ad = adsList[position]
                 holder.title.text = ad.shopname
                 holder.content.text = ad.shopposition
-                // holder.edit.setOnClickListener { updateNote(note) }
-                // holder.delete.setOnClickListener { deleteNote(note.id!!) }
+                holder.itemLayout.setOnClickListener { adDetail(ad) }  // OnClickListener on each Vertical itemLayout
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobADViewHolder {
@@ -162,6 +161,10 @@ class ListADFragment : Fragment() {
         super.onDestroy()
 
         firestoreListener!!.remove()
+    }
+
+    private fun adDetail(ad: JobAd) {
+        Toast.makeText(context, "test " + ad.shopname, Toast.LENGTH_LONG).show()
     }
 
 
