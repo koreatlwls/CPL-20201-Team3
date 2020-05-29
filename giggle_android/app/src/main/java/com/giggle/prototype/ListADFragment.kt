@@ -164,7 +164,11 @@ class ListADFragment : Fragment() {
     }
 
     private fun adDetail(ad: JobAd) {
-        Toast.makeText(context, "test " + ad.shopname, Toast.LENGTH_LONG).show()
+        // Toast.makeText(context, "Clicked " + ad.shopname, Toast.LENGTH_LONG).show()
+
+        val nextIntent = Intent(context, AdDetailApply::class.java)
+        nextIntent.putExtra("name", ad.shopname)
+        startActivity(nextIntent)
     }
 
 
