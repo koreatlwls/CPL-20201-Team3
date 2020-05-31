@@ -34,6 +34,7 @@ import java.io.IOException
 import java.util.*
 import android.animation.ObjectAnimator
 
+
 class AddADFragment : Fragment(),OnMapReadyCallback {
     private lateinit var rootView:View
     private lateinit var mMap: GoogleMap
@@ -381,6 +382,14 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                         sex,
                         numperson
                     )
+                    val db = FirebaseFirestore.getInstance()
+                    //db에 저장된 앱 사용자들에게 푸쉬토큰을 이용해 푸쉬 알림전송
+                    db.collection("pushtokens").get().addOnSuccessListener{result->
+                        for(document in result){
+                            val pushtoken=document.data["pushtoken"].toString()
+                            SendNotification.sendNotification(pushtoken,shopname,shopposition)
+                        }
+                    }
                     currentUpload() //사진 등록
                     Toast.makeText(activity,"등록 성공",Toast.LENGTH_SHORT).show()
                     resetText()//초기화

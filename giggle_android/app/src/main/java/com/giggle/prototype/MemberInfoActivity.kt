@@ -53,7 +53,6 @@ class MemberInfoActivity : AppCompatActivity() {
                     if (user != null) {
                         db.collection("members").document(user.uid).set(member)
                     } //DB에 uid기준으로 멤버정보 저장
-
                     Toast.makeText(this,"등록 성공",Toast.LENGTH_SHORT).show()
                     resetText()//초기화
                 }
@@ -80,4 +79,5 @@ class MemberInfoActivity : AppCompatActivity() {
         edMemPhone2.setBackgroundResource(R.drawable.border_dark)
         edMemPhone3.setBackgroundResource(R.drawable.border_dark)
     }
+
 }

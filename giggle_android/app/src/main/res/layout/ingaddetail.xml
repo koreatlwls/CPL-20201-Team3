@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/firstlayout"
+        android:id="@+id/first"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -49,14 +50,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/secondlayout"
+        android:id="@+id/second"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstlayout">
+        app:layout_constraintTop_toBottomOf="@id/first">
 
         <TextView
             android:id="@+id/txPosition"
@@ -82,14 +83,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/thirdlayout"
+        android:id="@+id/third"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/secondlayout">
+        app:layout_constraintTop_toBottomOf="@id/second"
+        tools:ignore="DuplicateIds">
 
         <TextView
             android:id="@+id/txInfo"
@@ -115,14 +117,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/fourthlayout"
+        android:id="@+id/fourth"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thirdlayout">
+        app:layout_constraintTop_toBottomOf="@id/third">
 
         <TextView
             android:id="@+id/txNum"
@@ -147,14 +149,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/fifthlayout"
+        android:id="@+id/fifth"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fourthlayout">
+        app:layout_constraintTop_toBottomOf="@id/fourth">
 
         <TextView
             android:id="@+id/txPay"
@@ -179,14 +181,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/sixthlayout"
+        android:id="@+id/sixth"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fifthlayout">
+        app:layout_constraintTop_toBottomOf="@id/fifth">
 
         <TextView
             android:id="@+id/txTime"
@@ -212,14 +214,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/seventhlayout"
+        android:id="@+id/seventh"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sixthlayout">
+        app:layout_constraintTop_toBottomOf="@id/sixth">
 
         <TextView
             android:id="@+id/txSex"
@@ -244,14 +246,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/eightthlayout"
+        android:id="@+id/eightth"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seventhlayout">
+        app:layout_constraintTop_toBottomOf="@id/seventh">
 
         <TextView
             android:id="@+id/txAge"
@@ -276,14 +278,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ninethlayout"
+        android:id="@+id/nineth"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eightthlayout">
+        app:layout_constraintTop_toBottomOf="@id/eightth">
 
         <TextView
             android:id="@+id/txPriority"

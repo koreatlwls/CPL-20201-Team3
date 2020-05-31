@@ -1,35 +1,18 @@
 package com.giggle.prototype
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.gms.location.*
-import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.yesButton
-import kotlinx.android.synthetic.main.activity_main.*
-import android.view.View
-import android.widget.EditText
+import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.internal.NavigationMenu
-import java.io.IOException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.iid.InstanceIdResult
+import java.util.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -37,6 +20,16 @@ class SignInActivity : AppCompatActivity() {
     private fun loadFragment(fragment: Fragment) {
         // load fragment
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit()
+    }
+    private fun registerPushToken() {
+        var pushToken: String?
+        var uid = FirebaseAuth.getInstance().currentUser!!.uid
+        var map = mutableMapOf<String, Any>()
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+            pushToken = instanceIdResult.token
+            map["pushtoken"] = pushToken!!
+            FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
+        }
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
@@ -76,7 +69,11 @@ class SignInActivity : AppCompatActivity() {
 
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        //접속시 서버에게 푸쉬토큰 등록
+        registerPushToken()
     }
+
     override fun onResume() {//잠깐 쉴 때
         super.onResume()
     }

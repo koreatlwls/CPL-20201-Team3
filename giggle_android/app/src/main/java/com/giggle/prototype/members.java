@@ -8,6 +8,14 @@ public class members {
     private String uid;
     private String phonenumber;
 
+    public members(String name, Integer age, String sex, String position,  String phonenumber){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.position = position;
+        this.phonenumber = phonenumber;
+    }
+
     public members(String name, Integer age, String sex, String position, String uid, String phonenumber){
         this.name = name;
         this.age = age;
@@ -16,6 +24,7 @@ public class members {
         this.uid = uid;
         this.phonenumber = phonenumber;
     }
+
     public String getPhonenumber(){
         return this.phonenumber;
     }

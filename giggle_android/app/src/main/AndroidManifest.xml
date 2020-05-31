@@ -80,6 +80,14 @@
         <activity android:name=".IngAdActivity" />
         <activity android:name=".IngAd_DetailActivity" />
         <activity android:name=".CompleteAdActivity" />
+        <activity android:name=".MemDetail" />
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
