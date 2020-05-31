@@ -113,6 +113,9 @@ class LoginViewController: UIViewController {
                                 LoginViewController.user.docID = querySnapshot!.documents[0].documentID
                                 LoginViewController.user.lat = querySnapshot!.documents[0].data()["lat"] as? CLLocationDegrees
                                 LoginViewController.user.lng = querySnapshot!.documents[0].data()["lng"] as? CLLocationDegrees
+                                LoginViewController.user.fcmToken = Messaging.messaging().fcmToken
+                                db.collection("UserData").document(LoginViewController.user.docID).updateData(["fcmToken": LoginViewController.user.fcmToken ?? ""])
+                                LoginViewController.user.updateReceivedAds()
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }
                         }

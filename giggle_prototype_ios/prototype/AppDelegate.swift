@@ -175,4 +175,28 @@ extension AppDelegate : MessagingDelegate {
       // TODO: If necessary send token to application server.
       // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print(remoteMessage)
+        let content = UNMutableNotificationContent()
+        let data = remoteMessage.appData
+        content.title = data["adTitle"] as! String
+        content.subtitle = "시급 : \(data["wage"] as! String)원"
+        content.body = data["detail"] as! String
+        content.badge = 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "newAd", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        print("adTitle : \(data["adTitle"] as! String)")
+        print("wage : \(data["wage"] as! String)")
+        print("detail : \(data["detail"] as! String)")
+        let docID = data["docID"] as! String
+        print("docID : \(docID)")
+        let db = Firestore.firestore()
+        db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").addDocument(data: [
+            "docID": docID,
+            "apply": 0
+        ])
+        LoginViewController.user.adsID.append(docID)
+    }
 }

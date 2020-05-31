@@ -42,7 +42,7 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = .clear
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "신청", style: .plain, target: nil, action: #selector(apply))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "지원", style: .plain, target: self, action: #selector(apply))
         
         //이미지 불러오기
         let storage = Storage.storage()
@@ -150,6 +150,45 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func apply() {
-        
+        let db = Firestore.firestore()
+        db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").getDocuments() {
+            (querySnapshot, err) in
+            let count = querySnapshot!.documents.count
+            for index in 0..<count {
+                let document = querySnapshot!.documents[index]
+                let data = document.data()
+                let tempDocID = data["docID"] as! String
+                if tempDocID == ShowAdViewController.selectedAd.docID {
+                    let state = data["state"] as! Int
+                    if state == 1 {
+                        let error_alert = UIAlertController(title: "지원하기", message: "이미 지원한 광고입니다.", preferredStyle: .alert)
+                        let ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        error_alert.addAction(ok_Action)
+                        self.present(error_alert, animated: true, completion: nil)
+                        
+                    }
+                    else {
+                        let check_alert = UIAlertController(title: "지원하기", message: "자신을 어필할 수 있는 메시지를 입력하여 지원하세요 !", preferredStyle: .alert)
+                        let ok_Action = UIAlertAction(title: "지원", style: .default, handler: {
+                            (action) in
+                            db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").document(document.documentID).updateData(["state": 1])
+                            let complete_alert = UIAlertController(title: "지원완료", message: "지원이 완료되었습니다.", preferredStyle: .alert)
+                            let complete_ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                            complete_alert.addAction(complete_ok_Action)
+                            self.present(complete_alert, animated: true, completion: nil)
+                        })
+                        let no_Action = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+                        check_alert.addTextField() {
+                            (textField) in
+                            textField.placeholder = "지원 메시지 입력"
+                        }
+                        check_alert.addAction(ok_Action)
+                        check_alert.addAction(no_Action)
+                        self.present(check_alert, animated: true, completion: nil)
+                    }
+                    break
+                }
+            }
+        }
     }
 }

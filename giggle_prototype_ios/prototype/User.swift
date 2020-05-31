@@ -18,11 +18,53 @@ class User {
     var lat: CLLocationDegrees!
     var lng: CLLocationDegrees!
     let bucketURL = "gs://giggle-prototype.appspot.com"
+    var fcmToken: String!
+    var adsID: [String]!
     
     init(name: String, email: String, member_state: Int) {
         self.name = name
         self.email = email
         self.member_state = member_state
+        adsID = [String]()
+    }
+    
+    func updateReceivedAds() {
+        let db = Firestore.firestore()
+        db.collection("UserData").document(docID).collection("ReceivedAd").getDocuments() {
+            (querySnapshot, err) in
+            let count = querySnapshot!.documents.count
+            for index in 0..<count {
+                let document = querySnapshot!.documents[index]
+                let data = document.data()
+                let adDocID = data["docID"] as! String
+                db.collection("AdData").document(adDocID).getDocument() {
+                    (documentSnapshot, err) in
+                    let data = documentSnapshot?.data()
+                    if data != nil {
+                        let state = data!["state"] as! Int
+                        if state == 0 {
+                            self.adsID.append(adDocID)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteCompletedAds() {
+        let db = Firestore.firestore()
+        for index in 0..<adsID.count {
+            db.collection("AdData").document(adsID[index]).getDocument() {
+                (documentSnapshot, err) in
+                let data = documentSnapshot?.data()
+                if data != nil {
+                    let state = data!["state"] as! Int
+                    if state == 1 {
+                        self.adsID.remove(at: index)
+                    }
+                }
+            }
+        }
     }
     
     func updateIntegerField(field: String, value: Int)

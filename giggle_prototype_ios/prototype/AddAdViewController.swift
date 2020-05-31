@@ -15,6 +15,7 @@ import Firebase
 class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     static var childView: UIViewController!
     var errorDetected: Int!
+    let queue = DispatchQueue(label: "AddAdViewController")
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -39,6 +40,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var rangeTextField: UITextField!
     @IBOutlet weak var availableLabel: UILabel!
     var availableCount: Int!
+    var tokens: [String]!
     
     //모집 분야&인원 필드 추가 관련
     @IBOutlet weak var inputFieldStepper: UIStepper!
@@ -66,9 +68,12 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var initButton: UIButton!
     
+    var tempDocID: String!
+    
     @IBAction func searchAvailablePeople(_ sender: UIButton) {
         availableCount = 0
         let db = Firestore.firestore()
+        tokens = [String]()
         db.collection("UserData").whereField("member_state", isEqualTo: 1).getDocuments() {
             (querySnapshot, err) in
             let userCount = querySnapshot!.documents.count
@@ -95,6 +100,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 let range_double = Double(range_text)
                 if dist.isLessThanOrEqualTo(range_double ?? -1) {
                     self.availableCount += 1
+                    self.tokens.append(data["fcmToken"] as! String)
                 }
             }
             self.updateAvailableLabel()
@@ -231,88 +237,95 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let yesAction = UIAlertAction(title: "등록", style: .default) {
                 (action) in
                 //저장 데이터 가공
-                var minAge: Int!
-                var maxAge: Int!
-                if self.ageSegmentedControl.selectedSegmentIndex == 1 {
-                    minAge = -1
-                    maxAge = -1
-                }
-                else {
-                    minAge = Int(self.minAgeTextField.text!)!
-                    maxAge = Int(self.maxAgeTextField.text!)!
-                }
-                let range = Int(self.rangeTextField.text!)!
-                let dateformatter1 = DateFormatter()
-                let dateformatter2 = DateFormatter()
-                dateformatter1.dateFormat = "yyyy-MM-dd"
-                dateformatter2.dateFormat = "HH:mm"
-                //DB 저장 작업
-                let db = Firestore.firestore()
-                var ref: DocumentReference? = nil
-                ref = db.collection("AdData").addDocument(data: [
-                    "Uploader": LoginViewController.user.email!,
-                    "state": 0,
-                    "name": self.nameTextField.text!,
-                    "type": self.typeTextField.text!,
-                    "latitude": self.latitude!,
-                    "longitude": self.longitude!,
-                    "range": range,
-                    "adTitle": self.adTitleTextField.text!,
-                    "workDay": dateformatter1.string(from: self.workDayPicker.date),
-                    "startTime": dateformatter2.string(from: self.startTimePicker.date),
-                    "endTime": dateformatter2.string(from: self.endTimePicker.date),
-                    "wage": Int(self.wageTextField.text!)!,
-                    "workDetail": self.workDetailTextView.text!,
-                    "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
-                    "preferMinAge": minAge!,
-                    "preferMaxAge": maxAge!,
-                    "preferInfo": self.preferenceTextView.text!,
-                    "fieldCount": self.currentInputFieldCount,
-                    "imageCount": self.currentImageViewIndex
-                ]) { err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                    } else {
-                        print("Document added with ID: \(ref!.documentID)")
+                self.queue.sync {
+                    var minAge: Int!
+                    var maxAge: Int!
+                    if self.ageSegmentedControl.selectedSegmentIndex == 1 {
+                        minAge = -1
+                        maxAge = -1
                     }
-                }
-                for index in 0..<Int(self.currentInputFieldCount) {
-                    db.collection("AdData").document(ref!.documentID).updateData([
-                        "field"+String(index+1): (self.parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField).text!,
-                        "numberOfPeople"+String(index+1): Int((self.parentInputFieldStackView.subviews[index+1].subviews[1].subviews[1] as! UITextField).text!)!
-                    ])
-                }
-                let storage = Storage.storage()
-                let storageRef = storage.reference()
-                for index in 0..<self.currentImageViewIndex {
-                    let imageRef = storageRef.child("Ad/" + ref!.documentID + "/shop_image_" + String(index+1) + ".jpg")
-                    let metadata = StorageMetadata()
-                    metadata.contentType = "image/jpeg"
-                    
-                    let uploadTask = imageRef.putFile(from: self.imageURLs[index], metadata: metadata)
-                    uploadTask.observe(.failure) { snapshot in
-                        if let error = snapshot.error as NSError? {
-                            switch (StorageErrorCode(rawValue: error.code)!) {
-                            case .objectNotFound:
-                                print("object Not Found")
-                                break
-                            case .unauthorized:
-                                print("unauthorized")
-                                break
-                            case .cancelled:
-                                print("cancelled")
-                                break
-                            case .unknown:
-                                print("unknown")
-                                break
-                            default:
-                                print("default: retry to upload")
-                                break
+                    else {
+                        minAge = Int(self.minAgeTextField.text!)!
+                        maxAge = Int(self.maxAgeTextField.text!)!
+                    }
+                    let range = Int(self.rangeTextField.text!)!
+                    let dateformatter1 = DateFormatter()
+                    let dateformatter2 = DateFormatter()
+                    dateformatter1.dateFormat = "yyyy-MM-dd"
+                    dateformatter2.dateFormat = "HH:mm"
+                    //DB 저장 작업
+                    let db = Firestore.firestore()
+                    var ref: DocumentReference? = nil
+                    ref = db.collection("AdData").addDocument(data: [
+                        "Uploader": LoginViewController.user.email!,
+                        "state": 0,
+                        "name": self.nameTextField.text!,
+                        "type": self.typeTextField.text!,
+                        "latitude": self.latitude!,
+                        "longitude": self.longitude!,
+                        "range": range,
+                        "adTitle": self.adTitleTextField.text!,
+                        "workDay": dateformatter1.string(from: self.workDayPicker.date),
+                        "startTime": dateformatter2.string(from: self.startTimePicker.date),
+                        "endTime": dateformatter2.string(from: self.endTimePicker.date),
+                        "wage": Int(self.wageTextField.text!)!,
+                        "workDetail": self.workDetailTextView.text!,
+                        "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
+                        "preferMinAge": minAge!,
+                        "preferMaxAge": maxAge!,
+                        "preferInfo": self.preferenceTextView.text!,
+                        "fieldCount": self.currentInputFieldCount,
+                        "imageCount": self.currentImageViewIndex
+                    ]) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+                    self.tempDocID = ref!.documentID
+                    for index in 0..<Int(self.currentInputFieldCount) {
+                        db.collection("AdData").document(ref!.documentID).updateData([
+                            "field"+String(index+1): (self.parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField).text!,
+                            "numberOfPeople"+String(index+1): Int((self.parentInputFieldStackView.subviews[index+1].subviews[1].subviews[1] as! UITextField).text!)!
+                        ])
+                    }
+                    let storage = Storage.storage()
+                    let storageRef = storage.reference()
+                    for index in 0..<self.currentImageViewIndex {
+                        let imageRef = storageRef.child("Ad/" + ref!.documentID + "/shop_image_" + String(index+1) + ".jpg")
+                        let metadata = StorageMetadata()
+                        metadata.contentType = "image/jpeg"
+                        
+                        let uploadTask = imageRef.putFile(from: self.imageURLs[index], metadata: metadata)
+                        uploadTask.observe(.failure) { snapshot in
+                            if let error = snapshot.error as NSError? {
+                                switch (StorageErrorCode(rawValue: error.code)!) {
+                                case .objectNotFound:
+                                    print("object Not Found")
+                                    break
+                                case .unauthorized:
+                                    print("unauthorized")
+                                    break
+                                case .cancelled:
+                                    print("cancelled")
+                                    break
+                                case .unknown:
+                                    print("unknown")
+                                    break
+                                default:
+                                    print("default: retry to upload")
+                                    break
+                                }
                             }
                         }
                     }
                 }
-                self.initForm()
+                self.queue.sync {
+                    print(self.tempDocID)
+                    self.sendPost()
+                    self.initForm()
+                }
             }
             let noAction = UIAlertAction(title: "취소", style: .default) {
                 (action) in
@@ -551,6 +564,50 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @objc private func hideKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func sendPost() {
+        for index in 0..<tokens.count {
+            let token = tokens[index]
+            let param = [
+                "to": token,
+                "data": [
+                    "adTitle": adTitleTextField.text,
+                    "wage": wageTextField.text,
+                    "detail": workDetailTextView.text,
+                    "docID": tempDocID
+                ]
+                ] as [String : Any] as [String : Any]
+            let paramData = try! JSONSerialization.data(withJSONObject: param, options: [])
+            
+            let url = URL(string: "https://fcm.googleapis.com/fcm/send")
+            var request = URLRequest(url: url!)
+            request.httpMethod = "POST"
+            let serverKey = ""
+            request.allHTTPHeaderFields = [
+                "Content-Type": "application/json",
+                "Authorization": "key=\(serverKey)"
+            ]
+            request.httpBody = paramData
+            
+            let task = URLSession.shared.dataTask(with: request) {
+                (data, response, error) in
+                guard let data = data, error == nil else {
+                    print("error=\(error)")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString)")
+            }
+            
+            task.resume()
+        }
     }
     
     private func addKeyboardNotification() {

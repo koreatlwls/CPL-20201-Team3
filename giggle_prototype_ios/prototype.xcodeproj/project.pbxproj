@@ -33,6 +33,8 @@
 		B896F82324506A86002F3090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B896F82124506A86002F3090 /* LaunchScreen.storyboard */; };
 		B896F82B24506AAF002F3090 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B896F82A24506AAF002F3090 /* GoogleService-Info.plist */; };
 		B8A042962459797800305A68 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A042952459797800305A68 /* CurrentLocationViewController.swift */; };
+		B8C5E62A248397AF00587225 /* AppliedAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5E629248397AF00587225 /* AppliedAdViewController.swift */; };
+		B8C5E62C2483A6D300587225 /* AppliedAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5E62B2483A6D300587225 /* AppliedAdCell.swift */; };
 		B8E2820B24791A2C00E8EB97 /* SAV_MapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */; };
 		B8F8962A24775741007A6ED1 /* AdDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8962924775741007A6ED1 /* AdDetailCell.swift */; };
 		B8F8962C24775EA1007A6ED1 /* AdDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */; };
@@ -69,6 +71,8 @@
 		B896F82424506A86002F3090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B896F82A24506AAF002F3090 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8A042952459797800305A68 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
+		B8C5E629248397AF00587225 /* AppliedAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAdViewController.swift; sourceTree = "<group>"; };
+		B8C5E62B2483A6D300587225 /* AppliedAdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedAdCell.swift; sourceTree = "<group>"; };
 		B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAV_MapContainerViewController.swift; sourceTree = "<group>"; };
 		B8F8962924775741007A6ED1 /* AdDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailCell.swift; sourceTree = "<group>"; };
 		B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailViewController.swift; sourceTree = "<group>"; };
@@ -165,9 +169,11 @@
 				B8F8962B24775EA0007A6ED1 /* AdDetailViewController.swift */,
 				B8E2820A24791A2C00E8EB97 /* SAV_MapContainerViewController.swift */,
 				B8F8962924775741007A6ED1 /* AdDetailCell.swift */,
+				B8C5E62B2483A6D300587225 /* AppliedAdCell.swift */,
 				B88C24592450751A00B32D5D /* SignUpView1Controller.swift */,
 				B88C245A2450751A00B32D5D /* SignUpView2Controller.swift */,
 				B896F81C24506A85002F3090 /* Main.storyboard */,
+				B8C5E629248397AF00587225 /* AppliedAdViewController.swift */,
 				B896F82124506A86002F3090 /* LaunchScreen.storyboard */,
 				B896F81F24506A86002F3090 /* Assets.xcassets */,
 				B896F82424506A86002F3090 /* Info.plist */,
@@ -314,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88C24652450751B00B32D5D /* LoginViewController.swift in Sources */,
+				B8C5E62A248397AF00587225 /* AppliedAdViewController.swift in Sources */,
 				B8F8962C24775EA1007A6ED1 /* AdDetailViewController.swift in Sources */,
 				B88C24632450751B00B32D5D /* SignUpView1Controller.swift in Sources */,
 				B871879F2453AEC40022B983 /* CallImageViewController.swift in Sources */,
@@ -326,6 +333,7 @@
 				B88C24662450751B00B32D5D /* ResetPasswordViewController.swift in Sources */,
 				B8A042962459797800305A68 /* CurrentLocationViewController.swift in Sources */,
 				B87519EE245D9D3800ABBC4D /* User.swift in Sources */,
+				B8C5E62C2483A6D300587225 /* AppliedAdCell.swift in Sources */,
 				B87562C92459BE740050AFD7 /* AAV_MapContainerViewController.swift in Sources */,
 				B87A2FE3245EC75500FC7A37 /* Ad.swift in Sources */,
 				B896F81724506A85002F3090 /* AppDelegate.swift in Sources */,
