@@ -16,6 +16,7 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
     private var refreshControl = UIRefreshControl()
     var ads = [Ad]()
     static var selectedAd: Ad!
+    //let mainQueue = DispatchQueue.main
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,14 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
         
         AdTableView.dataSource = self
         AdTableView.delegate = self
-        updateAds {
-            self.AdTableView.reloadData()
+        
+        //뷰 실행 시 한 번 업데이트
+        DispatchQueue.main.async {
+            self.updateAds {
+                self.AdTableView.reloadData()
+            }
         }
+        
         //refresh 설정
         if #available(iOS 10.0, *) {
             AdTableView.refreshControl = refreshControl
@@ -43,9 +49,11 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @objc func refresh() {
-        updateAds {
-            self.AdTableView.reloadData()
-            self.refreshControl.endRefreshing()
+        DispatchQueue.main.async {
+            self.updateAds {
+                self.AdTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     
@@ -79,33 +87,33 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
     
     func updateAds(success: @escaping ()->()) {
         ads.removeAll()
+        LoginViewController.user.deleteCompletedAds()
         let db = Firestore.firestore()
-        db.collection("AdData").whereField("state", isEqualTo: 0).getDocuments() {
-            (querySnapshot, err) in
-            for index in 0..<querySnapshot!.documents.count {
-                let document = querySnapshot!.documents[index]
-                let data = document.data()
-                let workDayString = data["workDay"] as! String
-                let startTimeString = data["startTime"] as! String
-                let endTimeString = data["endTime"] as! String
+        for index in 0..<LoginViewController.user.adsID.count {
+            db.collection("AdData").document(LoginViewController.user.adsID[index]).getDocument() {
+                (document, err) in
+                let data = document?.data()
+                let workDayString = data!["workDay"] as! String
+                let startTimeString = data!["startTime"] as! String
+                let endTimeString = data!["endTime"] as! String
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let workDay = dateFormatter.date(from: workDayString)
                 dateFormatter.dateFormat = "HH:mm"
                 let startTime = dateFormatter.date(from: startTimeString)
                 let endTime = dateFormatter.date(from: endTimeString)
-                let ad = Ad.init(email: data["Uploader"] as! String, name: data["name"] as! String, type: data["type"] as! String, lat: data["latitude"] as! Double, lng: data["longitude"] as! Double, range: data["range"] as! Int, title: data["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data["wage"] as! Int, workDetail: data["workDetail"] as! String, preferGender: data["preferGender"] as! Int, preferMinAge: data["preferMinAge"] as! Int, preferMaxAge: data["preferMaxAge"] as! Int, preferInfo: data["preferInfo"] as! String)
+                let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
                 //분야/인원
-                let fieldCount = data["fieldCount"] as! Int
+                let fieldCount = data!["fieldCount"] as! Int
                 ad.recruitFieldArr = [String]()
                 ad.recruitNumOfPeopleArr = [Int]()
                 for fcount in 0..<fieldCount {
-                    ad.recruitFieldArr.append(data["field"+String(fcount+1)] as! String)
-                    ad.recruitNumOfPeopleArr.append(data["numberOfPeople"+String(fcount+1)] as! Int)
+                    ad.recruitFieldArr.append(data!["field"+String(fcount+1)] as! String)
+                    ad.recruitNumOfPeopleArr.append(data!["numberOfPeople"+String(fcount+1)] as! Int)
                 }
                 //첫번째 이미지 불러오기
-                ad.imageCount = data["imageCount"] as? Int
-                ad.docID = document.documentID
+                ad.imageCount = data!["imageCount"] as? Int
+                ad.docID = document?.documentID
                 ad.images = [UIImage]()
                 let storage = Storage.storage()
                 let storageRef = storage.reference()
