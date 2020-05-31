@@ -583,7 +583,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let url = URL(string: "https://fcm.googleapis.com/fcm/send")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
-            let serverKey = "AAAApQ_ENDM:APA91bGbjWaYZ-sBK4LpnFkCp4o1VOaO5U8vsV8SMBJhcB0zFhwC0ps-sF2lWex6lQBWiXB6WGqK-psd0vVqeMRzaeot6UpShlIXn2g99yJ2QmRxbchTK0B8yDMim-IMnhLhIGwmd7ol"
+            let serverKey = ""
             request.allHTTPHeaderFields = [
                 "Content-Type": "application/json",
                 "Authorization": "key=\(serverKey)"
