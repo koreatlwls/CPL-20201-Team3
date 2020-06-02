@@ -59,14 +59,23 @@ class MypageFragment1 : Fragment() {
         emailText.text = email
 
         // button listeners
-        bt_change.setOnClickListener{
-            val nextIntent = Intent(activity, SignInActivity::class.java)
+        btn_ing.setOnClickListener{  // 진행중인 알바
+            // val nextIntent = Intent(activity, SignInActivity::class.java)
+            // startActivity(nextIntent)
+        }
+        btn_saved_ad.setOnClickListener{  // 아르바이트 이력
+            val nextIntent = Intent(activity, SavedAdActivity::class.java)
             startActivity(nextIntent)
         }
-        btn_member.setOnClickListener{
+        btn_member.setOnClickListener{  // 구인 정보 등록
             val nextIntent = Intent(activity, MemberInfoActivity::class.java)
             startActivity(nextIntent)
         }
+        bt_change.setOnClickListener{  // 구인자 전환
+            val nextIntent = Intent(activity, SignInActivity::class.java)
+            startActivity(nextIntent)
+        }
+
     }
     fun currentUpload(){
         val uid = user?.uid
