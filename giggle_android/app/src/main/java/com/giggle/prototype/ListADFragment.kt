@@ -12,16 +12,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_list_ad.*
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.activity_main.*
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.*
 
 class ListADFragment : Fragment() {
     // private val user = FirebaseAuth.getInstance().currentUser
@@ -52,7 +49,7 @@ class ListADFragment : Fragment() {
         // starts from here
         loadAdsList("")
 
-        firestoreListener = db!!.collection("jobads")
+        firestoreListener = db!!.collection("jobads").orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener(EventListener { documentSnapshots, e ->
                 if (e != null) {
                     return@EventListener
@@ -126,6 +123,8 @@ class ListADFragment : Fragment() {
                 val ad = adsList[position]
                 holder.title.text = ad.shopname
                 holder.content.text = ad.shopposition
+                // for test
+                // holder.content.text = ad.timestamp.toString()
                 holder.itemLayout.setOnClickListener { adDetail(ad) }  // OnClickListener on each Vertical itemLayout
             }
 
