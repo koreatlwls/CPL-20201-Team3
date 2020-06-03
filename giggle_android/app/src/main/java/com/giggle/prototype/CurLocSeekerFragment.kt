@@ -21,12 +21,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_cur_loc_seeker.*
 import kotlinx.android.synthetic.main.fragment_current_loc.*
 import kotlinx.android.synthetic.main.memdetail.*
 import java.io.IOException
 
 
-class CurrentLocFragment : Fragment(),OnMapReadyCallback{
+class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
     private lateinit var rootView:View
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
@@ -41,14 +42,14 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var lntlng:LatLng
-    private var memberArray= mutableListOf<members>()
+    private var jobadarray= mutableListOf<JobAd>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView=inflater.inflate(R.layout.fragment_current_loc,container,false)
-        mapView=rootView.findViewById(R.id.mapView)
+        rootView=inflater.inflate(R.layout.fragment_cur_loc_seeker,container,false)
+        mapView=rootView.findViewById(R.id.mapViewSeeker)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        lntlng=LatLng(37.0, 129.0)
+        lntlng=LatLng(32.0, 129.0)
         return rootView
     }
 
@@ -60,36 +61,38 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("members").get()
+        db.collection("jobads").get()
             .addOnSuccessListener { result->
                 for(document in result){
-                    var currentmember= members()
-                    currentmember.name=document.data["name"].toString()
-                    currentmember.position=document.data["position"].toString()
-                    currentmember.phonenumber=document.data["phonenumber"].toString()
-                    currentmember.sex=document.data["sex"].toString()
-                    memberArray.add(currentmember)
+                    var jobad= JobAd()
+                    jobad.shopname=document.data["shopname"].toString()
+                    jobad.shopposition=document.data["shopposition"].toString()
+                    jobadarray.add(jobad)
                 }
-                MarkMember()
+                MarkAds()
             }
-        btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
-        btn_search.setOnClickListener{searchLocation()}
+        btn_MyLocation_Seeker.setOnClickListener{OnMyLocationButtonClick()}
+        btn_search_Seeker.setOnClickListener{searchLocation()}
 
         super.onViewCreated(view, savedInstanceState)
     }
 
 
-    fun MarkMember(){
+
+    fun MarkAds(){
         var addressList:List<Address>?=null
-        for(member in memberArray)
+        for(CurrentAd in jobadarray)
         {
             val geocoder=Geocoder(mContext)
-            addressList=geocoder.getFromLocationName(member.position,1)
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            var markeroption:MarkerOptions= MarkerOptions().position(latLng).title(member.name)
-            markeroption.snippet(member.phonenumber)
-            mMap.addMarker(markeroption)
+            addressList=geocoder.getFromLocationName(CurrentAd.shopposition,1)
+            if(addressList.isNotEmpty()) {
+                val address = addressList!![0]
+                val latLng = LatLng(address.latitude, address.longitude)
+                var markeroption: MarkerOptions =
+                    MarkerOptions().position(latLng).title(CurrentAd.shopname)
+                markeroption.snippet(CurrentAd.shopposition)
+                mMap.addMarker(markeroption)
+            }
 
         }
 
@@ -145,7 +148,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     fun searchLocation(){
 
         lateinit var location:String
-        location=search.text.toString()
+        location=txsearch.text.toString()
         var addressList:List<Address>?=null
 
         if(location==""){
@@ -162,7 +165,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
             val latLng=LatLng(address.latitude,address.longitude)
             mMap.addMarker(MarkerOptions().position(latLng).title(location))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
-            Toast.makeText(mContext,address.latitude.toString()+" "+address.longitude,Toast.LENGTH_LONG).show()
         }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -191,6 +193,12 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
                 //위도 경도 좌표 전달
                 //지도에 애니메이션 효과로 카메라 이동.
                 //좌표위치로 이동하면서 배율은 17(0~19)
+
+                Log.d(
+                    "MapActivity"
+                    , "위도: $latitude, 경도 : $longitude"
+                )
+
             }
         }
     }
@@ -224,7 +232,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     }
     override fun onResume() {
         super.onResume()
-       mapView.onResume()
+        mapView.onResume()
     }
 
     override fun onPause() {
