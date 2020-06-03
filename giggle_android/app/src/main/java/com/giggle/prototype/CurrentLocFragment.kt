@@ -18,7 +18,11 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_current_loc.*
+import kotlinx.android.synthetic.main.memdetail.*
 import java.io.IOException
 
 
@@ -28,7 +32,8 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     private lateinit var mapView: MapView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var mContext:FragmentActivity
-
+    private var auth: FirebaseAuth? = null
+    private var isFabOpen=false
     //위치값 얻어오기 객체
     lateinit var locationRequest: LocationRequest
     //위치 요청
@@ -36,15 +41,14 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var lntlng:LatLng
-
+    private var memberArray= mutableListOf<members>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView=inflater.inflate(R.layout.fragment_current_loc,container,false)
         mapView=rootView.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        lntlng=LatLng(39.0, 39.0)
-
+        lntlng=LatLng(37.0, 129.0)
         return rootView
     }
 
@@ -54,12 +58,42 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("members").get()
+            .addOnSuccessListener { result->
+                for(document in result){
+                    var currentmember= members()
+                    currentmember.name=document.data["name"].toString()
+                    currentmember.position=document.data["position"].toString()
+                    currentmember.phonenumber=document.data["phonenumber"].toString()
+                    currentmember.sex=document.data["sex"].toString()
+                    memberArray.add(currentmember)
+                }
+                MarkMember()
+            }
         btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
         btn_search.setOnClickListener{searchLocation()}
+
         super.onViewCreated(view, savedInstanceState)
     }
-    fun CurrentLocFragment() {}
 
+
+    fun MarkMember(){
+        var addressList:List<Address>?=null
+        for(member in memberArray)
+        {
+            val geocoder=Geocoder(mContext)
+            addressList=geocoder.getFromLocationName(member.position,1)
+            val address = addressList!![0]
+            val latLng = LatLng(address.latitude, address.longitude)
+            var markeroption:MarkerOptions= MarkerOptions().position(latLng).title(member.name)
+            markeroption.snippet(member.phonenumber)
+            mMap.addMarker(markeroption)
+
+        }
+
+    }
     companion object {
         fun newInstance(): CurrentLocFragment = CurrentLocFragment()
     }
@@ -76,10 +110,10 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
             // 액티비티가 잠깐 쉴 때,
             // 자신의 위치를 확인하고, 갱신된 정보를 요청
         }
-        val sydney = LatLng(-34.0, 151.0) //위도 경도, 변수에 저장
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        val Seoul = LatLng(37.0, 129.0) //위도 경도, 변수에 저장
+        mMap.addMarker(MarkerOptions().position(Seoul).title("Marker in Seoul"))
         //지도에 표시를 하고 제목을 추가.
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul,17f))
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }

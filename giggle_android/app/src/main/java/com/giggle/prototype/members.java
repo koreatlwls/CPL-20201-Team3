@@ -8,6 +8,7 @@ public class members {
     private String uid;
     private String phonenumber;
 
+    public members(){}
     public members(String name, Integer age, String sex, String position,  String phonenumber){
         this.name = name;
         this.age = age;

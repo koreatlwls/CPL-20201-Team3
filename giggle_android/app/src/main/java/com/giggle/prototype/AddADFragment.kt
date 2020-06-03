@@ -129,12 +129,12 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         else{
             val geoCoder= Geocoder(mContext)
             try{
-                addressList=geoCoder.getFromLocationName(location,1)
+                addressList=geoCoder.getFromLocationName(location,500)
 
             }catch(e: IOException){
                 e.printStackTrace()
             }
-            if(addressList!!.size==1) {
+            if(addressList!!.isNotEmpty()) {
                 val address = addressList!![0]
                 val latLng = LatLng(address.latitude, address.longitude)
                 Location_finded = address.getAddressLine(0)
@@ -184,12 +184,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 //위도 경도 좌표 전달
                 //지도에 애니메이션 효과로 카메라 이동.
                 //좌표위치로 이동하면서 배율은 17(0~19)
-
-                Log.d(
-                    "MapActivity"
-                    , "위도: $latitude, 경도 : $longitude"
-                )
-
             }
         }
     }
