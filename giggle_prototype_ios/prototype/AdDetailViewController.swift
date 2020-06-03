@@ -29,6 +29,8 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var preferenceDetailLabel: UILabel!
     @IBOutlet weak var shopNameLabel: UILabel!
     
+    let queue = DispatchQueue(label: "AdDetailViewController")
+    
     @IBAction func backToMarker(_ sender: UIButton) {
         SAV_MapContainerViewController.updateCamera()
     }
@@ -165,7 +167,6 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                         let ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
                         error_alert.addAction(ok_Action)
                         self.present(error_alert, animated: true, completion: nil)
-                        
                     }
                     else {
                         let check_alert = UIAlertController(title: "지원하기", message: "자신을 어필할 수 있는 메시지를 입력하여 지원하세요 !", preferredStyle: .alert)
@@ -176,6 +177,13 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                             let complete_ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
                             complete_alert.addAction(complete_ok_Action)
                             self.present(complete_alert, animated: true, completion: nil)
+                            //
+                            db.collection("AdData").document(ShowAdViewController.selectedAd.docID).collection("Applicant").addDocument(data: [
+                                "docID": LoginViewController.user.docID ?? "",
+                                "message": check_alert.textFields![0].text ?? ""
+                            ])
+                            //푸시 알림 전송
+                            self.sendPost()
                         })
                         let no_Action = UIAlertAction(title: "취소", style: .cancel, handler: nil)
                         check_alert.addTextField() {
@@ -188,6 +196,61 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                     }
                     break
                 }
+            }
+        }
+        
+    }
+    
+    func sendPost() {
+        let db = Firestore.firestore()
+        var email: String!
+        var token: String!
+        
+        db.collection("AdData").document(ShowAdViewController.selectedAd.docID).getDocument() {
+            (document, err) in
+            let data = document?.data()
+            email = data!["Uploader"] as? String
+            print(email)
+            db.collection("UserData").whereField("email", isEqualTo: email ?? "").getDocuments() {
+                (querySnapshot, err2) in
+                let data = querySnapshot?.documents[0].data()
+                token = data!["fcmToken"] as? String
+                let param = [
+                    "to": token ?? "",
+                    "data": [
+                        "type": "apply",
+                        "adTitle": ShowAdViewController.selectedAd.adTitle
+                    ]
+                    ] as [String : Any] as [String : Any]
+                let paramData = try! JSONSerialization.data(withJSONObject: param, options: [])
+                    
+                let url = URL(string: "https://fcm.googleapis.com/fcm/send")
+                var request = URLRequest(url: url!)
+                request.httpMethod = "POST"
+                let serverKey = "AAAApQ_ENDM:APA91bGbjWaYZ-sBK4LpnFkCp4o1VOaO5U8vsV8SMBJhcB0zFhwC0ps-sF2lWex6lQBWiXB6WGqK-psd0vVqeMRzaeot6UpShlIXn2g99yJ2QmRxbchTK0B8yDMim-IMnhLhIGwmd7ol"
+                request.allHTTPHeaderFields = [
+                        "Content-Type": "application/json",
+                        "Authorization": "key=\(serverKey)"
+                ]
+                request.httpBody = paramData
+                    
+                let task = URLSession.shared.dataTask(with: request) {
+                    (data, response, error) in
+                    guard let data = data, error == nil else {
+                        print("error=\(error)")
+                        return
+                    }
+                        
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(response)")
+                    }
+                        
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(responseString)")
+                }
+                    
+                task.resume()
             }
         }
     }

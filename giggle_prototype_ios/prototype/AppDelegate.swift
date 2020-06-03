@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
 
       // Print full message.
-      print(userInfo)
+      print("didReceiveRemoteNotification : \(userInfo)")
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       }
 
       // Print full message.
-      print(userInfo)
+      print("didReceiveRemoteNotification : \(userInfo)")
 
       completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -133,7 +133,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    let userInfo = notification.request.content.userInfo
+    let content = notification.request.content
+    let userInfo = content.userInfo
 
     // With swizzling disabled you must let Messaging know about the message, for Analytics
     // Messaging.messaging().appDidReceiveMessage(userInfo)
@@ -144,7 +145,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
 
     // Print full message.
-    print(userInfo)
+    print("willPresent : \(content)")
+    print(notification.request.identifier)
 
     // Change this to your preferred presentation option
     completionHandler([.alert, .badge, .sound])
@@ -153,14 +155,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
+    let content = response.notification.request.content
+    let userInfo = content.userInfo
     // Print message ID.
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID: \(messageID)")
     }
 
     // Print full message.
-    print(userInfo)
+    print("didReceive : \(content)")
 
     completionHandler()
   }
@@ -177,26 +180,41 @@ extension AppDelegate : MessagingDelegate {
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage)
+        print("remoteMessage : \(remoteMessage)")
         let content = UNMutableNotificationContent()
         let data = remoteMessage.appData
-        content.title = data["adTitle"] as! String
-        content.subtitle = "시급 : \(data["wage"] as! String)원"
-        content.body = data["detail"] as! String
-        content.badge = 1
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "newAd", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        print("adTitle : \(data["adTitle"] as! String)")
-        print("wage : \(data["wage"] as! String)")
-        print("detail : \(data["detail"] as! String)")
-        let docID = data["docID"] as! String
-        print("docID : \(docID)")
-        let db = Firestore.firestore()
-        db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").addDocument(data: [
-            "docID": docID,
-            "apply": 0
-        ])
-        LoginViewController.user.adsID.append(docID)
+        switch data["type"] as! String {
+        case "apply":
+            content.title = "회원님이 올린 광고에 대한 새로운 지원자가 있습니다."
+            content.subtitle = "광고 제목 : \(data["adTitle"] as! String)"
+            content.body = "지금 확인하세요 !"
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "newApply", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            break
+        case "add":
+            content.title = data["adTitle"] as! String
+            content.subtitle = "시급 : \(data["wage"] as! String)원"
+            content.body = data["detail"] as! String
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "newAd", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            print("adTitle : \(data["adTitle"] as! String)")
+            print("wage : \(data["wage"] as! String)")
+            print("detail : \(data["detail"] as! String)")
+            let docID = data["docID"] as! String
+            print("docID : \(docID)")
+            let db = Firestore.firestore()
+            db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").addDocument(data: [
+                "docID": docID,
+                "state": 0
+            ])
+            LoginViewController.user.adsID.append(docID)
+            break
+        default:
+            break
+        }
     }
 }

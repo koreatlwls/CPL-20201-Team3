@@ -30,9 +30,7 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
     let imagePicker: UIImagePickerController! = UIImagePickerController()
     var captureImage: UIImage!
     var flagImageSave = false
-    
-    //회원 model 추가하여 구직 회원 및 통합 회원에 따른 처리 구분
-    
+
     @objc func touchImageView() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "사진 보기", style: .default, handler: { (action) in

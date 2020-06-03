@@ -69,6 +69,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var initButton: UIButton!
     
     var tempDocID: String!
+    var notificationType: String!
     
     @IBAction func searchAvailablePeople(_ sender: UIButton) {
         availableCount = 0
@@ -322,7 +323,6 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
                 self.queue.sync {
-                    print(self.tempDocID)
                     self.sendPost()
                     self.initForm()
                 }
@@ -566,16 +566,18 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.view.endEditing(true)
     }
     
-    @IBAction func sendPost() {
+    func sendPost() {
         for index in 0..<tokens.count {
             let token = tokens[index]
+            notificationType = "add"
             let param = [
                 "to": token,
                 "data": [
                     "adTitle": adTitleTextField.text,
                     "wage": wageTextField.text,
                     "detail": workDetailTextView.text,
-                    "docID": tempDocID
+                    "docID": tempDocID,
+                    "type": notificationType
                 ]
                 ] as [String : Any] as [String : Any]
             let paramData = try! JSONSerialization.data(withJSONObject: param, options: [])
@@ -583,7 +585,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let url = URL(string: "https://fcm.googleapis.com/fcm/send")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
-            let serverKey = ""
+            let serverKey = "AAAApQ_ENDM:APA91bGbjWaYZ-sBK4LpnFkCp4o1VOaO5U8vsV8SMBJhcB0zFhwC0ps-sF2lWex6lQBWiXB6WGqK-psd0vVqeMRzaeot6UpShlIXn2g99yJ2QmRxbchTK0B8yDMim-IMnhLhIGwmd7ol"
             request.allHTTPHeaderFields = [
                 "Content-Type": "application/json",
                 "Authorization": "key=\(serverKey)"

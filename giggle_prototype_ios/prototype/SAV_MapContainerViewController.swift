@@ -27,6 +27,12 @@ class SAV_MapContainerViewController: UIViewController, CLLocationManagerDelegat
         locationManager.startUpdatingLocation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.removeFromParent()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
