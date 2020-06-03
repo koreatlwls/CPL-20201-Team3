@@ -87,7 +87,8 @@ class SignUpView2Controller: UIViewController, UIScrollViewDelegate {
             "email": email,
             "member_state": 0,
             "lat": -1,
-            "lng": -1
+            "lng": -1,
+            "rating": 0
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

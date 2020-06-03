@@ -114,7 +114,13 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         emailLabel.text = LoginViewController.user.email
         
         //프로필 이미지 불러오기
-        let storage = Storage.storage()
+        if LoginViewController.user.image == nil {
+            profileImageView.image = UIImage(named: "empty_profile_image.jpg")
+        }
+        else {
+            profileImageView.image = LoginViewController.user.image
+        }
+        /*let storage = Storage.storage()
         let storageRef = storage.reference()
         let imageRef = storageRef.child("Profile/" + LoginViewController.user.docID + "/profile_image.jpg")
         imageRef.downloadURL(completion: {(url, error) in
@@ -122,9 +128,8 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.profileImageView.image = UIImage(named: "empty_profile_image.jpg")
             } else {
                 self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_profile_image.jpg"))
-                
             }
-        })
+        })*/
         
         profileImageView.layer.cornerRadius = 0.5*profileImageView.bounds.width
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchImageView))

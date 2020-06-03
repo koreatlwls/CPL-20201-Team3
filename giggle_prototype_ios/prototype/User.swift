@@ -20,11 +20,14 @@ class User {
     let bucketURL = "gs://giggle-prototype.appspot.com"
     var fcmToken: String!
     var adsID: [String]!
+    var rating: Double!
+    var image: UIImage!
     
-    init(name: String, email: String, member_state: Int) {
+    init(name: String, email: String, member_state: Int, rating: Double) {
         self.name = name
         self.email = email
         self.member_state = member_state
+        self.rating = rating
         adsID = [String]()
     }
     

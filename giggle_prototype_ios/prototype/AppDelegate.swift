@@ -213,6 +213,24 @@ extension AppDelegate : MessagingDelegate {
             ])
             LoginViewController.user.adsID.append(docID)
             break
+        case "hired":
+            content.title = "회원님이 지원한 광고에 채용되었습니다."
+            content.subtitle = "광고 제목 : \(data["adTitle"] as! String)"
+            content.body = "지금 확인하세요 !"
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "hired", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            break
+        case "rejected":
+            content.title = "회원님이 지원한 광고에 채용 거절되었습니다."
+            content.subtitle = "광고 제목 : \(data["adTitle"] as! String)"
+            content.body = "아쉽지만 다른 광고에 지원해보세요 !"
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "rejected", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            break
         default:
             break
         }

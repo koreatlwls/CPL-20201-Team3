@@ -180,7 +180,8 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                             //
                             db.collection("AdData").document(ShowAdViewController.selectedAd.docID).collection("Applicant").addDocument(data: [
                                 "docID": LoginViewController.user.docID ?? "",
-                                "message": check_alert.textFields![0].text ?? ""
+                                "message": check_alert.textFields![0].text ?? "",
+                                "state": 0
                             ])
                             //푸시 알림 전송
                             self.sendPost()

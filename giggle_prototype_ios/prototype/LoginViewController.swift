@@ -109,12 +109,27 @@ class LoginViewController: UIViewController {
                                 let name = querySnapshot!.documents[0].data()["nickname"] as! String
                                 let email = querySnapshot!.documents[0].data()["email"] as! String
                                 let member_state = querySnapshot!.documents[0].data()["member_state"] as! Int
-                                LoginViewController.user = User.init(name: name, email: email, member_state: member_state)
+                                LoginViewController.user = User.init(name: name, email: email, member_state: member_state, rating: 0)
                                 LoginViewController.user.docID = querySnapshot!.documents[0].documentID
                                 LoginViewController.user.lat = querySnapshot!.documents[0].data()["lat"] as? CLLocationDegrees
                                 LoginViewController.user.lng = querySnapshot!.documents[0].data()["lng"] as? CLLocationDegrees
                                 LoginViewController.user.fcmToken = Messaging.messaging().fcmToken
                                 db.collection("UserData").document(LoginViewController.user.docID).updateData(["fcmToken": LoginViewController.user.fcmToken ?? ""])
+                                let storage = Storage.storage()
+                                let storageRef = storage.reference()
+                                let imageRef = storageRef.child("Profile/" + LoginViewController.user.docID + "/profile_image.jpg")
+                                imageRef.downloadURL(completion: {(url, error) in
+                                    if error != nil {
+                                        LoginViewController.user.image = UIImage(named: "empty_profile_image.jpg")
+                                    } else {
+                                        if let imageURL = url {
+                                            let urlContents = try? Data(contentsOf: imageURL)
+                                            if let imageData = urlContents {
+                                                LoginViewController.user.image = UIImage(data: imageData)
+                                            }
+                                        }
+                                    }
+                                })
                                 LoginViewController.user.updateReceivedAds()
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }

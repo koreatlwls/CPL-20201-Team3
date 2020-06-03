@@ -62,7 +62,7 @@ class OngoingAdViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = OngoingAdTableView.dequeueReusableCell(withIdentifier: "OngoingAdCell", for: indexPath) as! OngoingAdCell
+        let cell = OngoingAdTableView.dequeueReusableCell(withIdentifier: "AdDetailCell", for: indexPath) as! AdDetailCell
         cell.adTitleLabel.text = "\(ongoingAds[indexPath.row].adTitle ?? "")"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -82,7 +82,7 @@ class OngoingAdViewController: UIViewController, UITableViewDataSource, UITableV
         alert.addAction(UIAlertAction(title: "구인 광고 보기", style: .default, handler: { (action) in
             self.performSegue(withIdentifier: "adDetailSegue", sender: nil)
         }))
-        alert.addAction(UIAlertAction(title: "지원자 확인하기", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "채용 대기 중인 지원자 확인하기", style: .default, handler: { (action) in
             self.checkApplicants()
         }))
         alert.addAction(UIAlertAction(title: "광고 마감하기", style: .default, handler: { (action) in
