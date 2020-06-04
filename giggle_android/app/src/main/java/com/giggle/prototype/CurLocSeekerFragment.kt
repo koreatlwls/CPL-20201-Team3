@@ -77,25 +77,6 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
         mClusterManager.addItem(item)
     }
 
-    /*
-    fun MarkAds(){
-        var addressList:List<Address>?=null
-        for(CurrentAd in jobadarray)
-        {
-            val geocoder=Geocoder(mContext)
-            addressList=geocoder.getFromLocationName(CurrentAd.shopposition,1)
-            if(addressList.isNotEmpty()) {
-                val address = addressList!![0]
-                val latLng = LatLng(address.latitude, address.longitude)
-                var markeroption: MarkerOptions =
-                    MarkerOptions().position(latLng).title(CurrentAd.shopname)
-                markeroption.snippet(CurrentAd.shopposition)
-                mMap.addMarker(markeroption)
-            }
-
-        }
-
-    }*/
     private fun getLatLng(address:String):LatLng{
         var addressList:List<Address>?=null
         val geocoder=Geocoder(mContext)
@@ -123,7 +104,10 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
         db.collection("jobads").get()
             .addOnSuccessListener { result->
                 for(document in result){
-                    var shopItem= ShopItem(getLatLng(document.data["shopposition"].toString()),document.data["shopname"].toString(),document.data["fn"].toString())
+                    var latitude=document.data["latitude"] as Double
+                    var longtitude=document.data["longtitude"] as Double
+                    val latlng=LatLng(latitude,longtitude)
+                    var shopItem= ShopItem(latlng,document.data["shopname"].toString(),document.data["fn"].toString())
                     addItems(shopItem)
                 }
             }
@@ -164,13 +148,10 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
             }
         }
     }
-
     fun searchLocation(){
-
         lateinit var location:String
         location=txsearch.text.toString()
         var addressList:List<Address>?=null
-
         if(location==""){
             Toast.makeText(mContext,"provide location",Toast.LENGTH_SHORT).show()
         }

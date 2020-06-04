@@ -8,7 +8,6 @@ public class UserItem implements ClusterItem {
     private String name;
     private String sex;
     private LatLng position;
-
     public UserItem(String name,String sex,LatLng position){
         this.name=name;
         this.sex=sex;
@@ -18,12 +17,10 @@ public class UserItem implements ClusterItem {
     public LatLng getPosition() {
         return position;
     }
-
     @Override
     public String getTitle() {
         return name;
     }
-
     @Override
     public String getSnippet() {
         return sex;

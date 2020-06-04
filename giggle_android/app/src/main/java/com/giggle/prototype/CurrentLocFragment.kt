@@ -58,21 +58,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         btn_search.setOnClickListener{searchLocation()}
         super.onViewCreated(view, savedInstanceState)
     }
-    /*
-    fun MarkMember(){
-        var addressList:List<Address>?=null
-        for(member in memberArray)
-        {
-            val geocoder=Geocoder(mContext)
-            addressList=geocoder.getFromLocationName(member.position,1)
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            var markeroption:MarkerOptions= MarkerOptions().position(latLng).title(member.name)
-            markeroption.snippet(member.phonenumber)
-            mMap.addMarker(markeroption)
-        }
-    }
-     */
     companion object {
         fun newInstance(): CurrentLocFragment = CurrentLocFragment()
     }
@@ -85,7 +70,10 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         db.collection("members").get()
             .addOnSuccessListener { result->
                 for(document in result){
-                    var useritem=UserItem( document.data["name"].toString(), document.data["sex"].toString(),getLatLng( document.data["position"].toString()))
+                    var latitude=document.data["latitude"] as Double
+                    var longtitude=document.data["longtitude"] as Double
+                    val latlng=LatLng(latitude,longtitude)
+                    var useritem=UserItem( document.data["name"].toString(), document.data["sex"].toString(),latlng)
                     addItems(useritem)
                 }
             }
@@ -101,17 +89,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul,14f))
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
-    }
-    private fun getLatLng(address:String):LatLng{
-        var addressList:List<Address>?=null
-        val geocoder=Geocoder(mContext)
-        addressList=geocoder.getFromLocationName(address,1)
-        if(addressList.isNotEmpty()) {
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            return latLng
-        }
-        return LatLng(99.0,99.0)
     }
     private fun setUpClusterer(){
         mClusterManager = ClusterManager<UserItem>(mContext,mMap)

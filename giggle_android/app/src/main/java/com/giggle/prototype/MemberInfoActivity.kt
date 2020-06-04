@@ -93,7 +93,7 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
                 builder.setPositiveButton("확인"){_,_->
                     val user = FirebaseAuth.getInstance().currentUser
                     val db = FirebaseFirestore.getInstance()
-                    val member = members(name,age,sex,position, user?.uid,number)
+                    val member = members(name,age,sex,position, user?.uid,number,latlng.latitude,latlng.longitude)
                     if (user != null) {
                         db.collection("members").document(user.uid).set(member)
                     } //DB에 uid기준으로 멤버정보 저장
@@ -146,7 +146,6 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
         } else {
             addLocationListener()
         }
-
     }
 
     @SuppressLint("MissingPermission")

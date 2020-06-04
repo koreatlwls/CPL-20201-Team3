@@ -7,8 +7,13 @@ public class members {
     private Integer age;
     private String uid;
     private String phonenumber;
-
-    public members(){}
+    private Double score;
+    private Integer num_of_score;
+    private double latitude;
+    private double longtitude;
+    public members(){
+        score=0.0;
+    }
     public members(String name, Integer age, String sex, String position,  String phonenumber){
         this.name = name;
         this.age = age;
@@ -17,15 +22,38 @@ public class members {
         this.phonenumber = phonenumber;
     }
 
-    public members(String name, Integer age, String sex, String position, String uid, String phonenumber){
+    public members(String name, Integer age, String sex, String position, String uid, String phonenumber,Double score){
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.position = position;
         this.uid = uid;
         this.phonenumber = phonenumber;
+        this.score=score;
     }
-
+    public members(String name, Integer age, String sex, String position, String uid, String phonenumber,Double latitude,Double longtitude){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.position = position;
+        this.uid = uid;
+        this.phonenumber = phonenumber;
+        this.score=0.0;
+        this.num_of_score=0;
+        this.latitude=latitude;
+        this.longtitude=longtitude;
+    }
+    public double getLatitude() { return latitude; }
+    public double getLongtitude() { return longtitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public void setLongtitude(double longtitude) { this.longtitude = longtitude; }
+    public void calScore(){
+        score=score/num_of_score;
+    }
+    public Integer getNum_of_score(){return num_of_score;}
+    public void setNum_of_score(Integer num_of_score){this.num_of_score=num_of_score; }
+    public Double getScore(){ return score; }
+    public void setScore(Double score){ this.score=score; }
     public String getPhonenumber(){
         return this.phonenumber;
     }

@@ -33,6 +33,7 @@ import kotlinx.android.synthetic.main.fragment_add_ad.*
 import java.io.IOException
 import java.util.*
 import android.animation.ObjectAnimator
+import android.location.Location
 
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
@@ -48,7 +49,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     lateinit var locationCallback: MyLocationCallback
     val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     val REQUEST_ACCESS_FINE_LOCATION = 1000
-    private lateinit var lntlng:LatLng
+    private lateinit var latlng:LatLng
     val PICK_IMAGE_FROM_ALBUM = 0
     var photoUri: Uri? =null //가게 사진1
     var photoUri1: Uri? =null //가게 사진2
@@ -68,7 +69,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         mapView=rootView.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        lntlng=LatLng(39.0, 39.0)
+        latlng=LatLng(39.0, 39.0)
 
         return rootView
     }
@@ -99,12 +100,12 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 )
                 var addressList:List<Address>?=null
                 val geoCoder=Geocoder(mContext)
-                addressList=geoCoder.getFromLocation(lntlng.latitude,lntlng.longitude,1)
+                addressList=geoCoder.getFromLocation(latlng.latitude,latlng.longitude,1)
                 Location_finded=addressList!![0].getAddressLine(0)
                 Location_View.setText(Location_finded)
                 mMap.clear()
-                mMap.addMarker(MarkerOptions().position(lntlng))
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lntlng,17f))
+                mMap.addMarker(MarkerOptions().position(latlng))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,17f))
 
             }
             else ->{
@@ -117,12 +118,9 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     }
 
     fun searchLocation(){
-
-
         lateinit var location:String
         location=edPosition.text.toString()
         var addressList:List<Address>?=null
-
         if(location==""){
             Toast.makeText(mContext,"provide location",Toast.LENGTH_SHORT).show()
         }
@@ -136,11 +134,11 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             }
             if(addressList!!.isNotEmpty()) {
                 val address = addressList!![0]
-                val latLng = LatLng(address.latitude, address.longitude)
+                latlng = LatLng(address.latitude, address.longitude)
                 Location_finded = address.getAddressLine(0)
                 mMap.clear()
-                mMap.addMarker(MarkerOptions().position(latLng).title(location))
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                mMap.addMarker(MarkerOptions().position(latlng).title(location))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 17f))
                 Toast.makeText(
                     mContext,
                     address.latitude.toString() + " " + address.longitude,
@@ -167,23 +165,13 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         return true
     }
     private fun requestPermissions(){
-
-
     }
     inner class MyLocationCallback : LocationCallback() {
         override fun onLocationResult(p0: LocationResult?) {
             super.onLocationResult(p0)
-
             val location = p0?.lastLocation
-            //위도 경도를 지도 서버에 전달하면~
-            //위치에 대한 지도 결과를 받아와서 저장.
-
             location?.run {
-                //location이 null이 아닐 때 아래 메소드를 구동하겠다.
-                lntlng = LatLng(latitude, longitude)
-                //위도 경도 좌표 전달
-                //지도에 애니메이션 효과로 카메라 이동.
-                //좌표위치로 이동하면서 배율은 17(0~19)
+                latlng = LatLng(latitude, longitude)
             }
         }
     }
@@ -378,10 +366,21 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                     )
                     val db = FirebaseFirestore.getInstance()
                     //db에 저장된 앱 사용자들에게 푸쉬토큰을 이용해 푸쉬 알림전송
-                    db.collection("pushtokens").get().addOnSuccessListener{result->
+                    db.collection("members").get().addOnSuccessListener{result->
                         for(document in result){
-                            val pushtoken=document.data["pushtoken"].toString()
-                            SendNotification.sendNotification(pushtoken,shopname,shopposition)
+                            var distance:Float
+                            val userlatitude= document.data["latitude"] as Double
+                            val userlongtitude= document.data["longtitude"] as Double
+                            val uid=document.data["uid"].toString()
+                            var pushtoken:String
+                            distance=Distance(userlatitude,userlongtitude)
+                            if(distance<=10000.0) {
+                                Toast.makeText(mContext,"알림 전송 성공!!"+ distance,Toast.LENGTH_LONG).show()
+                                db.collection("pushtokens").document(uid).get().addOnSuccessListener { result->
+                                   pushtoken=result.data!!["pushtoken"].toString()
+                                    SendNotification.sendNotification(pushtoken, shopname, shopposition)
+                                }
+                            }
                         }
                     }
                     currentUpload() //사진 등록
@@ -394,6 +393,19 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 builder.show()
             }
         }
+    }
+    private fun Distance(latitude:Double,longtitude:Double):Float{
+        val startPos=Location("PointA")
+        val endPos=Location("PointB")
+
+        startPos.latitude = latlng.latitude
+        startPos.longitude=latlng.longitude
+
+        endPos.latitude=latitude
+        endPos.longitude=longtitude
+
+        val distance=startPos.distanceTo(endPos)
+        return distance
     }
     override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?){
 
@@ -498,12 +510,13 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         st:String,
         fn:String,
         sex:String,
-        numperson:Int) {
+        numperson:Int
+    ) {
         val user = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
         val timestamp = System.currentTimeMillis()
         val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid,photoUri.toString(),0,timestamp
+            user?.uid,photoUri.toString(),0,timestamp,latlng.latitude,latlng.longitude
         )
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }
@@ -511,8 +524,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     companion object {
         fun newInstance(): AddADFragment = AddADFragment()
     }
-
-
     private fun textWatcher(){
         edShopName.addTextChangedListener(object:TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
