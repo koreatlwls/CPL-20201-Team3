@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +19,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_current_loc.*
-import kotlinx.android.synthetic.main.memdetail.*
 import java.io.IOException
 
 
@@ -42,7 +40,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var lntlng:LatLng
     private var memberArray= mutableListOf<members>()
-
+    private lateinit var mClusterManager: ClusterManager<UserItem>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView=inflater.inflate(R.layout.fragment_current_loc,container,false)
         mapView=rootView.findViewById(R.id.mapView)
@@ -51,34 +49,16 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         lntlng=LatLng(37.0, 129.0)
         return rootView
     }
-
     override fun onAttach(activity: Activity) {
         mContext = activity as FragmentActivity
         super.onAttach(activity)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("members").get()
-            .addOnSuccessListener { result->
-                for(document in result){
-                    var currentmember= members()
-                    currentmember.name=document.data["name"].toString()
-                    currentmember.position=document.data["position"].toString()
-                    currentmember.phonenumber=document.data["phonenumber"].toString()
-                    currentmember.sex=document.data["sex"].toString()
-                    memberArray.add(currentmember)
-                }
-                MarkMember()
-            }
         btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
         btn_search.setOnClickListener{searchLocation()}
-
         super.onViewCreated(view, savedInstanceState)
     }
-
-
+    /*
     fun MarkMember(){
         var addressList:List<Address>?=null
         for(member in memberArray)
@@ -90,20 +70,25 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
             var markeroption:MarkerOptions= MarkerOptions().position(latLng).title(member.name)
             markeroption.snippet(member.phonenumber)
             mMap.addMarker(markeroption)
-
         }
-
     }
+     */
     companion object {
         fun newInstance(): CurrentLocFragment = CurrentLocFragment()
     }
-
-
     override fun onMapReady(googleMap: GoogleMap) {
         //지도가 준비되었다면 호출.MapsInitializer.initialize(mContext)
-
         mMap = googleMap
         locationInit()
+        setUpClusterer()
+        val db = FirebaseFirestore.getInstance()
+        db.collection("members").get()
+            .addOnSuccessListener { result->
+                for(document in result){
+                    var useritem=UserItem( document.data["name"].toString(), document.data["sex"].toString(),getLatLng( document.data["position"].toString()))
+                    addItems(useritem)
+                }
+            }
         fun addLocationListener() {
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
             //위치 권한을 요청해야 함.
@@ -117,9 +102,25 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
-
-
-
+    private fun getLatLng(address:String):LatLng{
+        var addressList:List<Address>?=null
+        val geocoder=Geocoder(mContext)
+        addressList=geocoder.getFromLocationName(address,1)
+        if(addressList.isNotEmpty()) {
+            val address = addressList!![0]
+            val latLng = LatLng(address.latitude, address.longitude)
+            return latLng
+        }
+        return LatLng(99.0,99.0)
+    }
+    private fun setUpClusterer(){
+        mClusterManager = ClusterManager<UserItem>(mContext,mMap)
+        mMap.setOnCameraIdleListener(mClusterManager)
+        mMap.setOnMarkerClickListener(mClusterManager)
+    }
+    private fun addItems(item:UserItem){
+        mClusterManager.addItem(item)
+    }
     fun addLocationListener() {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
         //위치 권한을 요청해야 함.
@@ -141,9 +142,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
             }
         }
     }
-
     fun searchLocation(){
-
         lateinit var location:String
         location=search.text.toString()
         var addressList:List<Address>?=null
@@ -197,8 +196,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     fun removeLocationListener() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }//어플이 종료되면 지도 요청 해제
-
-
     fun locationInit() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext)
         //현재 사용자 위치를 저장.

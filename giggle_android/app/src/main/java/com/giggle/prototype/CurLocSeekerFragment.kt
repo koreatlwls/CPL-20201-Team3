@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_cur_loc_seeker.*
 import kotlinx.android.synthetic.main.fragment_current_loc.*
 import kotlinx.android.synthetic.main.memdetail.*
@@ -43,7 +44,7 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private lateinit var lntlng:LatLng
     private var jobadarray= mutableListOf<JobAd>()
-
+    private lateinit var mClusterManager: ClusterManager<ShopItem>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView=inflater.inflate(R.layout.fragment_cur_loc_seeker,container,false)
         mapView=rootView.findViewById(R.id.mapViewSeeker)
@@ -59,26 +60,24 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val db = FirebaseFirestore.getInstance()
 
-        db.collection("jobads").get()
-            .addOnSuccessListener { result->
-                for(document in result){
-                    var jobad= JobAd()
-                    jobad.shopname=document.data["shopname"].toString()
-                    jobad.shopposition=document.data["shopposition"].toString()
-                    jobadarray.add(jobad)
-                }
-                MarkAds()
-            }
         btn_MyLocation_Seeker.setOnClickListener{OnMyLocationButtonClick()}
         btn_search_Seeker.setOnClickListener{searchLocation()}
 
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun setUpClusterer(){
+        mClusterManager = ClusterManager<ShopItem>(mContext,mMap)
+        mMap.setOnCameraIdleListener(mClusterManager)
+        mMap.setOnMarkerClickListener(mClusterManager)
+    }
 
+    private fun addItems(item:ShopItem){
+        mClusterManager.addItem(item)
+    }
 
+    /*
     fun MarkAds(){
         var addressList:List<Address>?=null
         for(CurrentAd in jobadarray)
@@ -96,8 +95,20 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
 
         }
 
+    }*/
+    private fun getLatLng(address:String):LatLng{
+        var addressList:List<Address>?=null
+        val geocoder=Geocoder(mContext)
+        addressList=geocoder.getFromLocationName(address,1)
+        if(addressList.isNotEmpty()) {
+            val address = addressList!![0]
+            val latLng = LatLng(address.latitude, address.longitude)
+            return latLng
+        }
+        return LatLng(99.0,99.0)
     }
-    companion object {
+
+        companion object {
         fun newInstance(): CurrentLocFragment = CurrentLocFragment()
     }
 
@@ -107,6 +118,15 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
 
         mMap = googleMap
         locationInit()
+        val db = FirebaseFirestore.getInstance()
+        setUpClusterer()
+        db.collection("jobads").get()
+            .addOnSuccessListener { result->
+                for(document in result){
+                    var shopItem= ShopItem(getLatLng(document.data["shopposition"].toString()),document.data["shopname"].toString(),document.data["fn"].toString())
+                    addItems(shopItem)
+                }
+            }
         fun addLocationListener() {
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
             //위치 권한을 요청해야 함.
