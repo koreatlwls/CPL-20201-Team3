@@ -322,6 +322,14 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/btapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="지원자 확인" />
+
+            <Button
                 android:id="@+id/btdelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -329,6 +337,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:text="삭제하기" />
+
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

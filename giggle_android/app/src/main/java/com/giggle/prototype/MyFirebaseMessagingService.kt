@@ -11,9 +11,12 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "MyFirebaseMsgService"
@@ -28,7 +31,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     // [START receive_message]
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        sendNotification(remoteMessage.notification!!.title, remoteMessage.notification!!.body)
+        sendNotification(remoteMessage.notification!!.title, remoteMessage.notification!!.body,remoteMessage.data.get("shopname"),remoteMessage.data.get("shopposition"))
     }
     // [END receive_message]
     // [START on_new_token]
@@ -46,7 +49,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      *
      * @param messageBody FCM message body received.
      */
-    private fun sendNotification(title: String?, messageBody: String?) {
+    private fun sendNotification(title: String?, messageBody: String?, shopname: String?, shopposition: String?) {
         val intent = Intent(this@MyFirebaseMessagingService, AdDetailApply::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.putExtra("name", title)
@@ -54,6 +57,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val intent1 = Intent(this@MyFirebaseMessagingService, MemDetail::class.java)
         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent1.putExtra("name", title)
+        intent1.putExtra("shopname", shopname)
+        intent1.putExtra("shopposition",shopposition)
+
+        val intent2 = Intent(this@MyFirebaseMessagingService, SavedAdActivity::class.java)
+        intent2.putExtra("shopname", shopname)
+        intent2.putExtra("shopposition",shopposition)
 
         val db = FirebaseFirestore.getInstance()
         db.collection("members")
@@ -68,6 +77,24 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 if (state == 1) {
                     pendingIntent = PendingIntent.getActivity(
                         this@MyFirebaseMessagingService, 0 /* Request code */, intent1,
+                        PendingIntent.FLAG_ONE_SHOT
+                    )
+
+                }
+                else if(title == "채용"){
+                    val user = FirebaseAuth.getInstance().currentUser
+                    var map = mutableMapOf<String,Any>()
+                    map["shopname"] = shopname.toString()
+                    map["shopposition"] = shopposition.toString()
+                    if (user != null) {
+                        db.collection("recruit_shop").document(user.uid).update("shop",FieldValue.arrayUnion(map)).addOnCompleteListener{
+                            if(it.isSuccessful){
+                                println("업데이트")
+                            }
+                        }
+                    }
+                    pendingIntent = PendingIntent.getActivity(
+                        this@MyFirebaseMessagingService, 0 /* Request code */, intent2,
                         PendingIntent.FLAG_ONE_SHOT
                     )
                 }
