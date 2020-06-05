@@ -48,7 +48,7 @@ class CompleteAdActivity : AppCompatActivity() {
                 //리스트뷰 아이템 클릭시 상세보기 화면 이동
                 listView.onItemClickListener = AdapterView.OnItemClickListener {parent,view,position,id ->
                     val ingshopname = item[position].adname
-                    val nextIntent = Intent(this,IngAd_DetailActivity::class.java)
+                    val nextIntent = Intent(this,CompleteAdDetailActivity::class.java)
                     nextIntent.putExtra("name",ingshopname)
                     startActivity(nextIntent)
                 }

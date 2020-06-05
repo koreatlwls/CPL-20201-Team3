@@ -364,7 +364,13 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                         sex,
                         numperson
                     )
+                    val user = FirebaseAuth.getInstance().currentUser
                     val db = FirebaseFirestore.getInstance()
+                    var map = mutableMapOf<String,Any>()
+                    if (user != null) {
+                        map["uid"] =user.uid.toString()
+                    }
+                    db.collection("recruit_members").document(shopname).set(map)
                     //db에 저장된 앱 사용자들에게 푸쉬토큰을 이용해 푸쉬 알림전송
                     db.collection("members").get().addOnSuccessListener{result->
                         for(document in result){
@@ -516,7 +522,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         val db = FirebaseFirestore.getInstance()
         val timestamp = System.currentTimeMillis()
         val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid,photoUri.toString(),0,timestamp,latlng.latitude,latlng.longitude
+            user?.uid,photoUri.toString(),0,timestamp,latlng.latitude,latlng.longitude,0
         )
         db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
     }

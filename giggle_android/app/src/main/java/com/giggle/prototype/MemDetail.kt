@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.memdetail.*
 
@@ -50,23 +51,31 @@ class MemDetail : AppCompatActivity(){
             builder.setMessage("채용하시겠습니까??")
             builder.setPositiveButton("확인") { _, _ ->
                 val db = FirebaseFirestore.getInstance()
-                val db1 = FirebaseFirestore.getInstance()
                 mname= txname.text.toString()
                 mage= Integer.parseInt(txage.text.toString())
                 msex= txsex.text.toString()
                 mphonenumber= phone.text.toString()
                 mposition= txposition.text.toString()
                 mage = Integer.parseInt(txage.text.toString())
-                val member = members(mname,mage,msex,mposition,mphonenumber,touid)
-                db.collection("recruit_members").document(mname).set(member)
+                db.collection("jobads").document(shopname).update("parttimer",FieldValue.arrayUnion(touid)).addOnCompleteListener{
+                    if(it.isSuccessful){
+                        println("업데이트")
+                    }
+                }
                 val title = "채용"
                 val message = shopname + "에 채용되었습니다."
                 var token =""
                 db.collection("pushtokens").document(touid).get().addOnSuccessListener { result->
                     token = result.data?.get("pushtoken").toString()
                     SendNotification.sendNotification(token,title,message,shopname,shopposition)
-        }
-   }
+                 }
+                db.collection("jobads").document(shopname).update("recruitnum", FieldValue.increment(1))
+                db.collection("jobads").document(shopname).get().addOnSuccessListener { result->
+                    if(Integer.parseInt(result.data?.get("recruitnum").toString())==Integer.parseInt(result.data?.get("numofperson").toString())){
+                        db.collection("jobads").document(shopname).update("state", FieldValue.increment(1))
+                    }
+                }
+             }
             builder.setNegativeButton("취소"){_,_->
 
             }

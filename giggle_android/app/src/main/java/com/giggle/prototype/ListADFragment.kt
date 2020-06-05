@@ -49,7 +49,7 @@ class ListADFragment : Fragment() {
         // starts from here
         loadAdsList("")
 
-        firestoreListener = db!!.collection("jobads").orderBy("timestamp", Query.Direction.DESCENDING)
+        firestoreListener = db!!.collection("jobads").whereEqualTo("state",0).orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener(EventListener { documentSnapshots, e ->
                 if (e != null) {
                     return@EventListener

@@ -2144,6 +2144,7 @@ layout amu_text_bubble
 layout amu_webview
 layout app_listview
 layout complete_ad
+layout completeaddetail
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

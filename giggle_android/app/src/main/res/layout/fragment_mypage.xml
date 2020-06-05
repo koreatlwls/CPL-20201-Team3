@@ -101,19 +101,20 @@
         android:textSize="10dp"
         android:textColor="#000"
         />
-    <TextView
-        android:id="@+id/textsaved_ad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="10dp"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/btn_saved_ad"
-        app:layout_constraintLeft_toLeftOf="@id/btn_saved_ad"
-        app:layout_constraintRight_toRightOf="@id/btn_saved_ad"
-        android:text="채용 이력" />
+
+        <TextView
+            android:id="@+id/textsaved_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="완료된 채용"
+            android:textColor="#000"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/btn_saved_ad"
+            app:layout_constraintRight_toRightOf="@id/btn_saved_ad"
+            app:layout_constraintTop_toBottomOf="@id/btn_saved_ad" />
 
     <ImageButton
         android:layout_width="100dp"

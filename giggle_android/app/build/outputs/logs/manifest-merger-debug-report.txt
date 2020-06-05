@@ -257,130 +257,130 @@ activity#com.giggle.prototype.AdDetailApply
 ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:9-51
 	android:name
 		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:19-48
-activity#com.giggle.prototype.ModifyUserActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:27:9-56
-	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:27:19-53
-activity#com.giggle.prototype.ModifyUserBeforeActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:28:9-62
-	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:28:19-59
 activity#com.giggle.prototype.LoginActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:37:9-53:20
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:36:9-52:20
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:37:19-48
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:36:19-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:38:13-42:29
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:37:13-41:29
 action#android.intent.action.MAIN
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:39:17-69
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:38:17-69
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:39:25-66
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:38:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:41:17-77
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:40:17-77
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:41:27-74
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:40:27-74
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:google.com+data:scheme:http
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:43:13-52:29
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:42:13-51:29
 action#android.intent.action.VIEW
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:44:17-69
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:43:17-69
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:44:25-66
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:43:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:46:17-76
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:45:17-76
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:46:27-73
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:45:27-73
 category#android.intent.category.BROWSABLE
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:47:17-78
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:46:17-78
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:47:27-75
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:46:27-75
 data
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:49:17-51:45
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:48:17-50:45
 	android:host
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:50:21-46
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:49:21-46
 	android:scheme
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:51:21-42
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:50:21-42
 activity#com.giggle.prototype.MainActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:54:9-56:35
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:53:9-55:35
 	android:label
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:56:13-32
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:55:13-32
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:55:13-41
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:54:13-41
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:58:9-60:71
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:57:9-59:71
 	android:value
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:60:13-68
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:59:13-68
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:59:13-58
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:58:13-58
 meta-data#com.google.android.gms.version
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:61:9-63:69
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:60:9-62:69
 MERGED from [com.google.maps.android:android-maps-utils:0.5] C:\Users\kimsijin\.gradle\caches\transforms-2\files-2.1\6238c4c8a7b798501a544bb82b6488b5\jetified-android-maps-utils-0.5\AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.maps.android:android-maps-utils:0.5] C:\Users\kimsijin\.gradle\caches\transforms-2\files-2.1\6238c4c8a7b798501a544bb82b6488b5\jetified-android-maps-utils-0.5\AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\kimsijin\.gradle\caches\transforms-2\files-2.1\85e785595be622415d105270243d5028\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\kimsijin\.gradle\caches\transforms-2\files-2.1\85e785595be622415d105270243d5028\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:63:13-66
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:62:13-66
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:62:13-58
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:61:13-58
 provider#androidx.core.content.FileProvider
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:65:9-73:20
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:64:9-72:20
 	android:grantUriPermissions
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:69:13-47
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:68:13-47
 	android:authorities
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:67:13-55
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:66:13-55
 	android:exported
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:68:13-37
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:67:13-37
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:66:13-62
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:65:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:70:13-72:54
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:69:13-71:54
 	android:resource
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:72:17-51
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:71:17-51
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:71:17-67
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:70:17-67
 activity#com.giggle.prototype.SignInActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:75:9-52
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:74:9-52
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:75:19-49
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:74:19-49
 activity#com.giggle.prototype.SignInActivity1
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:75:9-53
+	android:name
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:75:19-50
+activity#com.giggle.prototype.SignUpActivity1
 ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:76:9-53
 	android:name
 		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:76:19-50
-activity#com.giggle.prototype.SignUpActivity1
+activity#com.giggle.prototype.SignUpActivity2
 ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:77:9-53
 	android:name
 		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:77:19-50
-activity#com.giggle.prototype.SignUpActivity2
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:78:9-53
-	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:78:19-50
 activity#com.giggle.prototype.ResetActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:79:9-51
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:78:9-51
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:79:19-48
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:78:19-48
 activity#com.giggle.prototype.MemberInfoActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:80:9-56
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:79:9-56
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:80:19-53
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:79:19-53
 activity#com.giggle.prototype.IngAdActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:81:9-51
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:80:9-51
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:81:19-48
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:80:19-48
 activity#com.giggle.prototype.IngAd_DetailActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:82:9-58
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:81:9-58
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:82:19-55
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:81:19-55
 activity#com.giggle.prototype.CompleteAdActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:83:9-56
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:82:9-56
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:83:19-53
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:82:19-53
 activity#com.giggle.prototype.MemDetail
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:84:9-47
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:83:9-47
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:84:19-44
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:83:19-44
 activity#com.giggle.prototype.applicantsActivity
-ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:85:9-56
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:84:9-56
 	android:name
-		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:85:19-53
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:84:19-53
+activity#com.giggle.prototype.CompleteAdDetailActivity
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:85:9-62
+	android:name
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:85:19-59
+activity#com.giggle.prototype.parttimerActivity
+ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:86:9-55
+	android:name
+		ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:86:19-52
 service#com.giggle.prototype.MyFirebaseMessagingService
 ADDED from C:\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:87:9-93:19
 	android:exported

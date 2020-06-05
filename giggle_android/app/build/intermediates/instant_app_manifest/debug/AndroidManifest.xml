@@ -47,8 +47,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name="com.giggle.prototype.SavedAdActivity" />
         <activity android:name="com.giggle.prototype.AdDetailApply" />
-        <activity android:name="com.giggle.prototype.ModifyUserActivity" />
-        <activity android:name="com.giggle.prototype.ModifyUserBeforeActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -106,6 +105,8 @@
         <activity android:name="com.giggle.prototype.CompleteAdActivity" />
         <activity android:name="com.giggle.prototype.MemDetail" />
         <activity android:name="com.giggle.prototype.applicantsActivity" />
+        <activity android:name="com.giggle.prototype.CompleteAdDetailActivity" />
+        <activity android:name="com.giggle.prototype.parttimerActivity" />
 
         <service
             android:name="com.giggle.prototype.MyFirebaseMessagingService"
