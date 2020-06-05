@@ -47,7 +47,7 @@ class MemDetail : AppCompatActivity(){
         btrecruit.setOnClickListener(){
             val builder = AlertDialog.Builder(ContextThemeWrapper(this,R.style.Theme_AppCompat_Light_Dialog))
             builder.setTitle("채용")
-            builder.setMessage("채용하시겠습니까?")
+            builder.setMessage("채용하시겠습니까??")
             builder.setPositiveButton("확인") { _, _ ->
                 val db = FirebaseFirestore.getInstance()
                 val db1 = FirebaseFirestore.getInstance()
