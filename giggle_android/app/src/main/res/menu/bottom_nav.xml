@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_current_loc"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_mylocation"
+        android:title="현재 위치"/>
+    <item
+        android:id="@+id/menu_addAD"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_addad"
+        android:title="광고 등록"/>
+    <item
+        android:id="@+id/menu_myPage"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_mypage"
+        android:title="마이 페이지"
+        android:visible="true" />
+</menu>
