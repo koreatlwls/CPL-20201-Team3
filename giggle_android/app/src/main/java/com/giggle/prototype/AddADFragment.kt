@@ -378,7 +378,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                                 Toast.makeText(mContext,"알림 전송 성공!!"+ distance,Toast.LENGTH_LONG).show()
                                 db.collection("pushtokens").document(uid).get().addOnSuccessListener { result->
                                    pushtoken=result.data!!["pushtoken"].toString()
-                                    SendNotification.sendNotification(pushtoken, shopname, shopposition)
+                                    SendNotification.sendNotification(pushtoken, shopname, shopposition,shopname,shopposition)
                                 }
                             }
                         }

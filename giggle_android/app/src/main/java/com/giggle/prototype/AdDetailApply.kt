@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_ad_detail_apply.*
 
@@ -17,6 +18,7 @@ class AdDetailApply : AppCompatActivity() {
     var memphone = ""
     var memuid = ""
     var shopname = ""
+    var shopposition = ""
     val user = FirebaseAuth.getInstance().currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +98,16 @@ class AdDetailApply : AppCompatActivity() {
                             for(document in it){
                                 memname = document["name"].toString()
                                 memphone = document["phonenumber"].toString()
-                                SendNotification.sendNotification(adtoken,memname,memphone)
+                                shopposition = txposition.text.toString()
+                                var map = mutableMapOf<String,Any>()
+                                map["applicants"] = memuid
+                                db.collection("jobads").document(shopname).update("applicants",
+                                    FieldValue.arrayUnion(memuid)).addOnCompleteListener{
+                                    if(it.isSuccessful){
+
+                                    }
+                                }
+                                SendNotification.sendNotification(adtoken,memname,memphone,shopname,shopposition)
                             }
                         }
                     }

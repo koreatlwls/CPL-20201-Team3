@@ -1,5 +1,7 @@
 package com.giggle.prototype;
 
+import java.lang.reflect.Array;
+
 public class JobAd {
     private String shopname;
     private String shopposition;

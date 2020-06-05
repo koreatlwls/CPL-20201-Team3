@@ -11,16 +11,19 @@ public class members {
     private Integer num_of_score;
     private double latitude;
     private double longtitude;
+
     public members(){
         score=0.0;
     }
-    public members(String name, Integer age, String sex, String position,  String phonenumber){
+    public members(String name, Integer age, String sex, String position,  String phonenumber,String uid){
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.position = position;
         this.phonenumber = phonenumber;
+        this.uid=uid;
     }
+
 
     public members(String name, Integer age, String sex, String position, String uid, String phonenumber,Double score){
         this.name = name;

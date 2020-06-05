@@ -41,6 +41,7 @@ class IngAdActivity : AppCompatActivity() {
                         item.add(ad(name, time, photo))
                     }
                 }
+                println(item)
                 //리스트뷰 어댑터 연결
                 val adadapter = Adadapter(this, item)
                 listView.adapter = adadapter
