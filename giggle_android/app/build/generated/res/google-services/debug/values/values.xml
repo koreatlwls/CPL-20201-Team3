@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">130474687756-k7bo3bqfjvf789la0gmpldavrnrb5csu.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://giggle-669dd.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">130474687756</string>
+    <string name="google_api_key" translatable="false">AIzaSyAGgXdM25jupwg61ZmZzg5ntlYpbLwVG1o</string>
+    <string name="google_app_id" translatable="false">1:130474687756:android:2b42d49124796bb9011d29</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAGgXdM25jupwg61ZmZzg5ntlYpbLwVG1o</string>
+    <string name="google_storage_bucket" translatable="false">giggle-669dd.appspot.com</string>
+    <string name="project_id" translatable="false">giggle-669dd</string>
+</resources>
