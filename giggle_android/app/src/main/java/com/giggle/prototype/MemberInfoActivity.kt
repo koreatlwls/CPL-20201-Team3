@@ -95,7 +95,10 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
                     val db = FirebaseFirestore.getInstance()
                     val member = members(name,age,sex,position, user?.uid,number,latlng.latitude,latlng.longitude)
                     if (user != null) {
+                        var map = mutableMapOf<String,Any>()
+                        map["uid"] =user.uid.toString()
                         db.collection("members").document(user.uid).set(member)
+                        db.collection("recruit_shop").document(user.uid).set(map)
                     } //DB에 uid기준으로 멤버정보 저장
                     Toast.makeText(this,"등록 성공",Toast.LENGTH_SHORT).show()
                     resetText()//초기화

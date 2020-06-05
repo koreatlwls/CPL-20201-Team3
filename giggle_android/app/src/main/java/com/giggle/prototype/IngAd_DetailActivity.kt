@@ -83,6 +83,11 @@ class IngAd_DetailActivity : AppCompatActivity() {
                       }
                       builder.show()
                      }
+        btapp.setOnClickListener{
+            val nextIntent = Intent(this, applicantsActivity::class.java)
+            nextIntent.putExtra("shopname", shname)
+            startActivity(nextIntent)
+        }
         }
     }
 

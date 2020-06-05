@@ -22,13 +22,14 @@ class MypageFragment : Fragment() {
     private val user = FirebaseAuth.getInstance().currentUser
     private val storage = FirebaseStorage.getInstance()
     val PICK_IMAGE_FROM_ALBUM = 0
-    var photoUri: Uri? =null //프로필 사진
+    var photoUri5: Uri? =null //프로필 사진
     var shopname ="0"
     var shopphoto ="0"
     var shopposition="0"
     val db = FirebaseFirestore.getInstance()
     var i:Int=0
     private lateinit var mContext:FragmentActivity
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
@@ -48,6 +49,8 @@ class MypageFragment : Fragment() {
         val email = user?.email
         val uid = user?.uid
         var storageRef = storage.reference
+
+        //최근 광고 카드뷰
         db.collection("jobads")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
@@ -73,7 +76,6 @@ class MypageFragment : Fragment() {
             }
 
         // get profile pic
-
         var imageRef = storageRef.child("profile_image/${uid}.png")
         imageRef.downloadUrl.addOnSuccessListener {
             // Got the download URL for 'users/me/profile.png'
@@ -84,6 +86,7 @@ class MypageFragment : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(activity, "프로필 사진이 없습니다.", Toast.LENGTH_LONG).show()
         }
+
         img_user.setOnClickListener{
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
@@ -110,9 +113,9 @@ class MypageFragment : Fragment() {
     fun currentUpload(){
         val uid = user?.uid
         val imageFileName = uid +".png"
-        if(photoUri!=null){
+        if(photoUri5!=null){
             val storageRef = storage?.reference?.child("profile_image/")?.child(imageFileName)
-            storageRef?.putFile(photoUri!!)?.addOnSuccessListener{taskSnapshot ->
+            storageRef?.putFile(photoUri5!!)?.addOnSuccessListener{taskSnapshot ->
             }
         }
     }
@@ -121,7 +124,7 @@ class MypageFragment : Fragment() {
         if(requestCode == PICK_IMAGE_FROM_ALBUM)  {
             if(resultCode == Activity.RESULT_OK){
                 println(data?.data)
-                photoUri = data?.data
+                photoUri5 = data?.data
                 img_user.setImageURI(data?.data)
                 currentUpload()
             }
@@ -131,5 +134,6 @@ class MypageFragment : Fragment() {
         super.onAttach(context)
     }
 }
+
 
 

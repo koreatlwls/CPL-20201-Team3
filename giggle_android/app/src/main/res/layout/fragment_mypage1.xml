@@ -206,11 +206,20 @@
                 app:riv_oval="false" />
 
             <TextView
-                android:id="@+id/textRecentAdCardView"
-                android:layout_margin="20dp"
+                android:id="@+id/txshopname"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.2"
+                android:layout_weight="0.1"
+                android:textColor="#000"
+                android:text="가장 최근 광고 제목이 들어갈 곳" />
+            <TextView
+                android:id="@+id/txshopposition"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:textSize="10dp"
                 android:text="가장 최근 광고 제목이 들어갈 곳" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
