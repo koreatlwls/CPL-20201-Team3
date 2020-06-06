@@ -1635,6 +1635,7 @@ id amu_text
 id async
 id auto
 id autoCompleteTextView
+id autoLogin
 id barrier
 id beginning
 id blocking
@@ -1911,7 +1912,6 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
-id sigin_layout
 id signup
 id signup_button
 id signup_cancel
@@ -2161,6 +2161,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout finish_ad
 layout fragment_add_ad
 layout fragment_cur_loc_seeker
 layout fragment_current_loc

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rXC\\values-en-rXC.xml",
+            "outputFile": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rXC\\values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kimsijin\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Ho_Jong\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\kimsijin\\.gradle\\caches\\transforms-2\\files-2.1\\0ee4550d7762cb20f2cde498e91642b6\\core-1.2.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Ho_Jong\\.gradle\\caches\\transforms-2\\files-2.1\\0ee4550d7762cb20f2cde498e91642b6\\core-1.2.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

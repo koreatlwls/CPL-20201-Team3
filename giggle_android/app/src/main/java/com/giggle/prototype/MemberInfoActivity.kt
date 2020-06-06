@@ -250,11 +250,11 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
             }
             if(addressList!!.size==1) {
                 val address = addressList!![0]
-                val latLng = LatLng(address.latitude, address.longitude)
+                latlng = LatLng(address.latitude, address.longitude)
                 Location_finded = address.getAddressLine(0)
                 mMap.clear()
-                mMap.addMarker(MarkerOptions().position(latLng).title(location))
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                mMap.addMarker(MarkerOptions().position(latlng).title(location))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 17f))
                 Toast.makeText(
                     this,
                     address.latitude.toString() + " " + address.longitude,
