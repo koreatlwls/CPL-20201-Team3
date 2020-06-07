@@ -1,470 +1,470 @@
 [
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_title.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\logo_title.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_mylocation.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_mylocation.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_finish_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\finish_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_giggle.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\giggle.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ing_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ing_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ingaddetail.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ingaddetail.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_closewhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_closewhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tab_color_selected.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\tab_color_selected.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_blue.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\btn_blue.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_closewhite.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_closewhite.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_changemode.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_changemode.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_modifyuser.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_modifyuser.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_img_sample.jpeg.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\img_sample.jpeg"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_completeaddetail.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\completeaddetail.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_mylocation.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_mylocation.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_mypage.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_mypage.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_alert_popup.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\alert_popup.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_changemode.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_changemode.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_savedad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_savedad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_darkblue.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\btn_darkblue.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_close.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_close.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_reset.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_reset.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_search_bar.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\search_bar.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_list_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_list_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_addwhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_addwhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_reset.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_reset.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cur_loc_seeker.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_cur_loc_seeker.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_list_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_list_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_finish_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\finish_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_addad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_addad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_add.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_modifyuser.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_modifyuser.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tab_color_selected.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\tab_color_selected.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_closewhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_closewhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_modifyuser.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_modifyuser.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_white_edittext.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\white_edittext.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup_1.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_signup_1.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_closewhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_closewhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_savedad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_savedad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_main_menu.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\main_menu.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_changemode.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_changemode.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_savedad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_savedad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_ingad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_ingad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_border_rectengle.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\border_rectengle.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_reset.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_reset.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_ingad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_ingad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_add.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_add.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main1.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_main1.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup_2.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_signup_2.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_changemode.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_changemode.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_giggle.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\giggle.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_account.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\ic_account.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_add.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_add.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_jobad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_jobad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_darkblue.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\btn_darkblue.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_ad_detail_apply.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_ad_detail_apply.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_closewhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_closewhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red_edittext.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\red_edittext.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_resetpassword.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_resetpassword.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_modifyuser.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_modifyuser.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_mypage.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_mypage.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_app_listview.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\app_listview.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ing_ad_listview.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ing_ad_listview.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_mylocation.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_mylocation.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_close.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_close.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_jobad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\item_jobad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_close.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_close.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_ingad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_ingad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_modifyuser.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_modifyuser.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_reset.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_reset.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_add.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_addwhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_addwhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_nav.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\menu\\bottom_nav.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_modifyuser.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_modifyuser.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_addwhite.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_addwhite.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_saved_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_saved_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_mypage.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_mypage.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_current_loc.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_current_loc.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_addad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_addad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_ingad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_ingad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_savedad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_savedad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_meminfo.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_meminfo.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_border_dark.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\border_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_add.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_add.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_border_rectengle.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\border_rectengle.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_nav.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\menu\\bottom_nav.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_addad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_addad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_close.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_close.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_add.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_add.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_changemode.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_changemode.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_nav1.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\menu\\bottom_nav1.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_ad_detail_apply.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_ad_detail_apply.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_mylocation.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_mylocation.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_close.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_close.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_addad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_addad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_mypage.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_mypage.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_reset.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_reset.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_ingad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_ingad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_savedad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_savedad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_addad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_addad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_border_round.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\border_round.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_mypage.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_mypage.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_addwhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_addwhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_close.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_close.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_reset.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_reset.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_addwhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_addwhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_mylocation.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_mylocation.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_mypage.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_mypage.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_savedad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_savedad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_mypage.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_mypage.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_blue.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\btn_blue.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_savedad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_savedad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_complete_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\complete_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup_1.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_signup_1.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_alert_popup.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\alert_popup.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_memdetail.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\memdetail.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_changemode.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_changemode.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_closewhite.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_closewhite.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_memdetail.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\memdetail.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_changemode.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_changemode.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_closewhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_closewhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_nav1.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\menu\\bottom_nav1.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_border_dark.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\border_dark.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_white_edittext.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\white_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_mylocation.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_mylocation.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_mypage.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_mypage.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_login.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_savedad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_savedad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_modifyuser.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_modifyuser.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_border_round.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\border_round.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_addad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_addad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_addwhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_addwhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_resetpassword.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_resetpassword.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_mypage.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_mypage.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup_2.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_signup_2.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_app_listview.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\app_listview.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_modifyuser.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_modifyuser.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\xml_file_paths.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\xml\\file_paths.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_ingad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_ingad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_addad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_addad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_add.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_savedad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_savedad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_ingad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_ingad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_add_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_add_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_changemode.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_changemode.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_addwhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_addwhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_add.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_add.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_ingad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_ingad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_mypage.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_mypage.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_addwhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_addwhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_mylocation.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_mylocation.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_mypage1.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_mypage1.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_img_sample.jpeg.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-v24\\img_sample.jpeg"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_addad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_addad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_savedad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_savedad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ing_ad_listview.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ing_ad_listview.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main1.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_main1.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ingaddetail.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ingaddetail.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red_edittext.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\red_edittext.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_reset.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_reset.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_main_menu.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\main_menu.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_ingad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_ingad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_mypage1.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_mypage1.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_account.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\ic_account.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_mypage.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_mypage.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_close.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_close.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_completeaddetail.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\completeaddetail.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_reset.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_reset.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_ing_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\ing_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_mylocation.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_mylocation.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_mylocation.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_mylocation.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_changemode.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_changemode.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_close.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_close.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_jobad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_jobad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_addwhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_addwhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_close.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_close.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_mypage.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_mypage.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_add.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_add.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_addwhite.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_addwhite.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_close.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_close.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_meminfo.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_meminfo.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_reset.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_reset.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_mylocation.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_mylocation.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_changemode.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_changemode.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_closewhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_closewhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\xml\\file_paths.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_complete_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\complete_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_jobad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\item_jobad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_modifyuser.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_modifyuser.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_add_ad.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_add_ad.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_closewhite.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_closewhite.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_reset.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_reset.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_modifyuser.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_modifyuser.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_addad.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_addad.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_add.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_add.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_closewhite.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_closewhite.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_cur_loc_seeker.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_cur_loc_seeker.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_current_loc.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\fragment_current_loc.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_action_ingad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-anydpi\\ic_action_ingad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_title.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\logo_title.png"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_saved_ad.xml.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_saved_ad.xml"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_search_bar.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\search_bar.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_addad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_addad.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]
