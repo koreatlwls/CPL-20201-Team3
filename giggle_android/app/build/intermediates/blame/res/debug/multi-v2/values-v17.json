@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
+            "outputFile": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ho_Jong\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-v17\\values-v17.xml",
+                    "source": "C:\\Users\\Dogdriip\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

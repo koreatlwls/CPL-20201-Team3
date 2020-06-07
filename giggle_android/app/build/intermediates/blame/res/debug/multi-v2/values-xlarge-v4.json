@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+            "outputFile": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Ho_Jong\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "source": "C:\\Users\\Dogdriip\\.gradle\\caches\\transforms-2\\files-2.1\\c774e82c119a798e37a4a2e8379ae907\\appcompat-1.1.0\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
