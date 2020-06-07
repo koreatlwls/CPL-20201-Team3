@@ -104,12 +104,12 @@
         "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\border_rectengle.xml"
     },
     {
-        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_ingad.png.flat",
-        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_ingad.png"
-    },
-    {
         "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main1.xml.flat",
         "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_main1.xml"
+    },
+    {
+        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_ingad.png.flat",
+        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\ic_action_ingad.png"
     },
     {
         "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_action_changemode.png.flat",
@@ -406,6 +406,10 @@
     {
         "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_action_add.png.flat",
         "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-hdpi\\ic_action_add.png"
+    },
+    {
+        "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_processing_ad.xml.flat",
+        "source": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_processing_ad.xml"
     },
     {
         "merged": "C:\\Users\\Dogdriip\\workspace\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_action_close.png.flat",

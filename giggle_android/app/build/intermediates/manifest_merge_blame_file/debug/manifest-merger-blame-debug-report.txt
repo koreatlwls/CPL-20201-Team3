@@ -61,7 +61,7 @@
 34-->[com.google.android.gms:play-services-measurement:17.4.0] C:\Users\Dogdriip\.gradle\caches\transforms-2\files-2.1\36fe3d08424ba3ac1e685c781be984ce\jetified-play-services-measurement-17.4.0\AndroidManifest.xml:26:22-107
 35
 36    <application
-36-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:18:5-94:19
+36-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:18:5-95:19
 37        android:allowBackup="true"
 37-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:19:9-35
 38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -79,13 +79,15 @@
 45        android:testOnly="true"
 46        android:theme="@style/AppTheme" >
 46-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:24:9-40
-47        <activity android:name="com.giggle.prototype.SavedAdActivity" />
-47-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:25:9-62
-47-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:25:19-50
-48        <activity android:name="com.giggle.prototype.AdDetailApply" />
-48-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:9-51
-48-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:19-48
-49
+47        <activity android:name="com.giggle.prototype.ProcessingAdActivity" />
+47-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:25:9-67
+47-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:25:19-55
+48        <activity android:name="com.giggle.prototype.SavedAdActivity" />
+48-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:9-53
+48-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:26:19-50
+49        <activity android:name="com.giggle.prototype.AdDetailApply" />
+49-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:27:9-51
+49-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:27:19-48
 50        <!--
 51             The API key for Google Maps-based APIs is defined as a string resource.
 52             (See the file "res/values/google_maps_api.xml").
@@ -207,16 +209,16 @@
 108-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:86:19-52
 109
 110        <service
-110-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:87:9-93:19
+110-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:88:9-94:19
 111            android:name="com.giggle.prototype.MyFirebaseMessagingService"
-111-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:88:13-55
+111-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:89:13-55
 112            android:exported="false" >
-112-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:89:13-37
+112-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:90:13-37
 113            <intent-filter>
-113-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:90:13-92:29
+113-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:13-93:29
 114                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-114-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:17-78
-114-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:25-75
+114-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:92:17-78
+114-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:92:25-75
 115            </intent-filter>
 116        </service>
 117
@@ -309,10 +311,10 @@
 164            android:exported="false" >
 164-->[com.google.firebase:firebase-messaging:20.1.5] C:\Users\Dogdriip\.gradle\caches\transforms-2\files-2.1\752cecdfe169fcb9736181c9a8f605ea\jetified-firebase-messaging-20.1.5\AndroidManifest.xml:30:13-37
 165            <intent-filter android:priority="-500" >
-165-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:90:13-92:29
+165-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:13-93:29
 166                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-166-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:17-78
-166-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:91:25-75
+166-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:92:17-78
+166-->C:\Users\Dogdriip\workspace\CPL-20201-Team3\giggle_android\app\src\main\AndroidManifest.xml:92:25-75
 167            </intent-filter>
 168        </service>
 169
