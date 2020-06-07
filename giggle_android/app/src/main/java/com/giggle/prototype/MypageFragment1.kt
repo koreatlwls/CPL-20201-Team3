@@ -104,8 +104,8 @@ class MypageFragment1 : Fragment() {
 
         // button listeners
         btn_ing.setOnClickListener{  // 진행중인 알바
-            val nextIntent = Intent(activity, ProcessingAdActivity::class.java)
-            startActivity(nextIntent)
+            // val nextIntent = Intent(activity, SignInActivity::class.java)
+            // startActivity(nextIntent)
         }
         btn_saved_ad.setOnClickListener{  // 아르바이트 이력
             val nextIntent = Intent(activity, SavedAdActivity::class.java)

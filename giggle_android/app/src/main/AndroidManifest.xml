@@ -22,9 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProcessingAdActivity"></activity>
-        <activity android:name=".SavedAdActivity" />
+        <activity android:name=".SavedAdActivity"></activity>
         <activity android:name=".AdDetailApply" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -84,7 +84,6 @@
         <activity android:name=".applicantsActivity" />
         <activity android:name=".CompleteAdDetailActivity" />
         <activity android:name=".parttimerActivity" />
-
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

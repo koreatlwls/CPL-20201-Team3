@@ -1863,8 +1863,6 @@ id peekHeight
 id percent
 id phone
 id pin
-id processingAdRecyclerView
-id processingAdText
 id progress_circular
 id progress_horizontal
 id radio
@@ -2139,7 +2137,6 @@ layout activity_login
 layout activity_main
 layout activity_main1
 layout activity_meminfo
-layout activity_processing_ad
 layout activity_resetpassword
 layout activity_saved_ad
 layout activity_signup_1

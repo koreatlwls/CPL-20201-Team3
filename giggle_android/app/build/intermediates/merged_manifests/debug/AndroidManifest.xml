@@ -44,9 +44,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.giggle.prototype.ProcessingAdActivity" />
         <activity android:name="com.giggle.prototype.SavedAdActivity" />
         <activity android:name="com.giggle.prototype.AdDetailApply" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
