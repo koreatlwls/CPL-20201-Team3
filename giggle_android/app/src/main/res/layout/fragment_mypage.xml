@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:stepSize=".5"
         android:numStars="5"
+        android:rating="5"
         android:layout_marginTop="10dp"
         style="@style/Widget.AppCompat.RatingBar.Small"
         app:layout_constraintTop_toBottomOf="@id/img_user"
@@ -50,16 +51,6 @@
         app:layout_constraintRight_toRightOf="@id/img_user"
         />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/Rating_Bar"
-            app:layout_constraintTop_toTopOf="@id/Rating_Bar"
-            app:layout_constraintBottom_toBottomOf="@id/Rating_Bar"
-            android:layout_marginLeft="10dp"
-            android:textSize="10dp"
-            android:id="@+id/txscore"
-            />
     <TextView
         android:layout_width="150dp"
         android:layout_height="wrap_content"

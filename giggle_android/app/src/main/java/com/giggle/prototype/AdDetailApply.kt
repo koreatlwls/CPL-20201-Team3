@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_ad_detail_apply.*
-import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class AdDetailApply : AppCompatActivity() {
     var touid =""
@@ -21,7 +19,6 @@ class AdDetailApply : AppCompatActivity() {
     var memuid = ""
     var shopname = ""
     var shopposition = ""
-    private var shopphoto=""
     val user = FirebaseAuth.getInstance().currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,45 +35,40 @@ class AdDetailApply : AppCompatActivity() {
                 for (document in result) {
                     //DB읽은 데이터 출력
                     touid = document.data["uid"].toString()
-                    txname.setText(document.data["shopname"].toString())
-                    txposition.setText(document.data["shopposition"].toString())
-                    txinfo.setText(document.data["businessinfo"].toString())
-                    txnum.setText(document.data["numofperson"].toString())
-                    txpay.setText(document.data["hourlypay"].toString())
-                    txtime.setText(document.data["st"].toString()+"~"+document.data["fn"].toString())
-                    shopphoto=document.data["photouri"].toString()
+                    txname.text = document.data["shopname"].toString()
+                    txposition.text = document.data["shopposition"].toString()
+                    txinfo.text = document.data["businessinfo"].toString()
+                    txnum.text = document.data["numofperson"].toString()
+                    txpay.text = document.data["hourlypay"].toString()
+                    txtime.text = document.data["st"].toString()+"~"+document.data["fn"].toString()
+
                     val age_1 = Integer.parseInt(document.data["age1"].toString())
                     val age_2 = Integer.parseInt(document.data["age2"].toString())
-                    if(shopphoto!="null") {
-                        Glide.with(this)
-                            .load(shopphoto)
-                            .centerCrop()
-                            .into(shopimageview)
-                    }
+
                     //출력값 검사
                     if(document.data["sex"].toString().isEmpty()){
-                        txsex.setText("무관")
+                        txsex.text="무관"
                     }
                     else{
-                        txsex.setText(document.data["sex"].toString())
+                        txsex.text = document.data["sex"].toString()
                     }
                     if(age_1==0&&age_2==0){
-                        txage.setText("무관")
+                        txage.text = "무관"
                     }
                     else if(age_1==0&&age_2>0){
-                        txage.setText(document.data["age2"].toString() + "이하")
+                        txage.text = document.data["age2"].toString() + "이하"
                     }
                     else if(age_1>0&&age_2==0){
-                        txage.setText(document.data["age1"].toString() + "이상")
+                        txage.text = document.data["age1"].toString() + "이상"
                     }
                     else{
-                        txage.setText(document.data["age1"].toString() + "~" + document.data["age2"].toString())
+                        txage.text = document.data["age1"].toString() + "~" + document.data["age2"].toString()
                     }
                     if(document.data["priorityreq"].toString().isEmpty()){
-                        txpriority.setText("무관")
+                        txpriority.text = "무관"
                     }
                     else{
-                        txpriority.setText(document.data["priorityreq"].toString())
+                        txpriority.text = document.data["priorityreq"].toString()
                     }
                 }
             }
