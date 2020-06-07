@@ -1496,6 +1496,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable giggle
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_account
@@ -1839,7 +1840,6 @@ id multiply
 id navigation_header_container
 id never
 id nineth
-id ninethlayout
 id noScroll
 id none
 id normal
@@ -1908,6 +1908,7 @@ id selected
 id sendBt
 id seventh
 id shopimage
+id shopimageview
 id shortcut
 id showCustom
 id showHome
@@ -1916,7 +1917,6 @@ id signup
 id signup_button
 id signup_cancel
 id sixth
-id sixthlayout
 id skipCollapsed
 id slide
 id smallLabel
@@ -1997,6 +1997,7 @@ id two
 id tx
 id txAge
 id txBusinessInfo
+id txEmail
 id txHourlypay
 id txInfo
 id txLoc
@@ -2036,12 +2037,14 @@ id txminuite
 id txminuite2
 id txname
 id txnum
+id txpassword
 id txpassword1
 id txpassword2
 id txpay
 id txposition
 id txpriority
 id txresetpassword
+id txscore
 id txsearch
 id txsex
 id txshname

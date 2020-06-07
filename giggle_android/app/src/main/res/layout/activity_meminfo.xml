@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+    >
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btregister"
+        app:fabSize="normal"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="#000"
+        android:src="@drawable/ic_action_addwhite"
+        app:backgroundTint="#3a5994"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="wrap_content"
     android:layout_width="match_parent">
     <TextView
         android:id="@+id/txmeminfo"
@@ -145,6 +166,7 @@
             android:background="@drawable/border_dark"
             android:ems="10"
             android:gravity="center"
+            android:maxLength="3"
             android:inputType="number" />
 
         <EditText
@@ -156,6 +178,7 @@
             android:background="@drawable/border_dark"
             android:ems="10"
             android:gravity="center"
+            android:maxLength="4"
             android:inputType="number" />
 
         <EditText
@@ -167,6 +190,7 @@
             android:background="@drawable/border_dark"
             android:ems="10"
             android:gravity="center"
+            android:maxLength="4"
             android:inputType="number" />
     </LinearLayout>
     <LinearLayout
@@ -230,8 +254,8 @@
             android:id="@+id/txLocResult"
             android:layout_width="230dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/border_dark"
             android:ems="10"
             android:maxLines="3"
@@ -266,24 +290,10 @@
         app:fabSize="mini"
         app:layout_constraintRight_toRightOf="@id/memMap" />
 
-            <Button
-                android:id="@+id/btregister"
-                app:layout_constraintTop_toBottomOf="@id/memMap"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:background="@drawable/btn_blue"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="등록하기" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
+    </ScrollView>
+</FrameLayout>
 

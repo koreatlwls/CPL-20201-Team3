@@ -112,6 +112,10 @@
         "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\layout\\activity_signup_2.xml"
     },
     {
+        "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_giggle.png.flat",
+        "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable-mdpi\\giggle.png"
+    },
+    {
         "merged": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_account.png.flat",
         "source": "C:\\Users\\Ho_Jong\\Desktop\\CPL-20201-Team3\\giggle_android\\app\\src\\main\\res\\drawable\\ic_account.png"
     },

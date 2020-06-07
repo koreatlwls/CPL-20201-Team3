@@ -12,32 +12,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="75dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_title" />
+            app:srcCompat="@drawable/giggle" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                app:layout_constraintTop_toBottomOf="@id/image_logo"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:hint="이메일"
-                app:layout_constraintRight_toRightOf="parent"
-                android:inputType="textEmailAddress" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txEmail"
+        android:layout_width="330dp"
+        app:errorEnabled="true"
+        app:hintTextColor="#000"
+        android:layout_height="wrap_content"
+        android:hint="이메일"
+        app:layout_constraintLeft_toLeftOf="@id/image_logo"
+        app:layout_constraintRight_toRightOf="@id/image_logo"
+        app:layout_constraintTop_toBottomOf="@id/image_logo">
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:hint="비밀번호"
-                app:layout_constraintTop_toBottomOf="@id/email"
-                app:layout_constraintLeft_toLeftOf="@id/email"
-                android:inputType="textPassword" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txpassword"
+        android:layout_width="330dp"
+        app:errorEnabled="true"
+        app:hintTextColor="#000"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        app:layout_constraintTop_toBottomOf="@id/txEmail"
+        app:layout_constraintLeft_toLeftOf="@id/txEmail"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
                 <Button
                     android:id="@+id/login"
                     android:layout_width="360dp"
@@ -45,7 +55,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="50dp"
                     android:background="@drawable/btn_blue"
-                    app:layout_constraintTop_toBottomOf="@id/password"
+                    app:layout_constraintTop_toBottomOf="@id/txpassword"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:textColor="#ffffff"
@@ -72,8 +82,8 @@
                         android:textColor="#ffffff"
                         android:text="패스워드 재설정" />
     <CheckBox
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintLeft_toLeftOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/txpassword"
+        app:layout_constraintLeft_toLeftOf="@id/txpassword"
         android:id="@+id/autoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

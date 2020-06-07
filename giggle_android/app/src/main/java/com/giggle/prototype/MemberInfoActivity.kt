@@ -1,6 +1,7 @@
 package com.giggle.prototype
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Address
@@ -35,7 +36,7 @@ import java.io.IOException
 class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
 
     private lateinit var mMap:GoogleMap
-
+    private var isFabOpen=false
     val markerOptions:MarkerOptions= MarkerOptions()
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest // 위치 요청
@@ -43,6 +44,8 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
     val REQUEST_ACCESS_FINE_LOCATION = 1000
     private var Location_finded:String="location"
     private lateinit var latlng:LatLng
+    private val user = FirebaseAuth.getInstance().currentUser
+
     override fun onMapReady(googleMap: GoogleMap) {
       mMap=googleMap
         val Seoul=LatLng(37.0,126.9)
@@ -51,11 +54,11 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meminfo)
-
         latlng= LatLng(37.0,126.9)
         val mapFragment=supportFragmentManager.findFragmentById(R.id.memMap) as SupportMapFragment
         mapFragment.getMapAsync(this)
         locationInit()
+        loadInfo()
         btn_search2.setOnClickListener{searchLocation()}
         btn_MyLocation2.setOnClickListener{OnMyLocationButtonClick()}
         btregister.setOnClickListener{
@@ -91,7 +94,6 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
                 builder.setTitle("등록")
                 builder.setMessage("등록하시겠습니까?")
                 builder.setPositiveButton("확인"){_,_->
-                    val user = FirebaseAuth.getInstance().currentUser
                     val db = FirebaseFirestore.getInstance()
                     val member = members(name,age,sex,position, user?.uid,number,latlng.latitude,latlng.longitude)
                     if (user != null) {
@@ -266,6 +268,25 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
             {
                 Toast.makeText(this,"해당하는 위치 정보가 없습니다.",Toast.LENGTH_LONG).show()
             }
+        }
+    }
+    private fun loadInfo(){
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("members").whereEqualTo("uid",user?.uid).get().addOnSuccessListener { result-> for(document in result){
+            edMemName.setText(document.data["name"].toString())
+            edMemAge.setText(document.data["age"].toString())
+            if(document.data["sex"].toString()=="남자")
+                radioMan.isChecked=true
+            else
+                radioWomen.isChecked=true
+            txLocResult.text = document.data["position"].toString()
+            val str=document.data["phonenumber"].toString()
+            val (phone1,phone2,phone3) = str.split('-')
+            edMemPhone1.setText(phone1)
+            edMemPhone2.setText(phone2)
+            edMemPhone3.setText(phone3)
+        }
         }
     }
 }
