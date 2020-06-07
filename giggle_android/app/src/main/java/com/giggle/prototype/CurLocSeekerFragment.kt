@@ -2,6 +2,7 @@ package com.giggle.prototype
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -28,29 +29,38 @@ import kotlinx.android.synthetic.main.memdetail.*
 import java.io.IOException
 
 
-class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
-    private lateinit var rootView:View
+class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClusterItemClickListener<ShopItem> {
+    private lateinit var rootView: View
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var mContext:FragmentActivity
+    private lateinit var mContext: FragmentActivity
     private var auth: FirebaseAuth? = null
-    private var isFabOpen=false
+    private var isFabOpen = false
+
     //위치값 얻어오기 객체
     lateinit var locationRequest: LocationRequest
+
     //위치 요청
     lateinit var locationCallback: MyLocationCallback
-    val PERMISSIONS= arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    val PERMISSIONS = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
     val REQUEST_ACCESS_FINE_LOCATION = 1000
-    private lateinit var lntlng:LatLng
-    private var jobadarray= mutableListOf<JobAd>()
+    private lateinit var lntlng: LatLng
+    private var jobadarray = mutableListOf<JobAd>()
     private lateinit var mClusterManager: ClusterManager<ShopItem>
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView=inflater.inflate(R.layout.fragment_cur_loc_seeker,container,false)
-        mapView=rootView.findViewById(R.id.mapViewSeeker)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        rootView = inflater.inflate(R.layout.fragment_cur_loc_seeker, container, false)
+        mapView = rootView.findViewById(R.id.mapViewSeeker)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        lntlng=LatLng(32.0, 129.0)
+        lntlng = LatLng(32.0, 129.0)
         return rootView
     }
 
@@ -61,39 +71,26 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        btn_MyLocation_Seeker.setOnClickListener{OnMyLocationButtonClick()}
-        btn_search_Seeker.setOnClickListener{searchLocation()}
-
+        btn_MyLocation_Seeker.setOnClickListener { OnMyLocationButtonClick() }
+        btn_search_Seeker.setOnClickListener { searchLocation() }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun setUpClusterer(){
-        mClusterManager = ClusterManager<ShopItem>(mContext,mMap)
+    private fun setUpClusterer() {
+        mClusterManager = ClusterManager<ShopItem>(mContext, mMap)
         mMap.setOnCameraIdleListener(mClusterManager)
         mMap.setOnMarkerClickListener(mClusterManager)
+        mClusterManager.setOnClusterItemClickListener(this)
     }
 
-    private fun addItems(item:ShopItem){
+    private fun addItems(item: ShopItem) {
         mClusterManager.addItem(item)
     }
 
-    private fun getLatLng(address:String):LatLng{
-        var addressList:List<Address>?=null
-        val geocoder=Geocoder(mContext)
-        addressList=geocoder.getFromLocationName(address,1)
-        if(addressList.isNotEmpty()) {
-            val address = addressList!![0]
-            val latLng = LatLng(address.latitude, address.longitude)
-            return latLng
-        }
-        return LatLng(99.0,99.0)
-    }
-
-        companion object {
+    companion object {
         fun newInstance(): CurrentLocFragment = CurrentLocFragment()
     }
-
-
+    @Override
     override fun onMapReady(googleMap: GoogleMap) {
         //지도가 준비되었다면 호출.MapsInitializer.initialize(mContext)
 
@@ -101,31 +98,39 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
         locationInit()
         val db = FirebaseFirestore.getInstance()
         setUpClusterer()
+
         db.collection("jobads").get()
-            .addOnSuccessListener { result->
-                for(document in result){
-                    var latitude=document.data["latitude"] as Double
-                    var longtitude=document.data["longtitude"] as Double
-                    val latlng=LatLng(latitude,longtitude)
-                    var shopItem= ShopItem(latlng,document.data["shopname"].toString(),document.data["fn"].toString())
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val latitude = document.data["latitude"] as Double
+                    val longtitude = document.data["longtitude"] as Double
+                    val latlng = LatLng(latitude, longtitude)
+                    val shopItem = ShopItem(
+                        latlng,
+                        document.data["shopname"].toString(),
+                        document.data["fn"].toString()
+                    )
                     addItems(shopItem)
                 }
             }
         fun addLocationListener() {
-            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
+            fusedLocationProviderClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                null
+            )
             //위치 권한을 요청해야 함.
             // 액티비티가 잠깐 쉴 때,
             // 자신의 위치를 확인하고, 갱신된 정보를 요청
         }
+
         val Seoul = LatLng(37.6, 127.0) //위도 경도, 변수에 저장
         mMap.addMarker(MarkerOptions().position(Seoul).title("Marker in Seoul"))
         //지도에 표시를 하고 제목을 추가.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul,14f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul, 14f))
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
-
-
 
     fun addLocationListener() {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
@@ -133,53 +138,61 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
         // 액티비티가 잠깐 쉴 때,
         // 자신의 위치를 확인하고, 갱신된 정보를 요청
     }
-    fun OnMyLocationButtonClick(){
-        when{
-            hasPermissions()->{
+
+    fun OnMyLocationButtonClick() {
+        when {
+            hasPermissions() -> {
                 fusedLocationProviderClient.requestLocationUpdates(
                     locationRequest,
                     locationCallback, null
                 )
                 mMap.addMarker(MarkerOptions().position(lntlng))
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lntlng,17f))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lntlng, 17f))
             }
-            else ->{
-                Toast.makeText(mContext,"위치사용권한 설정에 동의해주세요", Toast.LENGTH_LONG).show()
+            else -> {
+                Toast.makeText(mContext, "위치사용권한 설정에 동의해주세요", Toast.LENGTH_LONG).show()
             }
         }
     }
-    fun searchLocation(){
-        lateinit var location:String
-        location=txsearch.text.toString()
-        var addressList:List<Address>?=null
-        if(location==""){
-            Toast.makeText(mContext,"provide location",Toast.LENGTH_SHORT).show()
-        }
-        else{
-            val geoCoder= Geocoder(mContext)
-            try{
-                addressList=geoCoder.getFromLocationName(location,1)
-            }catch(e: IOException){
+
+    fun searchLocation() {
+        lateinit var location: String
+        location = txsearch.text.toString()
+        var addressList: List<Address>? = null
+        if (location == "") {
+            Toast.makeText(mContext, "provide location", Toast.LENGTH_SHORT).show()
+        } else {
+            val geoCoder = Geocoder(mContext)
+            try {
+                addressList = geoCoder.getFromLocationName(location, 1)
+            } catch (e: IOException) {
                 e.printStackTrace()
             }
-            val address=addressList!![0]
-            val latLng=LatLng(address.latitude,address.longitude)
+            val address = addressList!![0]
+            val latLng = LatLng(address.latitude, address.longitude)
             mMap.addMarker(MarkerOptions().position(latLng).title(location))
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17f))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
         }
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         MapsInitializer.initialize(mContext)
     }
-    private fun hasPermissions():Boolean{
-        for(permission in PERMISSIONS){
-            if(ActivityCompat.checkSelfPermission(mContext,permission)!= PackageManager.PERMISSION_GRANTED){
+
+    private fun hasPermissions(): Boolean {
+        for (permission in PERMISSIONS) {
+            if (ActivityCompat.checkSelfPermission(
+                    mContext,
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return false
             }
         }
         return true
     }
+
     inner class MyLocationCallback : LocationCallback() {
         override fun onLocationResult(p0: LocationResult?) {
             super.onLocationResult(p0)
@@ -203,6 +216,7 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
             }
         }
     }
+
     fun removeLocationListener() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }//어플이 종료되면 지도 요청 해제
@@ -227,10 +241,12 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
         super.onStart()
         mapView.onStart()
     }
+
     override fun onStop() {
         super.onStop()
         mapView.onStop()
     }
+
     override fun onResume() {
         super.onResume()
         mapView.onResume()
@@ -249,6 +265,14 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback{
     override fun onDestroy() {
         mapView.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onClusterItemClick(p0: ShopItem?): Boolean {
+        val ingshopname = p0?.title
+        val nextIntent = Intent(mContext, AdDetailApply::class.java)
+        nextIntent.putExtra("name", p0?.title)
+        startActivity(nextIntent)
+        return true
     }
 
 }

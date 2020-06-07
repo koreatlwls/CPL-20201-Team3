@@ -49,7 +49,19 @@ class MypageFragment : Fragment() {
         val email = user?.email
         val uid = user?.uid
         var storageRef = storage.reference
-
+/*
+        db.collection("members").whereEqualTo("uid",uid).get().addOnSuccessListener {
+            result->
+            for(document in result){
+                val score=document.data["score"] as Double
+                var numofscore=document.data["num_of_score"] as Double
+                val member=members(score,numofscore)
+                var Score_result=member.calScore()
+                Rating_Bar.numStars=Score_result as Int
+                txscore.setText(Score_result.toString())
+            }
+        }
+*/
         //최근 광고 카드뷰
         db.collection("jobads")
             .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -62,12 +74,14 @@ class MypageFragment : Fragment() {
                             shopposition = document.data["shopposition"].toString()
                             shopphoto = document.data["photouri"].toString() //이미지
                             i = 1
-                            Glide.with(this)
-                                .load(shopphoto)
-                                .centerCrop()
-                                .into(imageview_main_image2)
-                            txshopname.setText(shopname)
-                            txshopposition.setText(shopposition)
+                            if(shopphoto!="null") {
+                                Glide.with(this)
+                                    .load(shopphoto)
+                                    .centerCrop()
+                                    .into(imageview_main_image2)
+                                txshopname.setText(shopname)
+                                txshopposition.setText(shopposition)
+                            }
                         }
                     }
                 }
@@ -134,6 +148,3 @@ class MypageFragment : Fragment() {
         super.onAttach(context)
     }
 }
-
-
-

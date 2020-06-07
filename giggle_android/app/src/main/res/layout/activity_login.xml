@@ -71,12 +71,13 @@
                         android:background="@drawable/btn_darkblue"
                         android:textColor="#ffffff"
                         android:text="패스워드 재설정" />
+
     <CheckBox
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintLeft_toLeftOf="@id/password"
         android:id="@+id/autoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         android:text="자동 로그인"
-        />
+        app:layout_constraintLeft_toLeftOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/password" />
 </androidx.constraintlayout.widget.ConstraintLayout>

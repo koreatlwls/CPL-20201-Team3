@@ -9,196 +9,205 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/img_user"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="28dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/border_round"
-        android:src="@drawable/ic_account"
-        />
-
-        <TextView
-        app:layout_constraintLeft_toRightOf="@id/img_user"
-        app:layout_constraintTop_toTopOf="@id/img_user"
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:text="Loading email..."
-        android:textSize="18dp" />
-
-    <RatingBar
-        android:id="@+id/Rating_Bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stepSize=".5"
-        android:numStars="5"
-        android:rating="5"
-        android:layout_marginTop="10dp"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        app:layout_constraintTop_toBottomOf="@id/img_user"
-        app:layout_constraintLeft_toLeftOf="@id/img_user"
-        app:layout_constraintRight_toRightOf="@id/img_user"
-        />
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/Rating_Bar"
-        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:text="Menu"
-        android:layout_marginTop="30dp"
-        android:textSize="18dp"
-        android:id="@+id/textMenu"
-        />
-    <ImageButton
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_saved_ad"
-        app:layout_constraintTop_toBottomOf="@id/textMenu"
-        android:layout_marginTop="10dp"
-        android:id="@+id/btn_ing"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:background="#fff"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_action_ingad"
-        />
-    <ImageButton
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_ing"
-        android:id="@+id/btn_saved_ad"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:background="#fff"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_action_savedad" />
-    <TextView
-        android:id="@+id/texting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/btn_ing"
-        app:layout_constraintTop_toBottomOf="@id/btn_ing"
-        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
-        android:text="진행중인 채용"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold"
-        android:textSize="10dp"
-        android:textColor="#000"
-        />
-
-        <TextView
-            android:id="@+id/textsaved_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="완료된 채용"
-            android:textColor="#000"
-            android:textSize="10dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="@id/btn_saved_ad"
-            app:layout_constraintRight_toRightOf="@id/btn_saved_ad"
-            app:layout_constraintTop_toBottomOf="@id/btn_saved_ad" />
-
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/bt_change"
-        android:background="#fff"
-        app:layout_constraintLeft_toRightOf="@id/btn_saved_ad"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_ing"
-        android:src="@drawable/ic_action_changemode"
-        android:scaleType="centerCrop"
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/bt_change"
-        app:layout_constraintLeft_toLeftOf="@id/bt_change"
-        app:layout_constraintRight_toRightOf="@id/bt_change"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:text="구직자 전환"
-        android:textSize="10dp"
-        android:id="@+id/txchangemode"
-
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txchangemode"
-        app:layout_constraintLeft_toLeftOf="@id/btn_ing"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:text="가장 최근 광고"
-        android:layout_marginTop="30dp"
-        android:textSize="18dp"
-        android:id="@+id/textRecentAd"
-        />
-
-    <androidx.cardview.widget.CardView
-        card_view:layout_constraintTop_toBottomOf="@id/textRecentAd"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardUseCompatPadding="true">
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/imageview_main_image2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/img_user"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="28dp"
                 android:scaleType="centerCrop"
-                app:riv_corner_radius_top_left="20dp"
-                app:riv_corner_radius_top_right="20dp"
-                android:src="@drawable/img_sample"
-                app:riv_border_color="#333333"
-                app:riv_mutate_background="true"
-                app:riv_oval="false" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/border_round"
+                android:src="@drawable/ic_account"
+                />
 
             <TextView
-                android:id="@+id/txshopname"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:textColor="#000"
-                android:text="가장 최근 광고 제목이 들어갈 곳" />
+                app:layout_constraintLeft_toRightOf="@id/img_user"
+                app:layout_constraintTop_toTopOf="@id/img_user"
+                android:id="@+id/emailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="50dp"
+                android:textStyle="bold"
+                android:text="Loading email..."
+                android:textSize="18dp" />
+
+            <RatingBar
+                android:id="@+id/Rating_Bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stepSize=".5"
+                android:numStars="5"
+                android:layout_marginTop="10dp"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                app:layout_constraintTop_toBottomOf="@id/img_user"
+                app:layout_constraintLeft_toLeftOf="@id/img_user"
+                app:layout_constraintRight_toRightOf="@id/img_user"
+                />
+
             <TextView
-                android:id="@+id/txshopposition"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/Rating_Bar"
+                app:layout_constraintTop_toTopOf="@id/Rating_Bar"
+                app:layout_constraintBottom_toBottomOf="@id/Rating_Bar"
+                android:layout_marginLeft="10dp"
                 android:textSize="10dp"
-                android:text="가장 최근 광고 제목이 들어갈 곳" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/txscore"
+                />
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/Rating_Bar"
+                app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="Menu"
+                android:layout_marginTop="30dp"
+                android:textSize="18dp"
+                android:id="@+id/textMenu"
+                />
+            <ImageButton
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_saved_ad"
+                app:layout_constraintTop_toBottomOf="@id/textMenu"
+                android:layout_marginTop="10dp"
+                android:id="@+id/btn_ing"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_action_ingad"
+                />
+            <ImageButton
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_ing"
+                android:id="@+id/btn_saved_ad"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_action_savedad" />
+            <TextView
+                android:id="@+id/texting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintRight_toRightOf="@id/btn_ing"
+                app:layout_constraintTop_toBottomOf="@id/btn_ing"
+                app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+                android:text="진행중인 채용"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/textsaved_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="완료된 채용"
+                android:textColor="#000"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/btn_saved_ad"
+                app:layout_constraintRight_toRightOf="@id/btn_saved_ad"
+                app:layout_constraintTop_toBottomOf="@id/btn_saved_ad" />
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/bt_change"
+                android:background="#fff"
+                app:layout_constraintLeft_toRightOf="@id/btn_saved_ad"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_ing"
+                android:src="@drawable/ic_action_changemode"
+                android:scaleType="centerCrop"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/bt_change"
+                app:layout_constraintLeft_toLeftOf="@id/bt_change"
+                app:layout_constraintRight_toRightOf="@id/bt_change"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="구직자 전환"
+                android:textSize="10dp"
+                android:id="@+id/txchangemode"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txchangemode"
+                app:layout_constraintLeft_toLeftOf="@id/btn_ing"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="가장 최근 광고"
+                android:layout_marginTop="30dp"
+                android:textSize="18dp"
+                android:id="@+id/textRecentAd"
+                />
+
+            <androidx.cardview.widget.CardView
+                card_view:layout_constraintTop_toBottomOf="@id/textRecentAd"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                card_view:cardCornerRadius="20dp"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imageview_main_image2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_top_left="20dp"
+                        app:riv_corner_radius_top_right="20dp"
+                        android:src="@drawable/img_sample"
+                        app:riv_border_color="#333333"
+                        app:riv_mutate_background="true"
+                        app:riv_oval="false" />
+
+                    <TextView
+                        android:id="@+id/txshopname"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:textColor="#000"
+                        android:text="가장 최근 광고 제목이 들어갈 곳" />
+                    <TextView
+                        android:id="@+id/txshopposition"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:textSize="10dp"
+                        android:text="가장 최근 광고 제목이 들어갈 곳" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>

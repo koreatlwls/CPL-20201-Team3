@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
+
+
 class LoginActivity : AppCompatActivity() {
     var auth : FirebaseAuth? = null
 
@@ -16,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
-
+/*
         var load=getSharedPreferences("auto",Activity.MODE_PRIVATE)
         val id=load.getString("InputID",null)
         val pw=load.getString("InputPW",null)
@@ -38,7 +40,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "이메일 혹은 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
+
+
         //로그인
         login.setOnClickListener {
             val emailStr: String = email.text.toString()
@@ -48,13 +52,14 @@ class LoginActivity : AppCompatActivity() {
             } else if (passwordStr.isEmpty()) {
                 Toast.makeText(this,"비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                if(autoLogin.isChecked){
+
+                /*if(autoLogin.isChecked){
                     val auto=getSharedPreferences("auto",Activity.MODE_PRIVATE)
                     val autologin:SharedPreferences.Editor=auto.edit()
                     autologin.putString("InputID",emailStr.toString())
                     autologin.putString("InputPW",passwordStr.toString())
                     autologin.apply()
-                }
+                }*/
                 auth?.signInWithEmailAndPassword(emailStr, passwordStr)?.addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val emailVerified = auth?.currentUser?.isEmailVerified
