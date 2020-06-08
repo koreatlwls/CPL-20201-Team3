@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_processing_ad.*
+import kotlin.reflect.typeOf
 
 class ProcessingAdActivity : AppCompatActivity() {
     private val user = FirebaseAuth.getInstance().currentUser
@@ -26,24 +27,27 @@ class ProcessingAdActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        // val uid = user?.uid.toString()
-        val uid = "u2FMQda137fBhll6pBOHE6prRHO2"  // doc exists, shop exists
+        val uid = user?.uid.toString()
+        // val uid = "u2FMQda137fBhll6pBOHE6prRHO2"  // doc exists, shop exists
         // val uid = "WOhnzxlJ9YOYFG0zkX3XuODOcW63"  // doc exists, shop does not exist
 
         val docRef = db!!.collection("recruit_shop").document(uid)
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val shop = document.data?.get("shop");
+                    val shop = document.data?.get("shop")
                     if (shop != null) {
-                        Toast.makeText(this, "shop 있음", Toast.LENGTH_LONG).show()
+                        // Toast.makeText(this, shop.toString(), Toast.LENGTH_LONG).show()
+                        // Toast.makeText(this, shop::class.qualifiedName, Toast.LENGTH_LONG).show()
 
-                        val list = ArrayList<ProcessingAd>()
-                        list.add(ProcessingAd("123", "abc"))
-                        list.add(ProcessingAd("123123", "14"))
-                        list.add(ProcessingAd("123123123", "13"))
+                        val resList = ArrayList<ProcessingAd>()
+                        val list = document.toObject(ProcessingAdDocument::class.java)!!.shop
 
-                        val adapter = ProcessingAdAdapter(list)
+                        for (it in list) {
+                            resList.add(ProcessingAd(it.shopname, it.shopposition))
+                        }
+
+                        val adapter = ProcessingAdAdapter(resList)
                         processingAdRecyclerView.adapter = adapter
 
                     } else {
