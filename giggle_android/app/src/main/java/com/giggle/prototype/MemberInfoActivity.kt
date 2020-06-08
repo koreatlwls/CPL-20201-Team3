@@ -47,7 +47,7 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
     private val user = FirebaseAuth.getInstance().currentUser
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap=googleMap
+      mMap=googleMap
         val Seoul=LatLng(37.0,126.9)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Seoul))
     }
@@ -198,18 +198,18 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
     }
 
     fun OnMyLocationButtonClick(){
-        fusedLocationProviderClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback, null
-        )
-        var addressList:List<Address>?=null
-        val geoCoder=Geocoder(this)
-        addressList=geoCoder.getFromLocation(latlng.latitude,latlng.longitude,1)
-        Location_finded=addressList!![0].getAddressLine(0)
-        txLocResult.setText(Location_finded)
-        mMap.clear()
-        mMap.addMarker(MarkerOptions().position(latlng))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,17f))
+                fusedLocationProviderClient.requestLocationUpdates(
+                    locationRequest,
+                    locationCallback, null
+                )
+                var addressList:List<Address>?=null
+                val geoCoder=Geocoder(this)
+                addressList=geoCoder.getFromLocation(latlng.latitude,latlng.longitude,1)
+                Location_finded=addressList!![0].getAddressLine(0)
+                txLocResult.setText(Location_finded)
+                mMap.clear()
+                mMap.addMarker(MarkerOptions().position(latlng))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,17f))
     }
     inner class MyLocationCallBack : LocationCallback() {
         override fun onLocationResult(p0: LocationResult?) {

@@ -148,3 +148,6 @@ class MypageFragment : Fragment() {
         super.onAttach(context)
     }
 }
+
+
+
