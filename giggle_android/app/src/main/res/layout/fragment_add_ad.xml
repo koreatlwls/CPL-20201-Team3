@@ -126,6 +126,36 @@
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_dark"
+                app:layout_constraintTop_toBottomOf="@id/txLocation_result"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/range"
+                android:hint="0"
+                android:inputType="number"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="km 이내"
+                android:textColor="#000"
+                android:id="@+id/justtx"
+                app:layout_constraintLeft_toRightOf="@id/range"
+                app:layout_constraintTop_toTopOf="@id/range"
+                android:layout_marginLeft="5dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 명"
+                android:textColor="#000"
+                android:id="@+id/SeekerNum"
+                app:layout_constraintLeft_toRightOf="@id/justtx"
+                app:layout_constraintTop_toTopOf="@id/range"
+                android:layout_marginLeft="10dp"
+                />
             <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"

@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_cur_loc_seeker.*
 import kotlinx.android.synthetic.main.fragment_current_loc.*
@@ -29,7 +30,7 @@ import kotlinx.android.synthetic.main.memdetail.*
 import java.io.IOException
 
 
-class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClusterItemClickListener<ShopItem> {
+class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClusterItemClickListener<ShopItem>,ClusterManager.OnClusterClickListener<ShopItem> {
     private lateinit var rootView: View
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
@@ -60,7 +61,6 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
         mapView = rootView.findViewById(R.id.mapViewSeeker)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
-        lntlng = LatLng(32.0, 129.0)
         return rootView
     }
 
@@ -70,7 +70,7 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        auth = FirebaseAuth.getInstance()
         btn_MyLocation_Seeker.setOnClickListener { OnMyLocationButtonClick() }
         btn_search_Seeker.setOnClickListener { searchLocation() }
         super.onViewCreated(view, savedInstanceState)
@@ -81,6 +81,7 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
         mMap.setOnCameraIdleListener(mClusterManager)
         mMap.setOnMarkerClickListener(mClusterManager)
         mClusterManager.setOnClusterItemClickListener(this)
+        mClusterManager.setOnClusterClickListener(this)
     }
 
     private fun addItems(item: ShopItem) {
@@ -98,7 +99,14 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
         locationInit()
         val db = FirebaseFirestore.getInstance()
         setUpClusterer()
-
+        lntlng=LatLng(32.0,130.0)
+        db.collection("members").whereEqualTo("uid",auth?.uid).get()
+            .addOnSuccessListener { result->
+                for(document in result){
+                    lntlng=LatLng(document.data["latitude"] as Double,document.data["longtitude"] as Double)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lntlng, 14f))
+        }
+        }
         db.collection("jobads").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -123,11 +131,8 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
             // 액티비티가 잠깐 쉴 때,
             // 자신의 위치를 확인하고, 갱신된 정보를 요청
         }
-
-        val Seoul = LatLng(37.6, 127.0) //위도 경도, 변수에 저장
-        mMap.addMarker(MarkerOptions().position(Seoul).title("Marker in Seoul"))
         //지도에 표시를 하고 제목을 추가.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul, 14f))
+
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
@@ -272,6 +277,12 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
         val nextIntent = Intent(mContext, AdDetailApply::class.java)
         nextIntent.putExtra("name", p0?.title)
         startActivity(nextIntent)
+        return true
+    }
+
+    override fun onClusterClick(p0: Cluster<ShopItem>?): Boolean {
+        val latlng=LatLng(p0?.position!!.latitude,p0!!.position.longitude)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 15f))
         return true
     }
 

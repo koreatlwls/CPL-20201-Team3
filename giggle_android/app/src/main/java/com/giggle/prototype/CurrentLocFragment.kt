@@ -19,12 +19,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_current_loc.*
 import java.io.IOException
 
 
-class CurrentLocFragment : Fragment(),OnMapReadyCallback{
+class CurrentLocFragment : Fragment(),OnMapReadyCallback,ClusterManager.OnClusterClickListener<ShopItem>{
     private lateinit var rootView:View
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
@@ -56,6 +57,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_MyLocation.setOnClickListener{OnMyLocationButtonClick()}
         btn_search.setOnClickListener{searchLocation()}
+        auth = FirebaseAuth.getInstance()
         super.onViewCreated(view, savedInstanceState)
     }
     companion object {
@@ -66,6 +68,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         mMap = googleMap
         locationInit()
         setUpClusterer()
+
         val db = FirebaseFirestore.getInstance()
         db.collection("members").get()
             .addOnSuccessListener { result->
@@ -77,16 +80,22 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
                     addItems(useritem)
                 }
             }
+        lntlng=LatLng(32.0,130.0)
+        db.collection("members").whereEqualTo("uid",auth?.uid).get()
+            .addOnSuccessListener { result->
+                for(document in result){
+                    lntlng=LatLng(document.data["latitude"] as Double,document.data["longtitude"] as Double)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lntlng, 14f))
+                }
+            }
         fun addLocationListener() {
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
             //위치 권한을 요청해야 함.
             // 액티비티가 잠깐 쉴 때,
             // 자신의 위치를 확인하고, 갱신된 정보를 요청
         }
-        val Seoul = LatLng(37.6, 127.0) //위도 경도, 변수에 저장
-        mMap.addMarker(MarkerOptions().position(Seoul).title("Marker in Seoul"))
-        //지도에 표시를 하고 제목을 추가.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Seoul,14f))
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lntlng,14f))
 
         //마커 위치로 지도 이동  // 위치가 변경이 된다면 따라서 움직여라.
     }
@@ -215,5 +224,9 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback{
         mapView.onDestroy()
         super.onDestroy()
     }
-
+    override fun onClusterClick(p0: Cluster<ShopItem>?): Boolean {
+        val latlng=LatLng(p0?.position!!.latitude,p0!!.position.longitude)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 15f))
+        return true
+    }
 }

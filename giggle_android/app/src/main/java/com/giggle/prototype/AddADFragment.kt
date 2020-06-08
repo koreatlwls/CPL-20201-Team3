@@ -34,6 +34,9 @@ import java.io.IOException
 import java.util.*
 import android.animation.ObjectAnimator
 import android.location.Location
+import androidx.annotation.IntegerRes
+import com.google.android.gms.maps.model.Marker
+import kotlinx.android.synthetic.main.fragment_current_loc.*
 
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
@@ -60,9 +63,10 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     var storage: FirebaseStorage? = null
     private var auth: FirebaseAuth? = null
     private var isFabOpen=false
+    private var searchrange:Int = 0
     //위치값 얻어오기 객체
-
-
+    private var markerlist= mutableListOf<Marker>()
+    private val db = FirebaseFirestore.getInstance()
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView=inflater.inflate(R.layout.fragment_add_ad,container,false)
@@ -365,7 +369,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                         numperson
                     )
                     val user = FirebaseAuth.getInstance().currentUser
-                    val db = FirebaseFirestore.getInstance()
                     var map = mutableMapOf<String,Any>()
                     if (user != null) {
                         map["uid"] =user.uid.toString()
@@ -564,6 +567,16 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
+        range.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                if(range.text!!.isNotEmpty()) {
+                    searchrange = range.text.toString().toInt() * 1000
+                    findSeeker(searchrange)
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
     }
 
     private fun toggleFab(){
@@ -578,4 +591,25 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     }
         isFabOpen=!isFabOpen
     }
+
+
+    private fun findSeeker(range:Int){
+        var count=0
+        mMap.clear()
+        db.collection("members")
+            .get().addOnSuccessListener { result->
+                for(document in result){
+                    var distance:Float
+                    val userlatitude= document.data["latitude"] as Double
+                    val userlongtitude= document.data["longtitude"] as Double
+                    distance=Distance(userlatitude,userlongtitude)
+                    if(distance<=range) {
+                        count++
+                       mMap.addMarker(MarkerOptions().position(LatLng(userlatitude,userlongtitude)))
+                        }
+                }
+                SeekerNum.text = count.toString() +" 명"
+            }
+    }
+
 }
