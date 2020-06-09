@@ -328,6 +328,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             if(edHourlyPay.text!!.isNotEmpty()){
                 hourlypay = Integer.parseInt(edHourlyPay.text.toString())
             }
+            if(range.text.isEmpty())
+                range.error="범위를 설정해주세요!"
             if(shopname.isEmpty()||shopposition.isEmpty()||businessinfo.isEmpty()){
                 if(shopname.isEmpty())
                     txShopName.error="가게 이름을 입력해주세요!"
@@ -350,7 +352,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             }
 
             //DB에 저장
-            if(shopname.isNotEmpty()&&shopposition.isNotEmpty()&&businessinfo.isNotEmpty()&&hourlypay>8590) {
+            if(shopname.isNotEmpty()&&shopposition.isNotEmpty()&&businessinfo.isNotEmpty()&&hourlypay>8590&&range.text.isNotEmpty()) {
                 val builder = AlertDialog.Builder(ContextThemeWrapper(activity,R.style.Theme_AppCompat_Light_Dialog))
                 builder.setTitle("등록")
                 builder.setMessage("등록하시겠습니까?")
@@ -383,7 +385,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                             val uid=document.data["uid"].toString()
                             var pushtoken:String
                             distance=Distance(userlatitude,userlongtitude)
-                            if(distance<=10000.0) {
+                            if(distance<=searchrange) {
                                 Toast.makeText(mContext,"알림 전송 성공!!"+ distance,Toast.LENGTH_LONG).show()
                                 db.collection("pushtokens").document(uid).get().addOnSuccessListener { result->
                                     pushtoken=result.data!!["pushtoken"].toString()
@@ -611,5 +613,6 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 SeekerNum.text = count.toString() +" 명"
             }
     }
+
 
 }
