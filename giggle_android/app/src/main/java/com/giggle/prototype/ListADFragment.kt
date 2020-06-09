@@ -86,7 +86,7 @@ class ListADFragment : Fragment() {
     }
 
     private fun loadAdsList(text: String) {
-        val query = db!!.collection("jobads") //.whereEqualTo("", text)
+        val query = db!!.collection("jobads").whereEqualTo("state",0)
 
         val response = FirestoreRecyclerOptions.Builder<JobAd>()
             .setQuery(query, JobAd::class.java)
