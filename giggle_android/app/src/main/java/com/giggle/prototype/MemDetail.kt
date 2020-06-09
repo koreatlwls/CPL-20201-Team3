@@ -3,13 +3,23 @@ package com.giggle.prototype
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.ContextThemeWrapper
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.memdetail.*
 
 
-class MemDetail : AppCompatActivity(){
+class MemDetail : AppCompatActivity(),OnMapReadyCallback{
     var mname =""
     var mage =0
     var msex=""
@@ -18,14 +28,22 @@ class MemDetail : AppCompatActivity(){
     var touid=""
     var shopname = ""
     var shopposition = ""
-   // var member = mem("",0,"","","")
+    val db = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
+    private lateinit var mMap: GoogleMap
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap=googleMap
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.memdetail)
-
+        val mapFragment=supportFragmentManager.findFragmentById(R.id.memdetailMap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
         var memname = ""
-
+        var storageRef = storage.reference
         val db = FirebaseFirestore.getInstance()
+
+
 
         if(intent.hasExtra("name")){
             memname = intent.getStringExtra("name")
@@ -43,6 +61,21 @@ class MemDetail : AppCompatActivity(){
                     txsex.text = document.data["sex"].toString()
                     phone.text = document.data["phonenumber"].toString()
                     touid = document.data["uid"].toString()
+                    val latitude=document.data["latitude"] as Double
+                    val longtitude=document.data["longtitude"] as Double
+                    mMap.addMarker(MarkerOptions().position(LatLng(latitude,longtitude)).title(memname))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude,longtitude),14f))
+                    val uid=document.data["uid"].toString()
+                    var imageRef=storageRef.child("profile_image/${uid}.png")
+                    imageRef.downloadUrl.addOnSuccessListener {
+                        // Got the download URL for 'users/me/profile.png'
+                        Glide.with(this)
+                            .load(it)
+                            .centerCrop()
+                            .into(profileimg)
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "프로필 사진이 없습니다.", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         btrecruit.setOnClickListener(){

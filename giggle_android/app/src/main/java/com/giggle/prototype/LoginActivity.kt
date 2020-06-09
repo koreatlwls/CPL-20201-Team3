@@ -17,10 +17,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
-        var load=getSharedPreferences("auto",Activity.MODE_PRIVATE)
+        val load=getSharedPreferences("auto",Activity.MODE_PRIVATE)
         val id=load.getString("InputID",null)
         val pw=load.getString("InputPW",null)
-
+        val mode=load.getString("UserMode","0")
         if(id!=null&&pw!=null) {
             email.setText(id)
             password.setText(pw)
@@ -29,8 +29,14 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val emailVerified = auth?.currentUser?.isEmailVerified
                     if (emailVerified == true) {
-                        val nextIntent = Intent(this, SignInActivity::class.java)
-                        startActivity(nextIntent)
+                        if(mode=="0") {
+                            val nextIntent = Intent(this, SignInActivity::class.java)
+                            startActivity(nextIntent)
+                        }
+                        else if(mode=="1"){
+                            val nextIntent=Intent(this,SignInActivity1::class.java)
+                            startActivity(nextIntent)
+                        }
                     } else {
                         Toast.makeText(this, "이메일 인증을 완료해주세요.", Toast.LENGTH_SHORT).show()
                     }
@@ -59,8 +65,14 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val emailVerified = auth?.currentUser?.isEmailVerified
                         if (emailVerified == true){
-                            val nextIntent = Intent(this, SignInActivity::class.java)
-                            startActivity(nextIntent)
+                            if(mode=="0") {
+                                val nextIntent = Intent(this, SignInActivity::class.java)
+                                startActivity(nextIntent)
+                            }
+                            else if(mode=="1"){
+                                val nextIntent=Intent(this,SignInActivity1::class.java)
+                                startActivity(nextIntent)
+                            }
                         } else {
                             Toast.makeText(this, "이메일 인증을 완료해주세요.", Toast.LENGTH_SHORT).show()
                         }
@@ -70,13 +82,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
         //회원가입
         signup.setOnClickListener {
             val nextIntent = Intent(this, SignUpActivity1::class.java)
             startActivity(nextIntent)
         }
-
         //비밀번호 재설정
         resetpassword.setOnClickListener {
             val nextIntent = Intent(this, ResetActivity::class.java)

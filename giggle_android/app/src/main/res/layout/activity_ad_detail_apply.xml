@@ -42,20 +42,21 @@
         app:layout_constraintTop_toBottomOf="@id/shopimageview">
             <TextView
                 app:layout_constraintTop_toTopOf="parent"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:hint="loading...."
                 android:maxLines="4"
                 android:id="@+id/txname"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imgpay"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/txname"
             app:layout_constraintLeft_toLeftOf="parent"
             android:src="@drawable/pay"
@@ -117,6 +118,7 @@
             android:textStyle="bold"
             android:text="모집 조건"
             android:id="@+id/txcondition2"
+            android:layout_marginLeft="20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             />
@@ -128,6 +130,7 @@
             android:textColor="#000"
             android:textSize="14dp"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/txpersonnum"
             app:layout_constraintTop_toBottomOf="@id/txcondition2"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -154,7 +157,7 @@
             android:text="성별"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/txnum"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/txpersonnum"
             />
             <TextView
                 android:layout_marginTop="10dp"
@@ -177,7 +180,7 @@
             android:textColor="#000"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/txsex"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/txpersonnum"
             />
             <TextView
                 android:layout_marginTop="10dp"
@@ -200,7 +203,7 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/txage"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/txpersonnum"
             />
 
         <TextView
@@ -225,7 +228,7 @@
             android:textStyle="bold"
             android:text="우대요건"
             app:layout_constraintTop_toBottomOf="@id/txinfo"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/txpersonnum"
             />
             <TextView
                 android:id="@+id/txpriority"
@@ -259,6 +262,7 @@
             android:id="@+id/txloc"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="20dp"
             />
 
         <TextView
@@ -267,7 +271,8 @@
             android:id="@+id/txposition"
             android:layout_width="wrap_content"
             android:textStyle="bold"
-            android:textSize="14dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
             android:hint="loading..."
             android:textColor="#000"
             android:layout_marginTop="10dp"

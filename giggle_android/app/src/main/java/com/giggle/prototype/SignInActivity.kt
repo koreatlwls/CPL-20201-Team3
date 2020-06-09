@@ -1,5 +1,7 @@
 package com.giggle.prototype
 
+import android.app.Activity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.NonNull
@@ -70,6 +72,10 @@ class SignInActivity : AppCompatActivity() {
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        val auto=getSharedPreferences("auto", Activity.MODE_PRIVATE)
+        val autologin: SharedPreferences.Editor=auto.edit()
+        autologin.putString("UserMode","0")
+        autologin.apply()
         //접속시 서버에게 푸쉬토큰 등록
         registerPushToken()
     }

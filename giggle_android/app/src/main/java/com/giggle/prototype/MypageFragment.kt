@@ -3,13 +3,14 @@ package com.giggle.prototype
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -69,22 +70,20 @@ class MypageFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     if(uid==document.data["uid"].toString()&&document.data["state"].toString()=="0") {
-                        if (i == 0) {
                             shopname = document.data["shopname"].toString() //가게이름
                             shopposition = document.data["shopposition"].toString()
                             shopphoto = document.data["photouri"].toString() //이미지
-                            i = 1
                             if(shopphoto!="null") {
                                 Glide.with(this)
                                     .load(shopphoto)
                                     .centerCrop()
                                     .into(imageview_main_image2)
-                                txshopname.setText(shopname)
-                                txshopposition.setText(shopposition)
                             }
+                        txshopname.setText(shopname)
+                        txshopposition.setText(shopposition)
+                        break
                         }
                     }
-                }
             }.addOnFailureListener { exception ->
                 Toast.makeText(mContext, "데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_LONG).show()
             }
@@ -134,7 +133,6 @@ class MypageFragment : Fragment() {
         }
     }
     override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?){
-
         if(requestCode == PICK_IMAGE_FROM_ALBUM)  {
             if(resultCode == Activity.RESULT_OK){
                 println(data?.data)

@@ -1,5 +1,7 @@
 package com.giggle.prototype
 
+import android.app.Activity
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -48,6 +50,11 @@ class SignInActivity1 : AppCompatActivity() {
 
         val bottomNavigationView : BottomNavigationView = findViewById(R.id.bottom_nav1)
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        val auto=getSharedPreferences("auto", Activity.MODE_PRIVATE)
+        val autologin: SharedPreferences.Editor=auto.edit()
+        autologin.putString("UserMode","1")
+        autologin.apply()
     }
 
 

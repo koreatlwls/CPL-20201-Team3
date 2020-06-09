@@ -8,17 +8,27 @@ import android.view.ContextThemeWrapper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.ingaddetail.*
 
-class IngAd_DetailActivity : AppCompatActivity() {
+class IngAd_DetailActivity : AppCompatActivity(),OnMapReadyCallback {
     private var isFabOpen=false
     private var shopphoto=""
-
+    private lateinit var mMap: GoogleMap
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap=googleMap
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ingaddetail)
-
+        val mapFragment=supportFragmentManager.findFragmentById(R.id.ingadMap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
         var shname = ""
         val db = FirebaseFirestore.getInstance()
 
@@ -39,6 +49,10 @@ class IngAd_DetailActivity : AppCompatActivity() {
                     txnum.text = document.data["numofperson"].toString()
                     txpay.text = document.data["hourlypay"].toString()
                     txtime.text = document.data["st"].toString()+"~"+document.data["fn"].toString()
+                    val latitude=document.data["latitude"] as Double
+                    val longtitude=document.data["longtitude"] as Double
+                    mMap.addMarker(MarkerOptions().position(LatLng(latitude,longtitude)))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude,longtitude),14f))
                     shopphoto=document.data["photouri"].toString()
                     val age_1 = Integer.parseInt(document.data["age1"].toString())
                     val age_2 = Integer.parseInt(document.data["age2"].toString())
