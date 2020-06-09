@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#E0E0E0"
+    >
 
     <TextView
         android:id="@+id/txdetail"
@@ -17,327 +20,307 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/first"
+    <ScrollView
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txdetail">
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/shopimageview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#fff"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_action_mypage"
+                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_layout"
+                android:background="#fff"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/shopimageview">
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:hint="loading...."
+                    android:maxLines="4"
+                    android:id="@+id/txname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/txName"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="이름"
-            android:textColor="#000000"
-            android:textSize="18dp" />
+                <ImageView
+                    android:id="@+id/imgpay"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/txname"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:src="@drawable/pay"
+                    app:layout_constraintRight_toLeftOf="@id/imgcalendar"
+                    />
 
-        <TextView
-            android:id="@+id/txname"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/txpay"
+                    app:layout_constraintTop_toBottomOf="@id/imgpay"
+                    android:layout_width="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:hint="loading..."
+                    app:layout_constraintLeft_toLeftOf="@id/imgpay"
+                    app:layout_constraintRight_toRightOf="@id/imgpay"
+                    android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/second"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/first">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:id="@+id/imgcalendar"
+                    android:layout_height="80dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imgpay"
+                    app:layout_constraintLeft_toRightOf="@id/imgpay"
+                    android:src="@drawable/ic_calendar_today_24px"
+                    />
+                <TextView
+                    android:id="@+id/txtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/imgcalendar"
+                    app:layout_constraintLeft_toLeftOf="@id/imgcalendar"
+                    app:layout_constraintRight_toRightOf="@id/imgcalendar"
+                    android:hint="loading..."
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    />
 
-        <TextView
-            android:id="@+id/txPosition"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="위치"
-            android:textColor="#000000"
-            android:textSize="18dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txposition"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/third"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/second"
-        tools:ignore="DuplicateIds">
 
-        <TextView
-            android:id="@+id/txInfo"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="업무내용"
-            android:textColor="#000000"
-            android:textSize="18dp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                app:layout_constraintTop_toBottomOf="@id/info_layout"
+                android:id="@+id/condition_layout"
+                android:layout_marginTop="10dp"
+                >
 
-        <TextView
-            android:id="@+id/txinfo"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:text="모집 조건"
+                    android:id="@+id/txcondition2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="모집 인원"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/txpersonnum"
+                    app:layout_constraintTop_toBottomOf="@id/txcondition2"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/fourth"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/third">
+                <TextView
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/txcondition2"
+                    app:layout_constraintLeft_toRightOf="@id/txpersonnum"
+                    android:id="@+id/txnum"
+                    android:layout_width="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:hint="loading..."
+                    android:layout_marginLeft="40dp"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:text="성별"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/txnum"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/txsex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/txnum"
+                    app:layout_constraintLeft_toLeftOf="@id/txnum"
+                    android:hint="loading..."
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나이"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/txsex"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/txage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    app:layout_constraintTop_toBottomOf="@+id/txsex"
+                    app:layout_constraintLeft_toLeftOf="@id/txnum"
+                    android:hint="loading..."
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="업무내용"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/txage"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
 
-        <TextView
-            android:id="@+id/txNum"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="인원"
-            android:textColor="#000000"
-            android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txinfo"
+                    android:layout_width="300dp"
+                    android:maxLength="2000"
+                    android:maxLines="10"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/txage"
+                    app:layout_constraintLeft_toLeftOf="@id/txage"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:hint="loading...."
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:text="우대요건"
+                    app:layout_constraintTop_toBottomOf="@id/txinfo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+                <TextView
+                    android:id="@+id/txpriority"
+                    android:layout_width="300dp"
+                    android:maxLength="2000"
+                    android:maxLines="20"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/txinfo"
+                    app:layout_constraintLeft_toLeftOf="@id/txnum"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:hint="loading...."
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#fff"
+                app:layout_constraintTop_toBottomOf="@id/condition_layout"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="위치"
+                    android:id="@+id/txloc"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
 
-        <TextView
-            android:id="@+id/txnum"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/adMap"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:id="@+id/txposition"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:hint="loading..."
+                    android:textColor="#000"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/fifth"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fourth">
+                <fragment
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/adMap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toBottomOf="@id/txloc" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txPay"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="시급"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/txpay"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/sixth"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fifth">
-
-        <TextView
-            android:id="@+id/txTime"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="근무 시간"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/txtime"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/seventh"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sixth">
-
-        <TextView
-            android:id="@+id/txSex"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="성별"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/txsex"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/eightth"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seventh">
-
-        <TextView
-            android:id="@+id/txAge"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="나이"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/txage"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/nineth"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eightth">
-
-        <TextView
-            android:id="@+id/txPriority"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="우대 요건"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/txpriority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2.7"
-            android:gravity="center"
-            android:singleLine="false"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-    </LinearLayout>
-    <RelativeLayout
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btapp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal" >
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#fff"
+            android:src="@drawable/ic_action_addad" />
 
-            <Button
-                android:id="@+id/btapp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="알바생 확인" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btdelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#fff"
+            android:src="@drawable/ic_action_reset" />
 
-            <Button
-                android:id="@+id/btdelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:text="삭제하기" />
-
-        </LinearLayout>
-    </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#000"
+            android:src="@drawable/ic_action_addwhite"
+            app:backgroundTint="#3a5994"
+            app:fabSize="normal" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,28 @@
 package com.giggle.prototype
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.ingaddetail.*
-
+import kotlinx.android.synthetic.main.completeaddetail.*
 
 class CompleteAdDetailActivity : AppCompatActivity() {
+    private var isFabOpen=false
+    private var shopphoto=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.completeaddetail)
 
         var shname = ""
         val db = FirebaseFirestore.getInstance()
+
+        fabMain.setOnClickListener{toggleFab()}
 
         if(intent.hasExtra("name")){
             shname = intent.getStringExtra("name")
@@ -33,9 +39,16 @@ class CompleteAdDetailActivity : AppCompatActivity() {
                     txnum.text = document.data["numofperson"].toString()
                     txpay.text = document.data["hourlypay"].toString()
                     txtime.text = document.data["st"].toString()+"~"+document.data["fn"].toString()
-
+                    shopphoto=document.data["photouri"].toString()
                     val age_1 = Integer.parseInt(document.data["age1"].toString())
                     val age_2 = Integer.parseInt(document.data["age2"].toString())
+
+                    if(shopphoto!="null") {
+                        Glide.with(this)
+                            .load(shopphoto)
+                            .centerCrop()
+                            .into(shopimageview)
+                    }
 
                     //출력값 검사
                     if(document.data["sex"].toString().isEmpty()){
@@ -88,6 +101,18 @@ class CompleteAdDetailActivity : AppCompatActivity() {
             nextIntent.putExtra("shopname", shname)
             startActivity(nextIntent)
         }
+    }
+    private fun toggleFab(){
+        if(isFabOpen){
+            ObjectAnimator.ofFloat(btapp, "translationY", 0f).apply { start() }
+            ObjectAnimator.ofFloat(btdelete, "translationY", 0f).apply { start() }
+            fabMain.setImageResource(R.drawable.ic_action_addwhite)
+        } else {
+            ObjectAnimator.ofFloat(btapp, "translationY", -200f).apply { start() }
+            ObjectAnimator.ofFloat(btdelete, "translationY", -400f).apply { start() }
+            fabMain.setImageResource(R.drawable.ic_action_closewhite)
+        }
+        isFabOpen=!isFabOpen
     }
 }
 
