@@ -386,7 +386,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                             if(distance<=10000.0) {
                                 Toast.makeText(mContext,"알림 전송 성공!!"+ distance,Toast.LENGTH_LONG).show()
                                 db.collection("pushtokens").document(uid).get().addOnSuccessListener { result->
-                                   pushtoken=result.data!!["pushtoken"].toString()
+                                    pushtoken=result.data!!["pushtoken"].toString()
                                     SendNotification.sendNotification(pushtoken, shopname, shopposition,shopname,shopposition)
                                 }
                             }
@@ -418,37 +418,37 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     }
     override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?){
 
-      if(requestCode == PICK_IMAGE_FROM_ALBUM)  {
-          if(photoCnt==0 &&resultCode == Activity.RESULT_OK){
-              println(data?.data)
-              photoUri = data?.data
-              add_photo.setImageURI(data?.data)
-              photoCnt++
-          }
-          else if(photoCnt==1 &&resultCode == Activity.RESULT_OK){
-              println(data?.data)
-              photoUri1 = data?.data
-              add_photo1.setImageURI(data?.data)
-              photoCnt++
-          }
-          else if(photoCnt==2 &&resultCode == Activity.RESULT_OK){
-              println(data?.data)
-              photoUri2 = data?.data
-              add_photo2.setImageURI(data?.data)
-              photoCnt++
-          }
-          else if(photoCnt==3 &&resultCode == Activity.RESULT_OK){
-              println(data?.data)
-              photoUri3 = data?.data
-              add_photo3.setImageURI(data?.data)
-              photoCnt++
-          }
-          else if(photoCnt==4 &&resultCode == Activity.RESULT_OK){
-              println(data?.data)
-              photoUri4 = data?.data
-              add_photo4.setImageURI(data?.data)
-          }
-      }
+        if(requestCode == PICK_IMAGE_FROM_ALBUM)  {
+            if(photoCnt==0 &&resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri = data?.data
+                add_photo.setImageURI(data?.data)
+                photoCnt++
+            }
+            else if(photoCnt==1 &&resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri1 = data?.data
+                add_photo1.setImageURI(data?.data)
+                photoCnt++
+            }
+            else if(photoCnt==2 &&resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri2 = data?.data
+                add_photo2.setImageURI(data?.data)
+                photoCnt++
+            }
+            else if(photoCnt==3 &&resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri3 = data?.data
+                add_photo3.setImageURI(data?.data)
+                photoCnt++
+            }
+            else if(photoCnt==4 &&resultCode == Activity.RESULT_OK){
+                println(data?.data)
+                photoUri4 = data?.data
+                add_photo4.setImageURI(data?.data)
+            }
+        }
     }
     fun currentUpload(){
         val shopname: String = edShopName.text.toString()
@@ -472,7 +472,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             storageRef2?.putFile(photoUri2!!)?.addOnSuccessListener{taskSnapshot ->
             }
         }
-       if(photoUri3!=null){
+        if(photoUri3!=null){
             val storageRef3 = storage?.reference?.child("shopimages/"+shopname)?.child(imageFileName3)
             storageRef3?.putFile(photoUri3!!)?.addOnSuccessListener{taskSnapshot ->
             }
@@ -582,13 +582,13 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
     private fun toggleFab(){
         if(isFabOpen){
             ObjectAnimator.ofFloat(btRegister, "translationY", 0f).apply { start() }
-        ObjectAnimator.ofFloat(btReset, "translationY", 0f).apply { start() }
-        fabMain.setImageResource(R.drawable.ic_action_addwhite)
-    } else {
-        ObjectAnimator.ofFloat(btRegister, "translationY", -200f).apply { start() }
-        ObjectAnimator.ofFloat(btReset, "translationY", -400f).apply { start() }
-        fabMain.setImageResource(R.drawable.ic_action_closewhite)
-    }
+            ObjectAnimator.ofFloat(btReset, "translationY", 0f).apply { start() }
+            fabMain.setImageResource(R.drawable.ic_action_addwhite)
+        } else {
+            ObjectAnimator.ofFloat(btRegister, "translationY", -200f).apply { start() }
+            ObjectAnimator.ofFloat(btReset, "translationY", -400f).apply { start() }
+            fabMain.setImageResource(R.drawable.ic_action_closewhite)
+        }
         isFabOpen=!isFabOpen
     }
 
@@ -605,8 +605,8 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                     distance=Distance(userlatitude,userlongtitude)
                     if(distance<=range) {
                         count++
-                       mMap.addMarker(MarkerOptions().position(LatLng(userlatitude,userlongtitude)))
-                        }
+                        mMap.addMarker(MarkerOptions().position(LatLng(userlatitude,userlongtitude)))
+                    }
                 }
                 SeekerNum.text = count.toString() +" 명"
             }

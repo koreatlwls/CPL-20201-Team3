@@ -60,7 +60,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         intent1.putExtra("shopname", shopname)
         intent1.putExtra("shopposition",shopposition)
 
-        val intent2 = Intent(this@MyFirebaseMessagingService, SavedAdActivity::class.java)
+        val intent2 = Intent(this@MyFirebaseMessagingService, ProcessingAdActivity::class.java)
         intent2.putExtra("shopname", shopname)
         intent2.putExtra("shopposition",shopposition)
 
