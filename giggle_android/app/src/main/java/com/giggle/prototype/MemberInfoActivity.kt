@@ -36,8 +36,6 @@ import java.io.IOException
 class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
 
     private lateinit var mMap:GoogleMap
-    private var isFabOpen=false
-    val markerOptions:MarkerOptions= MarkerOptions()
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest // 위치 요청
     lateinit var locationCallback: MyLocationCallBack // 내부 클래스, 위치 변경 후 지도에 표시.
@@ -47,7 +45,7 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
     private val user = FirebaseAuth.getInstance().currentUser
 
     override fun onMapReady(googleMap: GoogleMap) {
-      mMap=googleMap
+        mMap=googleMap
         val Seoul=LatLng(37.0,126.9)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Seoul))
     }

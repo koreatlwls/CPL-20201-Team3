@@ -7,13 +7,19 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_ad_detail_apply.*
 import kotlinx.android.synthetic.main.fragment_mypage.*
 
-class AdDetailApply : AppCompatActivity() {
+class AdDetailApply : AppCompatActivity(),OnMapReadyCallback {
     var touid =""
     var adtoken = ""
     var memname = ""
@@ -22,10 +28,16 @@ class AdDetailApply : AppCompatActivity() {
     var shopname = ""
     var shopposition = ""
     private var shopphoto=""
+    private lateinit var mMap: GoogleMap
     val user = FirebaseAuth.getInstance().currentUser
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap=googleMap
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ad_detail_apply)
+        val mapFragment=supportFragmentManager.findFragmentById(R.id.adMap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
         val db = FirebaseFirestore.getInstance()
         if (intent.hasExtra("name")){
             shopname = intent.getStringExtra("name")
@@ -45,6 +57,11 @@ class AdDetailApply : AppCompatActivity() {
                     txpay.setText(document.data["hourlypay"].toString())
                     txtime.setText(document.data["st"].toString()+"~"+document.data["fn"].toString())
                     shopphoto=document.data["photouri"].toString()
+                    val latitude=document.data["latitude"] as Double
+                    val longtitude=document.data["longtitude"] as Double
+                    val shoplatlng=LatLng(latitude,longtitude)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(shoplatlng,15f))
+                    mMap.addMarker(MarkerOptions().position(shoplatlng).title(txname.text.toString()))
                     val age_1 = Integer.parseInt(document.data["age1"].toString())
                     val age_2 = Integer.parseInt(document.data["age2"].toString())
                     if(shopphoto!="null") {
