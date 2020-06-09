@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -143,7 +142,6 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback,ClusterManager.OnCluste
                 addressList=geoCoder.getFromLocationName(location,1)
             }catch(e: IOException){
                 e.printStackTrace()
-               Log.d("error",e.message!!)
             }
             val address=addressList!![0]
             val latLng=LatLng(address.latitude,address.longitude)
@@ -209,7 +207,7 @@ class CurrentLocFragment : Fragment(),OnMapReadyCallback,ClusterManager.OnCluste
     }
     override fun onResume() {
         super.onResume()
-       mapView.onResume()
+        mapView.onResume()
     }
 
     override fun onPause() {

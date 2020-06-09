@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
@@ -78,41 +80,13 @@ class ListADFragment : Fragment() {
                 // FIXME: calling loadAdsList multiple times does not working
                 loadAdsList(text)
 
-
-                /*
-                db.collection("jobads")
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (document in result) {
-                            println(document.data)
-                            // Toast.makeText(context, "${}", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Toast.makeText(context, "데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_LONG).show()
-                    }
-
-                db.collection("jobads")
-                    // .whereArrayContains("shopposition", text)
-                    .whereEqualTo("shopposition", text)
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (document in result) {
-                            println(document.data["shopname"])
-                            // Toast.makeText(context, "${}", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Toast.makeText(context, "데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_LONG).show()
-                    }
-*/
             }
         }
 
     }
 
     private fun loadAdsList(text: String) {
-        val query = db!!.collection("jobads") //.whereEqualTo("", text)
+        val query = db!!.collection("jobads").whereEqualTo("state",0)
 
         val response = FirestoreRecyclerOptions.Builder<JobAd>()
             .setQuery(query, JobAd::class.java)
@@ -126,6 +100,7 @@ class ListADFragment : Fragment() {
                 // for test
                 // holder.content.text = ad.timestamp.toString()
                 holder.itemLayout.setOnClickListener { adDetail(ad) }  // OnClickListener on each Vertical itemLayout
+
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobADViewHolder {
@@ -134,10 +109,6 @@ class ListADFragment : Fragment() {
                 return JobADViewHolder(view)
             }
 
-            /*
-            override fun onError(e: FirebaseFirestoreException?) {
-
-            } */
         }
 
         adapter!!.notifyDataSetChanged()
@@ -169,26 +140,6 @@ class ListADFragment : Fragment() {
         nextIntent.putExtra("name", ad.shopname)
         startActivity(nextIntent)
     }
-
-
-    /*
-    private fun updateNote(note: Note) {
-        val intent = Intent(this, NoteActivity::class.java)
-        intent.putExtra("UpdateNoteId", note.id)
-        intent.putExtra("UpdateNoteTitle", note.title)
-        intent.putExtra("UpdateNoteContent", note.content)
-        startActivity(intent)
-    }
-
-    private fun deleteNote(id: String) {
-        firestoreDB!!.collection("notes")
-                .document(id)
-                .delete()
-                .addOnCompleteListener {
-                    Toast.makeText(applicationContext, "Note has been deleted!", Toast.LENGTH_SHORT).show()
-                }
-    }
-     */
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

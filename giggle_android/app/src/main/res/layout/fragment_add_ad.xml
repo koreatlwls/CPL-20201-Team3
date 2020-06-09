@@ -212,7 +212,7 @@
                     android:maxLength="2000"
                     android:maxLines="4"
 
-               />
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -245,18 +245,18 @@
                     app:layout_constraintTop_toBottomOf="@id/txworkcondition"
                     app:layout_constraintLeft_toLeftOf="parent"
                     />
-                    <EditText
-                        android:id="@+id/edHourlyPay"
-                        android:layout_width="60dp"
-                        android:inputType="number"
-                        android:layout_marginLeft="40dp"
-                        android:textSize="14dp"
-                        android:layout_height="wrap_content"
-                        android:hint="8590"
-                        android:layout_marginTop="7dp"
-                        app:layout_constraintTop_toBottomOf="@id/txworkcondition"
-                        app:layout_constraintLeft_toRightOf="@id/txHourlypay"
-                        />
+                <EditText
+                    android:id="@+id/edHourlyPay"
+                    android:layout_width="60dp"
+                    android:inputType="number"
+                    android:layout_marginLeft="40dp"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content"
+                    android:hint="8590"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintTop_toBottomOf="@id/txworkcondition"
+                    app:layout_constraintLeft_toRightOf="@id/txHourlypay"
+                    />
                 <TextView
                     android:id="@+id/txBusinessInfo"
                     android:layout_width="wrap_content"
@@ -268,20 +268,20 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txHourlypay"/>
 
-                    <EditText
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/edBusinessInfo"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="14dp"
-                        android:textColor="#000"
-                        android:textStyle="bold"
-                        android:inputType="textCapSentences|textMultiLine"
-                        app:layout_constraintLeft_toLeftOf="@id/edHourlyPay"
-                        app:layout_constraintTop_toBottomOf="@id/txHourlypay"
-                        android:hint="업무 내용을 입력해주세요"
-                        android:maxLength="2000"
-                        android:maxLines="4"/>
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/edBusinessInfo"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:inputType="textCapSentences|textMultiLine"
+                    app:layout_constraintLeft_toLeftOf="@id/edHourlyPay"
+                    app:layout_constraintTop_toBottomOf="@id/txHourlypay"
+                    android:hint="업무 내용을 입력해주세요"
+                    android:maxLength="2000"
+                    android:maxLines="4"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -438,17 +438,17 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     />
-            <TextView
-                android:id="@+id/txPosition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="위치검색"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txworkloc"/>
+                <TextView
+                    android:id="@+id/txPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="위치검색"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txworkloc"/>
 
                 <EditText
                     app:layout_constraintTop_toBottomOf="@id/txworkloc"
@@ -463,30 +463,30 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
 
-            <ImageButton
-                android:id="@+id/btn_search1"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:background="#fff"
-                android:src="@android:drawable/ic_menu_search"
-                android:text="Search"
-                app:layout_constraintLeft_toRightOf="@id/edPosition"
-                app:layout_constraintTop_toBottomOf="@id/txworkloc" />
+                <ImageButton
+                    android:id="@+id/btn_search1"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#fff"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:text="Search"
+                    app:layout_constraintLeft_toRightOf="@id/edPosition"
+                    app:layout_constraintTop_toBottomOf="@id/txworkloc" />
 
 
-            <TextView
-                android:id="@+id/txLocation_result"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="검색결과"
-                android:textSize="14dp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txPosition"/>
+                <TextView
+                    android:id="@+id/txLocation_result"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="검색결과"
+                    android:textSize="14dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txPosition"/>
 
                 <TextView
                     android:id="@+id/Location_View"
@@ -502,71 +502,71 @@
                     />
 
 
-            <EditText
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_dark"
-                app:layout_constraintTop_toBottomOf="@id/txLocation_result"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:id="@+id/range"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="7dp"
-                android:hint="0"
-                android:inputType="number"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="km 이내"
-                android:textColor="#000"
-                android:id="@+id/justtx"
-                app:layout_constraintLeft_toRightOf="@id/range"
-                app:layout_constraintTop_toTopOf="@id/range"
-                android:layout_marginLeft="5dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 명"
-                android:textColor="#000"
-                android:id="@+id/SeekerNum"
-                app:layout_constraintLeft_toRightOf="@id/justtx"
-                app:layout_constraintTop_toTopOf="@id/range"
-                android:layout_marginLeft="10dp"
-                />
-            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/maplayout"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SeekerNum"
-                tools:context=".AddADFragment">
-
-                <com.google.android.gms.maps.MapView
-                    android:id="@+id/mapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_dark"
+                    app:layout_constraintTop_toBottomOf="@id/txLocation_result"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btn_MyLocation1"
-                    android:src="@drawable/ic_action_mylocation"
+                    android:id="@+id/range"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="7dp"
+                    android:hint="0"
+                    android:inputType="number"
+                    />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:backgroundTint="@color/colorBlue"
-                    app:fabSize="mini"
-                    app:layout_constraintRight_toRightOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:text="km 이내"
+                    android:textColor="#000"
+                    android:id="@+id/justtx"
+                    app:layout_constraintLeft_toRightOf="@id/range"
+                    app:layout_constraintTop_toTopOf="@id/range"
+                    android:layout_marginLeft="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 명"
+                    android:textColor="#000"
+                    android:id="@+id/SeekerNum"
+                    app:layout_constraintLeft_toRightOf="@id/justtx"
+                    app:layout_constraintTop_toTopOf="@id/range"
+                    android:layout_marginLeft="10dp"
+                    />
+                <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/maplayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/SeekerNum"
+                    tools:context=".AddADFragment">
+
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/mapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_MyLocation1"
+                        android:src="@drawable/ic_action_mylocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:backgroundTint="@color/colorBlue"
+                        app:fabSize="mini"
+                        app:layout_constraintRight_toRightOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -577,26 +577,26 @@
                 android:layout_marginTop="10dp"
                 android:background="#fff"
                 >
-            <TextView
-                android:id="@+id/txaddImg"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:text="사진"
-                android:textColor="#000"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/txaddImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="사진"
+                    android:textColor="#000"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            <LinearLayout
-                android:id="@+id/imglayout"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txaddImg">
+                <LinearLayout
+                    android:id="@+id/imglayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txaddImg">
                     <ImageView
                         android:id="@+id/add_photo"
                         android:layout_width="0dp"
@@ -631,7 +631,7 @@
                         android:layout_height="80dp"
                         android:layout_weight="1"
                         android:src="@android:drawable/ic_menu_add" />
-            </LinearLayout>
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

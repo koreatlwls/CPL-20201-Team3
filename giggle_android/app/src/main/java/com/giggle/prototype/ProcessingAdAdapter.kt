@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.item_jobad.view.*
 
 class ProcessingAdAdapter(val items: ArrayList<ProcessingAd>) : RecyclerView.Adapter<ProcessingAdAdapter.ViewHolder>() {
+    private var db: FirebaseFirestore? = null
 
     override fun getItemCount(): Int = items.size
 
@@ -16,6 +18,10 @@ class ProcessingAdAdapter(val items: ArrayList<ProcessingAd>) : RecyclerView.Ada
         val item = items[position]
         val listener = View.OnClickListener { it ->
             Toast.makeText(it.context, "Clicked: ${item.shopname}", Toast.LENGTH_SHORT).show()
+            // TODO: Add listener
+
+
+
         }
         holder.apply {
             bind(listener, item);

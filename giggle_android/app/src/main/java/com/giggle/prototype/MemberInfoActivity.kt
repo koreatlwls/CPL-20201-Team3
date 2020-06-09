@@ -217,6 +217,8 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
 
             location?.run {
                 latlng = LatLng(latitude, longitude) // 위도 경도 좌표 전달.
+
+
             }
         }
     }
@@ -282,9 +284,6 @@ class MemberInfoActivity : AppCompatActivity(),OnMapReadyCallback {
             edMemPhone1.setText(phone1)
             edMemPhone2.setText(phone2)
             edMemPhone3.setText(phone3)
-            val latitude = document.data["latitude"] as Double
-            val longtitude = document.data["longtitude"] as Double
-            latlng=LatLng(latitude,longtitude)
         }
         }
     }

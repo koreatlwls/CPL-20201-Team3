@@ -105,8 +105,8 @@ class CurLocSeekerFragment: Fragment(),OnMapReadyCallback,ClusterManager.OnClust
                 for(document in result){
                     lntlng=LatLng(document.data["latitude"] as Double,document.data["longtitude"] as Double)
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lntlng, 14f))
-        }
-        }
+                }
+            }
         db.collection("jobads").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
