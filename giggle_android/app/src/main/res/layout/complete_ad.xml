@@ -11,7 +11,7 @@
         android:layout_height="50dp"
         android:background="#3a5994"
         android:gravity="center_horizontal"
-        android:text="채용 이력"
+        android:text="완료된 채용"
         android:textColor="#fff"
         android:textSize="30dp"
         android:textStyle="bold"

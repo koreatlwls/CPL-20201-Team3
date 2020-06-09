@@ -17,6 +17,7 @@ class CompleteAdActivity : AppCompatActivity() {
     var fntime ="0"
     var time = "0"
     var photo ="0"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.complete_ad)
@@ -24,6 +25,8 @@ class CompleteAdActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
         val db = FirebaseFirestore.getInstance()
+
+
 
         //광고 DB 읽어오기
         db.collection("jobads")

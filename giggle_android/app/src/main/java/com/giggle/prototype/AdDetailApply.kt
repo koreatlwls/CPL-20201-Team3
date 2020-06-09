@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_ad_detail_apply.*
-import kotlinx.android.synthetic.main.fragment_mypage.*
 
 class AdDetailApply : AppCompatActivity(),OnMapReadyCallback {
     var touid =""
