@@ -299,7 +299,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="#fff"
-            android:src="@drawable/ic_action_addad" />
+            android:src="@drawable/ic_person_search" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btdelete"
