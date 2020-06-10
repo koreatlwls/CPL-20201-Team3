@@ -1,10 +1,12 @@
 package com.giggle.prototype
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.item_jobad.view.*
@@ -21,7 +23,12 @@ class ProcessingAdAdapter(val items: ArrayList<ProcessingAd>) : RecyclerView.Ada
             // TODO: Add listener
 
 
+            val nextIntent = Intent(holder.itemView.context, ProcessingAdDetailActivity::class.java)
+            nextIntent.putExtra("name", item.shopname)
+            nextIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            holder.itemView.context.startActivity(nextIntent)
 
+            // startActivity(nextIntent)
         }
         holder.apply {
             bind(listener, item);
