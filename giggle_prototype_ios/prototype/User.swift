@@ -13,6 +13,9 @@ import Firebase
 class User {
     var name: String!
     var email: String!
+    var gender: Int!
+    var age: Int!
+    var contact: String!
     var member_state: Int!
     var docID: String!
     var lat: CLLocationDegrees!
@@ -22,6 +25,8 @@ class User {
     var adsID: [String]!
     var rating: Double!
     var image: UIImage!
+    var hired: Int!
+    var worked: Int!
     
     init(name: String, email: String, member_state: Int, rating: Double) {
         self.name = name
@@ -29,9 +34,12 @@ class User {
         self.member_state = member_state
         self.rating = rating
         adsID = [String]()
+        hired = 0
+        worked = 0
     }
     
     func updateReceivedAds() {
+        adsID.removeAll()
         let db = Firestore.firestore()
         db.collection("UserData").document(docID).collection("ReceivedAd").getDocuments() {
             (querySnapshot, err) in
@@ -40,30 +48,14 @@ class User {
                 let document = querySnapshot!.documents[index]
                 let data = document.data()
                 let adDocID = data["docID"] as! String
+                let state = data["state"] as! Int
                 db.collection("AdData").document(adDocID).getDocument() {
                     (documentSnapshot, err) in
                     let data = documentSnapshot?.data()
                     if data != nil {
-                        let state = data!["state"] as! Int
                         if state == 0 {
                             self.adsID.append(adDocID)
                         }
-                    }
-                }
-            }
-        }
-    }
-    
-    func deleteCompletedAds() {
-        let db = Firestore.firestore()
-        for index in 0..<adsID.count {
-            db.collection("AdData").document(adsID[index]).getDocument() {
-                (documentSnapshot, err) in
-                let data = documentSnapshot?.data()
-                if data != nil {
-                    let state = data!["state"] as! Int
-                    if state == 1 {
-                        self.adsID.remove(at: index)
                     }
                 }
             }

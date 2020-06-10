@@ -19,11 +19,8 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var memberStateLabel: UILabel!
     @IBOutlet weak var requestIntegrationButton: UIButton!
-    @IBOutlet weak var appliedAdButton: UIButton!
-    @IBOutlet weak var ongoingPartTimeJobButton: UIButton!
-    @IBOutlet weak var listOfPartTimeJobButton: UIButton!
-    @IBOutlet weak var ongoingAdButton: UIButton!
-    @IBOutlet weak var listOfEmploymentButton: UIButton!
+    @IBOutlet weak var partTimeListButton: UIButton!
+    @IBOutlet weak var uploadedAdListButton: UIButton!
     @IBOutlet weak var modifyInformationButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -136,11 +133,8 @@ class MyPageViewController: UIViewController, UIImagePickerControllerDelegate, U
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(tapGesture)
         requestIntegrationButton.layer.cornerRadius = 6
-        appliedAdButton.layer.cornerRadius = 6
-        ongoingPartTimeJobButton.layer.cornerRadius = 6
-        listOfPartTimeJobButton.layer.cornerRadius = 6
-        ongoingAdButton.layer.cornerRadius = 6
-        listOfEmploymentButton.layer.cornerRadius = 6
+        partTimeListButton.layer.cornerRadius = 6
+        uploadedAdListButton.layer.cornerRadius = 6
         modifyInformationButton.layer.cornerRadius = 6
         logoutButton.layer.cornerRadius = 6
     }

@@ -41,6 +41,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var availableLabel: UILabel!
     var availableCount: Int!
     var tokens: [String]!
+    var emails: [String]!
     
     //모집 분야&인원 필드 추가 관련
     @IBOutlet weak var inputFieldStepper: UIStepper!
@@ -75,6 +76,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         availableCount = 0
         let db = Firestore.firestore()
         tokens = [String]()
+        emails = [String]()
         db.collection("UserData").whereField("member_state", isEqualTo: 1).getDocuments() {
             (querySnapshot, err) in
             let userCount = querySnapshot!.documents.count
@@ -102,6 +104,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if dist.isLessThanOrEqualTo(range_double ?? -1) {
                     self.availableCount += 1
                     self.tokens.append(data["fcmToken"] as! String)
+                    self.emails.append(data["email"] as! String)
                 }
             }
             self.updateAvailableLabel()
@@ -168,7 +171,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if errorDetected == 0 {
                 let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyy-MM-dd"
+                dateformatter.dateFormat = "yyyyMMdd"
                 let curDateString = dateformatter.string(from: Date())
                 let workDayString = dateformatter.string(from: workDayPicker.date)
                 let curDate = Date()
@@ -252,7 +255,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let range = Int(self.rangeTextField.text!)!
                     let dateformatter1 = DateFormatter()
                     let dateformatter2 = DateFormatter()
-                    dateformatter1.dateFormat = "yyyy-MM-dd"
+                    dateformatter1.dateFormat = "yyyyMMdd"
                     dateformatter2.dateFormat = "HH:mm"
                     //DB 저장 작업
                     let db = Firestore.firestore()
@@ -567,7 +570,21 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func sendPost() {
+        let db = Firestore.firestore()
         for index in 0..<tokens.count {
+            //db 등록
+            let email = emails[index]
+            print(email)
+            db.collection("UserData").whereField("email", isEqualTo: email).getDocuments {
+                (querySnapshot, err) in
+                let document = querySnapshot?.documents[0]
+                print(document?.documentID)
+                db.collection("UserData").document(document?.documentID ?? "").collection("ReceivedAd").addDocument(data: [
+                    "docID": self.tempDocID ?? "",
+                    "state": 0
+                ])
+            }
+            //message 전송
             let token = tokens[index]
             notificationType = "add"
             let param = [
@@ -585,30 +602,38 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let url = URL(string: "https://fcm.googleapis.com/fcm/send")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
-            let serverKey = ""
-            request.allHTTPHeaderFields = [
-                "Content-Type": "application/json",
-                "Authorization": "key=\(serverKey)"
-            ]
-            request.httpBody = paramData
-            
-            let task = URLSession.shared.dataTask(with: request) {
-                (data, response, error) in
-                guard let data = data, error == nil else {
-                    print("error=\(error)")
-                    return
+            let db = Firestore.firestore()
+            var serverKey = ""
+            db.collection("ServerKey").getDocuments() {
+                (querySnapshot, err) in
+                let document = querySnapshot?.documents[0]
+                let data = document?.data()
+                serverKey = data!["serverKey"] as! String
+                
+                request.allHTTPHeaderFields = [
+                    "Content-Type": "application/json",
+                    "Authorization": "key=\(serverKey)"
+                ]
+                request.httpBody = paramData
+                
+                let task = URLSession.shared.dataTask(with: request) {
+                    (data, response, error) in
+                    guard let data = data, error == nil else {
+                        print("error=\(error)")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(response)")
+                    }
+                    
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(responseString)")
                 }
                 
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                    print("response = \(response)")
-                }
-                
-                let responseString = String(data: data, encoding: .utf8)
-                print("responseString = \(responseString)")
+                task.resume()
             }
-            
-            task.resume()
         }
     }
     
