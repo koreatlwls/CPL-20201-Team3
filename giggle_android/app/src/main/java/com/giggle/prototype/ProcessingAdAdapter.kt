@@ -19,16 +19,12 @@ class ProcessingAdAdapter(val items: ArrayList<ProcessingAd>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         val listener = View.OnClickListener { it ->
-            Toast.makeText(it.context, "Clicked: ${item.shopname}", Toast.LENGTH_SHORT).show()
-            // TODO: Add listener
-
+            // Toast.makeText(it.context, "Clicked: ${item.shopname}", Toast.LENGTH_SHORT).show()
 
             val nextIntent = Intent(holder.itemView.context, ProcessingAdDetailActivity::class.java)
             nextIntent.putExtra("name", item.shopname)
             nextIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             holder.itemView.context.startActivity(nextIntent)
-
-            // startActivity(nextIntent)
         }
         holder.apply {
             bind(listener, item);

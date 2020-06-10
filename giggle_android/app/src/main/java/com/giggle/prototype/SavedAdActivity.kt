@@ -1,5 +1,6 @@
 package com.giggle.prototype
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -72,6 +73,7 @@ class SavedAdActivity : AppCompatActivity() {
                 val ad = adsList[position]
                 holder.title.text = ad.shopname
                 holder.content.text = ad.shopposition
+                holder.itemLayout.setOnClickListener { adDetail(ad) }
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobADViewHolder {
@@ -83,6 +85,12 @@ class SavedAdActivity : AppCompatActivity() {
 
         adapter!!.notifyDataSetChanged()
         savedAdRecyclerView.adapter = adapter
+    }
+
+    private fun adDetail(ad: JobAd) {
+        val nextIntent = Intent(this, ProcessingAdDetailActivity::class.java)
+        nextIntent.putExtra("name", ad.shopname)
+        startActivity(nextIntent)
     }
 
     public override fun onStart() {
