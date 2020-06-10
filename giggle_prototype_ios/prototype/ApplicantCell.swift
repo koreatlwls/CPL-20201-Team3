@@ -13,6 +13,7 @@ class ApplicantCell: UITableViewCell {
     @IBOutlet weak var applicantNameLabel: UILabel!
     @IBOutlet weak var applicantRateLabel: UILabel!
     @IBOutlet weak var applicantMessageLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

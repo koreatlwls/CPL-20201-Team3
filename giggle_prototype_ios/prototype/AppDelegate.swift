@@ -192,7 +192,6 @@ extension AppDelegate : MessagingDelegate {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: "newApply", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            break
         case "add":
             content.title = data["adTitle"] as! String
             content.subtitle = "시급 : \(data["wage"] as! String)원"
@@ -201,18 +200,9 @@ extension AppDelegate : MessagingDelegate {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: "newAd", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            print("adTitle : \(data["adTitle"] as! String)")
-            print("wage : \(data["wage"] as! String)")
-            print("detail : \(data["detail"] as! String)")
-            let docID = data["docID"] as! String
-            print("docID : \(docID)")
-            let db = Firestore.firestore()
-            db.collection("UserData").document(LoginViewController.user.docID).collection("ReceivedAd").addDocument(data: [
-                "docID": docID,
-                "state": 0
-            ])
-            LoginViewController.user.adsID.append(docID)
-            break
+            if Auth.auth().currentUser != nil {
+                LoginViewController.user.adsID.append(data["docID"] as! String)
+            }
         case "hired":
             content.title = "회원님이 지원한 광고에 채용되었습니다."
             content.subtitle = "광고 제목 : \(data["adTitle"] as! String)"
@@ -221,7 +211,6 @@ extension AppDelegate : MessagingDelegate {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: "hired", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            break
         case "rejected":
             content.title = "회원님이 지원한 광고에 채용 거절되었습니다."
             content.subtitle = "광고 제목 : \(data["adTitle"] as! String)"
@@ -230,7 +219,6 @@ extension AppDelegate : MessagingDelegate {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: "rejected", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            break
         default:
             break
         }

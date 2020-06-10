@@ -162,13 +162,7 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                 let tempDocID = data["docID"] as! String
                 if tempDocID == ShowAdViewController.selectedAd.docID {
                     let state = data["state"] as! Int
-                    if state == 1 {
-                        let error_alert = UIAlertController(title: "지원하기", message: "이미 지원한 광고입니다.", preferredStyle: .alert)
-                        let ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
-                        error_alert.addAction(ok_Action)
-                        self.present(error_alert, animated: true, completion: nil)
-                    }
-                    else {
+                    if state == 0 {
                         let check_alert = UIAlertController(title: "지원하기", message: "자신을 어필할 수 있는 메시지를 입력하여 지원하세요 !", preferredStyle: .alert)
                         let ok_Action = UIAlertAction(title: "지원", style: .default, handler: {
                             (action) in
@@ -183,6 +177,12 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                                 "message": check_alert.textFields![0].text ?? "",
                                 "state": 0
                             ])
+                            for index2 in 0..<LoginViewController.user.adsID.count {
+                                if LoginViewController.user.adsID[index2] == tempDocID {
+                                    LoginViewController.user.adsID.remove(at: index2)
+                                    break
+                                }
+                            }
                             //푸시 알림 전송
                             self.sendPost()
                         })
@@ -195,11 +195,16 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                         check_alert.addAction(no_Action)
                         self.present(check_alert, animated: true, completion: nil)
                     }
+                    else {
+                        let error_alert = UIAlertController(title: "지원하기", message: "이미 지원한 광고입니다.", preferredStyle: .alert)
+                        let ok_Action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        error_alert.addAction(ok_Action)
+                        self.present(error_alert, animated: true, completion: nil)
+                    }
                     break
                 }
             }
         }
-        
     }
     
     func sendPost() {
@@ -211,11 +216,12 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
             (document, err) in
             let data = document?.data()
             email = data!["Uploader"] as? String
-            print(email)
             db.collection("UserData").whereField("email", isEqualTo: email ?? "").getDocuments() {
                 (querySnapshot, err2) in
                 let data = querySnapshot?.documents[0].data()
                 token = data!["fcmToken"] as? String
+                print(token)
+                print(email)
                 let param = [
                     "to": token ?? "",
                     "data": [
@@ -228,30 +234,38 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                 let url = URL(string: "https://fcm.googleapis.com/fcm/send")
                 var request = URLRequest(url: url!)
                 request.httpMethod = "POST"
-                let serverKey = ""
-                request.allHTTPHeaderFields = [
+                let db = Firestore.firestore()
+                var serverKey = ""
+                db.collection("ServerKey").getDocuments() {
+                    (querySnapshot, err) in
+                    let document = querySnapshot?.documents[0]
+                    let data = document?.data()
+                    serverKey = data!["serverKey"] as! String
+                    
+                    request.allHTTPHeaderFields = [
                         "Content-Type": "application/json",
                         "Authorization": "key=\(serverKey)"
-                ]
-                request.httpBody = paramData
+                    ]
+                    request.httpBody = paramData
                     
-                let task = URLSession.shared.dataTask(with: request) {
-                    (data, response, error) in
-                    guard let data = data, error == nil else {
-                        print("error=\(error)")
-                        return
-                    }
+                    let task = URLSession.shared.dataTask(with: request) {
+                        (data, response, error) in
+                        guard let data = data, error == nil else {
+                            print("error=\(error)")
+                            return
+                        }
                         
-                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                        print("response = \(response)")
-                    }
+                        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                            print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                            print("response = \(response)")
+                        }
                         
-                    let responseString = String(data: data, encoding: .utf8)
-                    print("responseString = \(responseString)")
+                        let responseString = String(data: data, encoding: .utf8)
+                        print("responseString = \(responseString)")
+                    }
+                    
+                    task.resume()
                 }
-                    
-                task.resume()
             }
         }
     }

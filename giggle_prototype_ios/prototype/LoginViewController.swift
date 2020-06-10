@@ -106,13 +106,22 @@ class LoginViewController: UIViewController {
                                 self.present(error_alert, animated: true, completion: nil)
                             }
                             else {
-                                let name = querySnapshot!.documents[0].data()["nickname"] as! String
-                                let email = querySnapshot!.documents[0].data()["email"] as! String
-                                let member_state = querySnapshot!.documents[0].data()["member_state"] as! Int
+                                let document = querySnapshot?.documents[0]
+                                let data = document?.data()
+                                let name = data!["nickname"] as! String
+                                let email = data!["email"] as! String
+                                let member_state = data!["member_state"] as! Int
                                 LoginViewController.user = User.init(name: name, email: email, member_state: member_state, rating: 0)
-                                LoginViewController.user.docID = querySnapshot!.documents[0].documentID
-                                LoginViewController.user.lat = querySnapshot!.documents[0].data()["lat"] as? CLLocationDegrees
-                                LoginViewController.user.lng = querySnapshot!.documents[0].data()["lng"] as? CLLocationDegrees
+                                if member_state == 1 {
+                                    LoginViewController.user.gender = data!["gender"] as? Int
+                                    LoginViewController.user.age = data!["age"] as? Int
+                                    LoginViewController.user.contact = data!["contact"] as? String
+                                    LoginViewController.user.hired = data!["hired"] as? Int
+                                    LoginViewController.user.worked = data!["worked"] as? Int
+                                }
+                                LoginViewController.user.docID = document?.documentID
+                                LoginViewController.user.lat = data!["lat"] as? CLLocationDegrees
+                                LoginViewController.user.lng = data!["lng"] as? CLLocationDegrees
                                 LoginViewController.user.fcmToken = Messaging.messaging().fcmToken
                                 db.collection("UserData").document(LoginViewController.user.docID).updateData(["fcmToken": LoginViewController.user.fcmToken ?? ""])
                                 let storage = Storage.storage()

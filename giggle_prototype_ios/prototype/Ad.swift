@@ -42,6 +42,9 @@ class Ad {
     
     var docID: String!
     
+    //only for PartTimeListViewController
+    var applyState: Int!
+    
     init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, day workDay: Date!, start startTime: Date, end endTime: Date, wage: Int, workDetail: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
         self.uploader = uploader
         self.name = name
