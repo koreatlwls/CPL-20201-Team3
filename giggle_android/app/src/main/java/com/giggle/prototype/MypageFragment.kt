@@ -63,6 +63,11 @@ class MypageFragment : Fragment() {
             }
         }
 */
+        db.collection("members").whereEqualTo("uid",uid).get()
+            .addOnSuccessListener { result-> for(document in result) {
+                nameview.setText(document.data["name"].toString())
+                }
+            }
         //최근 광고 카드뷰
         db.collection("jobads")
             .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -120,6 +125,11 @@ class MypageFragment : Fragment() {
         }
         btn_saved_ad.setOnClickListener{
             val nextIntent = Intent(activity, CompleteAdActivity::class.java)
+            startActivity(nextIntent)
+        }
+        imageview_main_image2.setOnClickListener{
+            val nextIntent=Intent(activity,IngAd_DetailActivity::class.java)
+            nextIntent.putExtra("name",txshopname.text.toString())
             startActivity(nextIntent)
         }
     }

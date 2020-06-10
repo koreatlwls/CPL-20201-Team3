@@ -12,19 +12,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <ImageView
+    <com.github.siyamed.shapeimageview.CircularImageView
         android:id="@+id/img_user"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="148dp"
+        android:layout_height="148dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="28dp"
         android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/border_round"
         android:src="@drawable/ic_account"
         />
-
         <TextView
         app:layout_constraintLeft_toRightOf="@id/img_user"
         app:layout_constraintTop_toTopOf="@id/img_user"
@@ -33,10 +31,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="50dp"
+            android:textColor="#000"
         android:textStyle="bold"
         android:text="Loading email..."
         android:textSize="18dp" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="#000"
+            android:id="@+id/nameview"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/emailText"
+            android:hint="loading..."
+            app:layout_constraintLeft_toLeftOf="@id/emailText"/>
     <RatingBar
         android:id="@+id/Rating_Bar"
         android:layout_width="wrap_content"

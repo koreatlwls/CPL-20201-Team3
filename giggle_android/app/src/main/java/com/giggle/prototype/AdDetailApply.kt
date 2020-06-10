@@ -53,7 +53,7 @@ class AdDetailApply : AppCompatActivity(),OnMapReadyCallback {
                     txposition.setText(document.data["shopposition"].toString())
                     txinfo.setText(document.data["businessinfo"].toString())
                     txnum.setText(document.data["numofperson"].toString())
-                    txpay.setText(document.data["hourlypay"].toString())
+                    txpay.setText(document.data["hourlypay"].toString() + " 원")
                     txtime.setText(document.data["st"].toString()+"~"+document.data["fn"].toString())
                     shopphoto=document.data["photouri"].toString()
                     val latitude=document.data["latitude"] as Double

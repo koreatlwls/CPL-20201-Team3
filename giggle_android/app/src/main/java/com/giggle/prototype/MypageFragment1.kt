@@ -55,6 +55,11 @@ class MypageFragment1 : Fragment() {
         val email = user?.email
         val uid = user?.uid
 
+        db.collection("members").whereEqualTo("uid",uid).get()
+            .addOnSuccessListener { result-> for(document in result) {
+                nameview1.setText(document.data["name"].toString())
+            }
+            }
         //최근 광고 카드뷰
         db.collection("jobads")
             .orderBy("timestamp", Query.Direction.DESCENDING)

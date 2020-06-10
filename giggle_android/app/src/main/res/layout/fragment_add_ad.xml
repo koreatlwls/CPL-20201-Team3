@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     tools:context=".AddADFragment">
-
+    <TextView
+        android:id="@+id/txdetail"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="     광고등록"
+        android:background="#fff"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        app:layout_constraintTop_toBottomOf="@id/txdetail"
+        android:background="#3a5994"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -14,7 +29,8 @@
         android:id="@+id/btRegister"
         android:src="@drawable/ic_action_addad"
         android:backgroundTint="#fff"
-        android:layout_gravity="end|bottom"
+       app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         />
@@ -24,7 +40,8 @@
         android:id="@+id/btReset"
         android:backgroundTint="#fff"
         android:src="@drawable/ic_action_reset"
-        android:layout_gravity="end|bottom"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         />
@@ -33,54 +50,128 @@
         android:layout_height="wrap_content"
         android:id="@+id/fabMain"
         app:fabSize="normal"
-        android:layout_gravity="end|bottom"
         android:backgroundTint="#000"
         android:src="@drawable/ic_action_addwhite"
         app:backgroundTint="#3a5994"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideOverlay"
+        android:layout_marginTop="45dp"
         android:background="#E2E2E2">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txShopName"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                app:errorEnabled="true"
-                app:hintTextColor="#000"
-                android:layout_height="50dp"
-                android:hint="제목"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:backgroundTint="#fff"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="250dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/first_layout"
+                android:background="#fff"
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edShopName"
+                <LinearLayout
+                    android:id="@+id/imglayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#fff"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ImageView
+                        android:id="@+id/add_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_add" />
+
+                    <ImageView
+                        android:id="@+id/add_photo1"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_add" />
+
+                    <ImageView
+                        android:id="@+id/add_photo2"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_add" />
+
+                    <ImageView
+                        android:id="@+id/add_photo3"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_add" />
+
+                    <ImageView
+                        android:id="@+id/add_photo4"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_add" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/bluebar2"
+                    android:layout_height="5dp"
+                    android:background="#3a5994"
+                    app:layout_constraintTop_toBottomOf="@id/imglayout"
+                    />
+                <TextView
+                    android:id="@+id/txShopName"
+                    android:layout_width="wrap_content"
+                    app:errorEnabled="true"
+                    app:hintTextColor="#000"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="제목"
+                    android:textColor="#aaa"
+                    android:textSize="18dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:backgroundTint="#fff"
+                    app:layout_constraintTop_toBottomOf="@id/bluebar2"/>
+
+                    <EditText
+                        android:id="@+id/edShopName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:textColor="#000"
+                        android:hint="제목을 입력하세요"
+                        android:layout_marginLeft="30dp"
+                        android:maxLines="4"
+                        app:layout_constraintTop_toTopOf="@id/txShopName"
+                        app:layout_constraintLeft_toRightOf="@id/txShopName"
+                        android:inputType="text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/first_layout"
-                app:layout_constraintTop_toBottomOf="@id/txShopName"
-                android:layout_marginTop="10dp"
+                android:layout_height="200dp"
+                android:id="@+id/second_layout"
+                app:layout_constraintTop_toBottomOf="@id/first_layout"
+                android:layout_marginTop="5dp"
                 android:background="#fff">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="#000"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:text="모집조건"
@@ -92,9 +183,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/txPersonNum"
-                    android:textColor="#000"
+                    android:textColor="#aaa"
                     android:textStyle="bold"
                     android:text="모집인원"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     app:layout_constraintTop_toBottomOf="@id/txcondition"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -120,8 +212,9 @@
                     android:text="성별"
                     app:layout_constraintTop_toBottomOf="@id/txPersonNum"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    android:textColor="#000"
+                    android:textColor="#aaa"
                     android:id="@+id/txsex"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     android:textSize="14dp" />
 
@@ -157,8 +250,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="나이"
-                    android:textColor="#000"
+                    android:textColor="#aaa"
                     android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
                     android:textSize="14dp" />
 
                 <EditText
@@ -198,13 +292,15 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginBottom="20dp"
                     android:textSize="14dp"
-                    android:textColor="#000"
+                    android:textColor="#aaa"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/edAge1"
                     />
                 <EditText
                     android:id="@+id/edPriorityReq"
-                    android:layout_width="300dp"
+                    android:layout_width="wrap_content"
+                    android:hint="우대 요건을 입력하세요 "
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences|textMultiLine"
                     app:layout_constraintTop_toBottomOf="@id/edAge1"
@@ -218,9 +314,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/first_layout"
-                android:id="@+id/second_layout"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toBottomOf="@id/second_layout"
+                android:id="@+id/third_layout"
                 android:background="#fff"
                 >
                 <TextView
@@ -228,6 +324,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000"
                     android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     android:text="근무조건"
                     android:id="@+id/txworkcondition"
@@ -238,9 +336,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/txHourlypay"
                     android:text="시급"
-                    android:textColor="#000"
+                    android:textColor="#ff3399"
                     android:textSize="14dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/txworkcondition"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -263,8 +362,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="업무내용"
-                    android:textColor="#000"
+                    android:textColor="#ff3399"
                     android:textSize="14dp"
+                    android:layout_marginLeft="20dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txHourlypay"/>
 
@@ -292,6 +392,7 @@
                     app:layout_constraintTop_toBottomOf="@id/edBusinessInfo"
                     android:text="업무기간"
                     app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginLeft="20dp"
                     />
                 <TextView
                     android:id="@+id/txdate"
@@ -322,8 +423,8 @@
                     android:id="@+id/txstart"
                     android:layout_width="20dp"
                     android:layout_height="50dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/stMinute"
+                    app:layout_constraintRight_toLeftOf="@id/stDay"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@id/stDay"
                     app:layout_constraintBottom_toBottomOf="@id/stDay"
                     android:textColor="#000"
@@ -331,7 +432,7 @@
 
                 <NumberPicker
                     android:id="@+id/stDay"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:layout_marginTop="40dp"
                     app:layout_constraintLeft_toLeftOf="@id/edBusinessInfo"
                     app:layout_constraintTop_toBottomOf="@id/edBusinessInfo"
@@ -343,7 +444,7 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintTop_toBottomOf="@id/edBusinessInfo"
                     app:layout_constraintLeft_toRightOf="@id/stDay"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:background="@drawable/border_dark"
                     android:layout_height="100dp" />
 
@@ -352,7 +453,7 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintTop_toBottomOf="@id/edBusinessInfo"
                     app:layout_constraintLeft_toRightOf="@id/stHour"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:background="@drawable/border_dark"
                     android:layout_marginRight="20dp"
                     android:layout_height="100dp" />
@@ -360,8 +461,8 @@
                     android:id="@+id/txend"
                     android:layout_width="20dp"
                     android:layout_height="50dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/fnMinute"
+                    app:layout_constraintRight_toLeftOf="@id/fnDay"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fnDay"
                     app:layout_constraintBottom_toBottomOf="@id/fnDay"
                     android:textColor="#000"
@@ -395,7 +496,7 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintLeft_toLeftOf="@id/stDay"
                     android:id="@+id/fnDay"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:background="@drawable/border_dark"
                     android:layout_height="100dp" />
 
@@ -404,7 +505,7 @@
                     app:layout_constraintTop_toBottomOf="@id/stHour"
                     app:layout_constraintLeft_toLeftOf="@id/stHour"
                     android:id="@+id/fnHour"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:background="@drawable/border_dark"
                     android:layout_height="100dp" />
 
@@ -413,7 +514,7 @@
                     app:layout_constraintTop_toBottomOf="@id/stMinute"
                     app:layout_constraintLeft_toLeftOf="@id/stMinute"
                     android:id="@+id/fnMinute"
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:background="@drawable/border_dark"
                     android:layout_marginRight="20dp"
                     android:layout_height="100dp" />
@@ -422,10 +523,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/second_layout"
-                android:id="@+id/third_layout"
+                app:layout_constraintTop_toBottomOf="@id/third_layout"
+                android:id="@+id/fourth_layout"
                 android:background="#fff"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -434,6 +535,8 @@
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:text="근무지역"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/txworkloc"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -447,6 +550,7 @@
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:textSize="14dp"
+                    android:layout_marginLeft="20dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txworkloc"/>
 
@@ -459,7 +563,7 @@
                     android:textColor="#000"
                     android:layout_marginTop="10dp"
                     android:id="@+id/edPosition"
-                    android:layout_width="300dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
 
@@ -485,6 +589,7 @@
                     android:textSize="14dp"
                     android:textColor="#000"
                     android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txPosition"/>
 
@@ -510,7 +615,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:id="@+id/range"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginLeft="20dp"
                     android:hint="0"
                     android:inputType="number"
                     />
@@ -569,70 +674,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/third_layout"
-                android:id="@+id/fourth_layout"
-                android:layout_marginTop="10dp"
-                android:background="#fff"
-                >
-                <TextView
-                    android:id="@+id/txaddImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="사진"
-                    android:textColor="#000"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
 
-                <LinearLayout
-                    android:id="@+id/imglayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txaddImg">
-                    <ImageView
-                        android:id="@+id/add_photo"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:src="@android:drawable/ic_menu_add" />
-
-                    <ImageView
-                        android:id="@+id/add_photo1"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:src="@android:drawable/ic_menu_add" />
-
-                    <ImageView
-                        android:id="@+id/add_photo2"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:src="@android:drawable/ic_menu_add" />
-
-                    <ImageView
-                        android:id="@+id/add_photo3"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:src="@android:drawable/ic_menu_add" />
-
-                    <ImageView
-                        android:id="@+id/add_photo4"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:src="@android:drawable/ic_menu_add" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

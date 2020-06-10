@@ -47,7 +47,7 @@ class IngAd_DetailActivity : AppCompatActivity(),OnMapReadyCallback {
                     txposition.text = document.data["shopposition"].toString()
                     txinfo.text = document.data["businessinfo"].toString()
                     txnum.text = document.data["numofperson"].toString()
-                    txpay.text = document.data["hourlypay"].toString()
+                    txpay.text = document.data["hourlypay"].toString() +" 원"
                     txtime.text = document.data["st"].toString()+"~"+document.data["fn"].toString()
                     val latitude=document.data["latitude"] as Double
                     val longtitude=document.data["longtitude"] as Double
