@@ -40,6 +40,7 @@ import kotlinx.android.synthetic.main.fragment_current_loc.*
 
 
 class AddADFragment : Fragment(),OnMapReadyCallback {
+    var FN =""
     private lateinit var rootView:View
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
@@ -233,6 +234,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         textWatcher()
         fabMain.setOnClickListener{toggleFab()}
         //알바 시작 종료 numberpicker세팅
+
         val hourArray :Array<String> = arrayOf("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24")
         val minuteArray :Array<String> =arrayOf("00","05","10","15","20","25","30","35","40","45","50","55")
         stDay.minValue=1
@@ -312,8 +314,23 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
             val fnday = fnDay.value//종료 날짜
             val fnhour = fnHour.value//종료 시간
             val fnminute = fnMinute.value*5//종료 분
+
             val st:String  = stday.toString() + "일" + sthour.toString() + "시" + stminute.toString() + "분"//알바시작
-            val fn:String  = fnday.toString() + "일" + fnhour.toString() + "시" + fnminute.toString() + "분"//알바종료
+            val fn:String =  fnday.toString() + "일" + fnhour.toString() + "시" + fnminute.toString() + "분"//알바 종료
+
+            var FNday = ""//종료 날짜
+            if(fnDay.value<10){ FNday ="0"+ fnDay.value.toString()}
+            else {FNday=fnDay.value.toString()}
+
+            var FNhour = ""//종료 시간
+            if(fnHour.value<10){FNhour="0"+fnHour.value.toString()}
+            else {FNhour = fnHour.value.toString()}
+
+            var FNminute = ""//종료 분
+            if(fnMinute.value<2){FNminute="0"+(fnMinute.value*5).toString()}
+            else{FNminute = (fnMinute.value*5).toString() }
+
+            FN  = FNday + FNhour + FNminute //알바종료
 
             //입력값 확인
             if(edPerson.text!!.isNotEmpty()){
@@ -357,20 +374,12 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
                 builder.setTitle("등록")
                 builder.setMessage("등록하시겠습니까?")
                 builder.setPositiveButton("확인"){_,_->
-                    jobAddb(
-                        shopname,
-                        shopposition,
-                        businessinfo,
-                        priorityreq,
-                        hourlypay,
-                        age1,
-                        age2,
-                        st,
-                        fn,
-                        sex,
-                        numperson
-                    )
+                    val timestamp = System.currentTimeMillis()
                     val user = FirebaseAuth.getInstance().currentUser
+                    val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
+                        user?.uid,photoUri.toString(),0,timestamp,latlng.latitude,latlng.longitude,0,FN
+                    )
+                    db.collection("jobads").document(shopname).set(jobad) //
                     var map = mutableMapOf<String,Any>()
                     if (user != null) {
                         map["uid"] =user.uid.toString()
@@ -510,27 +519,7 @@ class AddADFragment : Fragment(),OnMapReadyCallback {
         fnDay.value = day
     }
     @RequiresApi(Build.VERSION_CODES.M)
-    fun jobAddb(
-        shopname:String,
-        shopposition:String,
-        businessinfo:String,
-        priorityreq:String,
-        hourlypay:Int,
-        age1:Int,
-        age2:Int,
-        st:String,
-        fn:String,
-        sex:String,
-        numperson:Int
-    ) {
-        val user = FirebaseAuth.getInstance().currentUser
-        val db = FirebaseFirestore.getInstance()
-        val timestamp = System.currentTimeMillis()
-        val jobad = JobAd(shopname,shopposition,businessinfo,priorityreq,hourlypay,age1,age2,sex,st,fn,numperson,
-            user?.uid,photoUri.toString(),0,timestamp,latlng.latitude,latlng.longitude,0
-        )
-        db.collection("jobads").document(shopname).set(jobad) //DB에 shopname을 기준으로 저장
-    }
+
 
     companion object {
         fun newInstance(): AddADFragment = AddADFragment()

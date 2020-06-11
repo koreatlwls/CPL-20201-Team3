@@ -21,6 +21,7 @@ public class JobAd {
     private double latitude;
     private double longtitude;
     private Integer recruitnum;
+    private String time;
     public JobAd() {}
 
     public JobAd(String shopname, String shopposition) {
@@ -28,7 +29,7 @@ public class JobAd {
         this.shopposition = shopposition;
     }
     public JobAd(String shopname, String shopposition, String businessinfo, String priorityreq, Integer hourlypay, Integer age1, Integer age2,
-                 String sex,String st,String fn, Integer numofperson, String uid,String photouri, Integer state, Long timestamp,Double latitude,Double longtitude,Integer recruitnum){
+                 String sex,String st,String fn, Integer numofperson, String uid,String photouri, Integer state, Long timestamp,Double latitude,Double longtitude,Integer recruitnum,String time){
         this.shopname = shopname;
         this.shopposition = shopposition;
         this.businessinfo = businessinfo;
@@ -47,7 +48,10 @@ public class JobAd {
         this.latitude=latitude;
         this.longtitude=longtitude;
         this.recruitnum=recruitnum;
+        this.time=time;
     }
+    public String getTime(){return time;}
+    public void setTime(String time){this.time=time;}
     public Integer getRecruitnum(){return recruitnum;}
     public void setRecruitnum(Integer recruitnum){this.recruitnum=recruitnum;}
     public double getLatitude() { return latitude; }

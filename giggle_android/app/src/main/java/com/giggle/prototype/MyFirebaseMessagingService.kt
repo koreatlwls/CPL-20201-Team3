@@ -86,10 +86,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     var map = mutableMapOf<String,Any>()
                     map["shopname"] = shopname.toString()
                     map["shopposition"] = shopposition.toString()
+                    map["state"] = 0
                     if (user != null) {
                         db.collection("recruit_shop").document(user.uid).update("shop",FieldValue.arrayUnion(map)).addOnCompleteListener{
                             if(it.isSuccessful){
-                                println("업데이트")
                             }
                         }
                     }

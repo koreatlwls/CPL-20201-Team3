@@ -2,20 +2,15 @@ package com.giggle.prototype
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_processing_ad.*
-import kotlin.reflect.typeOf
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ProcessingAdActivity : AppCompatActivity() {
     private val user = FirebaseAuth.getInstance().currentUser
@@ -44,7 +39,24 @@ class ProcessingAdActivity : AppCompatActivity() {
                         val list = document.toObject(ProcessingAdDocument::class.java)!!.shop
 
                         for (it in list) {
-                            resList.add(ProcessingAd(it.shopname, it.shopposition))
+                            if(it.state==0){
+                                resList.add(ProcessingAd(it.shopname, it.shopposition,it.state))
+                            }
+                            db!!.collection("jobads").document(it.shopname).get().addOnSuccessListener { result->
+                                val cal = Calendar.getInstance()
+                                val df: DateFormat = SimpleDateFormat("ddHHmm")
+                                val finish = result.data?.get("time").toString()
+                                val server = df.format(cal.time)
+                                if(Integer.parseInt(finish)<Integer.parseInt(server)){
+                                    val map = mutableMapOf<String,Any>()
+                                    map["shopname"]=it.shopname
+                                    map["shopposition"]=it.shopposition
+                                    map["state"]=0
+                                    db!!.collection("recruit_shop").document(uid).update("shop",FieldValue.arrayRemove(map))
+                                    map["state"]=1
+                                    db!!.collection("recruit_shop").document(uid).update("shop",FieldValue.arrayUnion(map))
+                                }
+                            }
                         }
 
                         val adapter = ProcessingAdAdapter(resList)

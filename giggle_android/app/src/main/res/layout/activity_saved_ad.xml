@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SavedAdActivity">
+    tools:context=".ProcessingAdActivity">
 
     <TextView
-        android:id="@+id/savedAdText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/txdetail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3a5994"
+        android:gravity="center_horizontal"
         android:text="아르바이트 이력"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#fff"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savedAdRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="379dp"
+        android:layout_height="651dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

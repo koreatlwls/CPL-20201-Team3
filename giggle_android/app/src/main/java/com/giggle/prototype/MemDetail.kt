@@ -92,7 +92,6 @@ class MemDetail : AppCompatActivity(),OnMapReadyCallback{
                 mage = Integer.parseInt(txage.text.toString())
                 db.collection("jobads").document(shopname).update("parttimer",FieldValue.arrayUnion(touid)).addOnCompleteListener{
                     if(it.isSuccessful){
-                        println("업데이트")
                     }
                 }
                 val title = "채용"
