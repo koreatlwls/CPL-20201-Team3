@@ -11,8 +11,8 @@ import UIKit
 class AdDetailCell: UITableViewCell {
     @IBOutlet weak var shopImageView: UIImageView!
     @IBOutlet weak var adTitleLabel: UILabel!
-    @IBOutlet weak var shopDayLabel: UILabel!
-    @IBOutlet weak var shopTimeLabel: UILabel!
+    @IBOutlet weak var shopStartLabel: UILabel!
+    @IBOutlet weak var shopEndLabel: UILabel!
     @IBOutlet weak var shopWageLabel: UILabel!
 
     override func awakeFromNib() {

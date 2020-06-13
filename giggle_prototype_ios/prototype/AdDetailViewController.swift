@@ -19,7 +19,6 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var adTitleLabel: UILabel!
     @IBOutlet weak var wageLabel: UILabel!
-    @IBOutlet weak var workDayLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var workDetailLabel: UILabel!
@@ -80,9 +79,7 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
         wageLabel.clipsToBounds = true
         wageLabel.layer.cornerRadius = 6
         let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy년 MM월 dd일"
-        workDayLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.workDay)
-        dateformatter.dateFormat = "HH시 mm분"
+        dateformatter.dateFormat = "yyyy/MM/dd HH:mm"
         startTimeLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.startTime)
         endTimeLabel.text = dateformatter.string(from: ShowAdViewController.selectedAd.endTime)
         workDetailLabel.text = ShowAdViewController.selectedAd.workDetail
@@ -117,7 +114,7 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
             ageLabel.text = "무관"
         }
         else {
-            ageLabel.text = "\(String(ShowAdViewController.selectedAd.preferMinAge)) ~ \(String(ShowAdViewController.selectedAd.preferMaxAge))세"
+            ageLabel.text = "\(String(ShowAdViewController.selectedAd.preferMinAge))세 ~ \(String(ShowAdViewController.selectedAd.preferMaxAge))세"
         }
         preferenceDetailLabel.text = ShowAdViewController.selectedAd.preferInfo
         shopNameLabel.text = ShowAdViewController.selectedAd.name
@@ -220,8 +217,6 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                 (querySnapshot, err2) in
                 let data = querySnapshot?.documents[0].data()
                 token = data!["fcmToken"] as? String
-                print(token)
-                print(email)
                 let param = [
                     "to": token ?? "",
                     "data": [
@@ -251,17 +246,17 @@ class AdDetailViewController: UIViewController, UIScrollViewDelegate {
                     let task = URLSession.shared.dataTask(with: request) {
                         (data, response, error) in
                         guard let data = data, error == nil else {
-                            print("error=\(error)")
+                            print("error=\(String(describing: error))")
                             return
                         }
                         
                         if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                             print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                            print("response = \(response)")
+                            print("response = \(String(describing: response))")
                         }
                         
                         let responseString = String(data: data, encoding: .utf8)
-                        print("responseString = \(responseString)")
+                        print("responseString = \(String(describing: responseString))")
                     }
                     
                     task.resume()

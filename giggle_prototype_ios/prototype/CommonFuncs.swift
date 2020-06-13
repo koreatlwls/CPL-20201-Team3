@@ -24,4 +24,15 @@ class CommonFuncs {
         view.addSubview(toastLabel)
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview()})
     }
+    
+    static func setTextFieldUI(textField: UITextField, offset: CGFloat) {
+        textField.borderStyle = .none
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: textField.frame.size.height-offset, width: textField.frame.width, height: 1)
+        print(textField.frame.width)
+        border.backgroundColor = UIColor.darkGray.cgColor
+        textField.layer.addSublayer(border)
+        textField.textAlignment = .left
+        textField.textColor = .black
+    }
 }

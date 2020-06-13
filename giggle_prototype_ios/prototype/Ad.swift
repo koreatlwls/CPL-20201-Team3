@@ -25,7 +25,6 @@ class Ad {
     var recruitFieldArr: [String]!
     var recruitNumOfPeopleArr: [Int]!
     var adTitle: String!
-    var workDay: Date!
     var startTime: Date!
     var endTime: Date!
     var wage: Int!
@@ -45,7 +44,7 @@ class Ad {
     //only for PartTimeListViewController
     var applyState: Int!
     
-    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, day workDay: Date!, start startTime: Date, end endTime: Date, wage: Int, workDetail: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
+    init(email uploader: String, name: String, type: String, lat latitude: Double, lng longitude: Double, range: Int, title adTitle: String!, start startTime: Date, end endTime: Date, wage: Int, workDetail: String, preferGender: Int, preferMinAge: Int, preferMaxAge: Int, preferInfo: String) {
         self.uploader = uploader
         self.name = name
         self.type = type
@@ -53,7 +52,6 @@ class Ad {
         self.longitude = longitude
         self.range = range
         self.adTitle = adTitle
-        self.workDay = workDay
         self.startTime = startTime
         self.endTime = endTime
         self.wage = wage
