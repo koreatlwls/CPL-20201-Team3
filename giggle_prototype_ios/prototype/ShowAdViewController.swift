@@ -62,10 +62,9 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = AdTableView.dequeueReusableCell(withIdentifier: "AdDetailCell", for: indexPath) as! AdDetailCell
         cell.adTitleLabel.text = "\(ads[indexPath.row].adTitle ?? "")"
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        cell.shopDayLabel.text = "\(dateFormatter.string(for: ads[indexPath.row].workDay) ?? "")"
-        dateFormatter.dateFormat = "HH:mm"
-        cell.shopTimeLabel.text = "\(dateFormatter.string(for: ads[indexPath.row].startTime) ?? "") ~ \(dateFormatter.string(from: ads[indexPath.row].endTime))"
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        cell.shopStartLabel.text = "\(dateFormatter.string(for: ads[indexPath.row].startTime) ?? "") ~"
+        cell.shopEndLabel.text = "\(dateFormatter.string(from: ads[indexPath.row].endTime))"
         cell.shopWageLabel.text = "\(ads[indexPath.row].wage ?? 0)원"
         cell.shopImageView.image = ads[indexPath.row].images[0]
         return cell
@@ -91,16 +90,13 @@ class ShowAdViewController: UIViewController, UITableViewDataSource, UITableView
                 db.collection("AdData").document(LoginViewController.user.adsID[index]).getDocument() {
                     (document, err) in
                     let data = document?.data()
-                    let workDayString = data!["workDay"] as! String
                     let startTimeString = data!["startTime"] as! String
                     let endTimeString = data!["endTime"] as! String
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyyMMdd"
-                    let workDay = dateFormatter.date(from: workDayString)
-                    dateFormatter.dateFormat = "HH:mm"
+                    dateFormatter.dateFormat = "yyyyMMdd HH:mm"
                     let startTime = dateFormatter.date(from: startTimeString)
                     let endTime = dateFormatter.date(from: endTimeString)
-                    let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
+                    let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
                     //분야/인원
                     let fieldCount = data!["fieldCount"] as! Int
                     ad.recruitFieldArr = [String]()

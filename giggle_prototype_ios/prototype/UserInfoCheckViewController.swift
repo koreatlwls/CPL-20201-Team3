@@ -31,27 +31,36 @@ class UserInfoCheckViewController: UIViewController {
         
         nameLabel.text = LoginViewController.user.name
         emailLabel.text = LoginViewController.user.email
-        switch LoginViewController.user.gender {
-        case 0: genderLabel.text = "남자"
-        case 1: genderLabel.text = "여자"
-        case 2: genderLabel.text = "미응답"
-        default:
-            break
-        }
-        ageLabel.text = String(LoginViewController.user.age)
-        contactLabel.text = LoginViewController.user.contact
-        
-        let db = Firestore.firestore()
-        db.collection("UserData").document(LoginViewController.user.docID).getDocument() {
-            (document, err) in
-            if let data = document?.data() {
-                if let hiredCount = data["hired"], let workedCount = data["worked"] {
-                    LoginViewController.user.hired = hiredCount as? Int
-                    LoginViewController.user.worked = workedCount as? Int
-                    self.hiredCountLabel.text = String(LoginViewController.user.hired)
-                    self.workedCountLabel.text = String(LoginViewController.user.worked)
+        if LoginViewController.user.member_state == 1 {
+            switch LoginViewController.user.gender {
+            case 0: genderLabel.text = "남자"
+            case 1: genderLabel.text = "여자"
+            case 2: genderLabel.text = "미응답"
+            default:
+                break
+            }
+            ageLabel.text = String(LoginViewController.user.age)
+            contactLabel.text = LoginViewController.user.contact
+            
+            let db = Firestore.firestore()
+            db.collection("UserData").document(LoginViewController.user.docID).getDocument() {
+                (document, err) in
+                if let data = document?.data() {
+                    if let hiredCount = data["hired"], let workedCount = data["worked"] {
+                        LoginViewController.user.hired = hiredCount as? Int
+                        LoginViewController.user.worked = workedCount as? Int
+                        self.hiredCountLabel.text = String(LoginViewController.user.hired)
+                        self.workedCountLabel.text = String(LoginViewController.user.worked)
+                    }
                 }
             }
+        }
+        else {
+            genderLabel.text = ""
+            ageLabel.text = ""
+            contactLabel.text = ""
+            hiredCountLabel.text = ""
+            workedCountLabel.text = ""
         }
     }
 }

@@ -14,6 +14,7 @@ import Firebase
 
 class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     static var childView: UIViewController!
+    static var drawed: Int!
     var errorDetected: Int!
     let queue = DispatchQueue(label: "AddAdViewController")
     
@@ -51,12 +52,15 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var minimumInputFieldCount = 1.0
     
     //근무 정보 관련
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var adTitleTextField: UITextField!
-    @IBOutlet weak var workDayPicker: UIDatePicker!
-    @IBOutlet weak var startTimePicker: UIDatePicker!
-    @IBOutlet weak var endTimePicker: UIDatePicker!
+    @IBOutlet weak var startPicker: UIDatePicker!
+    @IBOutlet weak var endPicker: UIDatePicker!
     @IBOutlet weak var wageTextField: UITextField!
     @IBOutlet weak var workDetailTextView: UITextView!
+    var hour = 0
+    var minute = 0
+    @IBOutlet weak var expectedTotalWageLabel: UILabel!
     
     //기타 우대사항 관련
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
@@ -170,18 +174,14 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
             
             if errorDetected == 0 {
-                let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyyMMdd"
-                let curDateString = dateformatter.string(from: Date())
-                let workDayString = dateformatter.string(from: workDayPicker.date)
                 let curDate = Date()
-                let startTime = startTimePicker.date
-                let endTime = endTimePicker.date
+                let startTime = startPicker.date
+                let endTime = endPicker.date
                 if isTextFieldEmpty(adTitleTextField) {
                     warning.message = "광고 제목을 입력해주세요."
                     errorDetected = 1
                 }
-                else if curDateString == workDayString {
+                else {
                     if Int(startTime.timeIntervalSince(curDate)) <= 0 {
                         warning.message = "시작 시각이 현재 시각보다 늦습니다. 시작 시각을 재설정해주세요."
                         errorDetected = 1
@@ -190,8 +190,6 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         warning.message = "종료 시각이 현재 시각보다 늦습니다. 종료 시각을 재설정해주세요."
                         errorDetected = 1
                     }
-                }
-                else {
                     if Int(endTime.timeIntervalSince(startTime)) <= 0 {
                         warning.message = "종료 시각이 시작 시각보다 빠릅니다. 종료 시각을 재설정해주세요."
                         errorDetected = 1
@@ -253,10 +251,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         maxAge = Int(self.maxAgeTextField.text!)!
                     }
                     let range = Int(self.rangeTextField.text!)!
-                    let dateformatter1 = DateFormatter()
-                    let dateformatter2 = DateFormatter()
-                    dateformatter1.dateFormat = "yyyyMMdd"
-                    dateformatter2.dateFormat = "HH:mm"
+                    let dateformatter = DateFormatter()
+                    dateformatter.dateFormat = "yyyyMMdd HH:mm"
                     //DB 저장 작업
                     let db = Firestore.firestore()
                     var ref: DocumentReference? = nil
@@ -269,9 +265,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         "longitude": self.longitude!,
                         "range": range,
                         "adTitle": self.adTitleTextField.text!,
-                        "workDay": dateformatter1.string(from: self.workDayPicker.date),
-                        "startTime": dateformatter2.string(from: self.startTimePicker.date),
-                        "endTime": dateformatter2.string(from: self.endTimePicker.date),
+                        "startTime": dateformatter.string(from: self.startPicker.date),
+                        "endTime": dateformatter.string(from: self.endPicker.date),
                         "wage": Int(self.wageTextField.text!)!,
                         "workDetail": self.workDetailTextView.text!,
                         "preferGender": self.genderSegmentedControl.selectedSegmentIndex,
@@ -356,6 +351,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 (parentInputFieldStackView.subviews[index].subviews[1].subviews[1] as! UITextField).text = ""
                 (parentInputFieldStackView.subviews[index].subviews[0].subviews[1] as! UITextField).delegate = self
                 (parentInputFieldStackView.subviews[index].subviews[1].subviews[1] as! UITextField).delegate = self
+                CommonFuncs.setTextFieldUI(textField: (parentInputFieldStackView.subviews[index].subviews[0].subviews[1] as! UITextField), offset: -5)
+                CommonFuncs.setTextFieldUI(textField: (parentInputFieldStackView.subviews[index].subviews[1].subviews[1] as! UITextField), offset: -5)
                 currentInputFieldCount = sender.value
             } catch {
                 print(error)
@@ -449,8 +446,8 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         self.currentInputFieldCount = 1.0
         self.adTitleTextField.text = ""
-        self.startTimePicker.date = Date()
-        self.endTimePicker.date = Date()
+        self.startPicker.date = Date()
+        self.endPicker.date = Date()
         self.wageTextField.text = ""
         self.workDetailTextView.text = ""
         self.genderSegmentedControl.selectedSegmentIndex = 0
@@ -498,8 +495,9 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
+        print("view will appear")
         navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = true
     }
@@ -507,6 +505,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("view did load")
         //ImageView Gesture 등록
         for index in 0..<shopImageCollection.count {
             shopImageCollection[index].image = empty_image
@@ -559,10 +558,53 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         AddAdViewController.childView = self.children[0]
         
         //DatePicker 설정
-        workDayPicker.minimumDate = Date()
+        startPicker.minimumDate = Date()
+        endPicker.minimumDate = Date()
         
         availableLabel.numberOfLines = 0
         availableLabel.lineBreakMode = .byWordWrapping
+        
+        AddAdViewController.drawed = 0
+        
+        startPicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        endPicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+    }
+    
+    @objc func datePickerValueChanged() {
+        let sec = endPicker.date.timeIntervalSince(startPicker.date)
+        print(sec)
+        var sec_int = Int(sec)
+        print(sec_int)
+        hour = sec_int / 3600
+        sec_int %= 3600
+        minute = sec_int/60
+        timeLabel.text = "\(String(hour)) 시간 \(String(minute)) 분"
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+     
+        print("view did layout subviews")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if AddAdViewController.drawed == 0 {
+            //TextField UI 설정
+            CommonFuncs.setTextFieldUI(textField: nameTextField, offset: 10)
+            CommonFuncs.setTextFieldUI(textField: typeTextField, offset: 10)
+            CommonFuncs.setTextFieldUI(textField: inputFieldStackView.subviews[0].subviews[1] as! UITextField, offset: 10)
+            CommonFuncs.setTextFieldUI(textField: inputFieldStackView.subviews[1].subviews[1] as! UITextField, offset: 10)
+            CommonFuncs.setTextFieldUI(textField: wageTextField, offset: 0)
+            wageTextField.textAlignment = .right
+            CommonFuncs.setTextFieldUI(textField: adTitleTextField, offset: 10)
+            CommonFuncs.setTextFieldUI(textField: minAgeTextField, offset: 0)
+            CommonFuncs.setTextFieldUI(textField: maxAgeTextField, offset: 0)
+            CommonFuncs.setTextFieldUI(textField: inputTextField, offset: 8)
+            CommonFuncs.setTextFieldUI(textField: rangeTextField, offset: 2)
+            AddAdViewController.drawed = 1
+        }
     }
     
     @objc private func hideKeyboard(_ sender: UITapGestureRecognizer) {
@@ -578,7 +620,6 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
             db.collection("UserData").whereField("email", isEqualTo: email).getDocuments {
                 (querySnapshot, err) in
                 let document = querySnapshot?.documents[0]
-                print(document?.documentID)
                 db.collection("UserData").document(document?.documentID ?? "").collection("ReceivedAd").addDocument(data: [
                     "docID": self.tempDocID ?? "",
                     "state": 0
@@ -619,17 +660,17 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 let task = URLSession.shared.dataTask(with: request) {
                     (data, response, error) in
                     guard let data = data, error == nil else {
-                        print("error=\(error)")
+                        print("error=\(String(describing: error))")
                         return
                     }
                     
                     if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                         print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                        print("response = \(response)")
+                        print("response = \(String(describing: response))")
                     }
                     
                     let responseString = String(data: data, encoding: .utf8)
-                    print("responseString = \(responseString)")
+                    print("responseString = \(String(describing: responseString))")
                 }
                 
                 task.resume()
@@ -705,6 +746,14 @@ extension AddAdViewController: UITextFieldDelegate {
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: true)
         return true
+    }
+    
+    @IBAction func calculateExpectedWage () {
+        if let wage_str = wageTextField.text, let wage_int = Int(wage_str) {
+                var expected = hour*wage_int
+                expected += wage_int / 60 * minute
+                expectedTotalWageLabel.text = "예상 총 급여 : \(String(expected)) 원"
+        }
     }
 }
 

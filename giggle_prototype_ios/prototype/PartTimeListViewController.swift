@@ -77,6 +77,7 @@ class PartTimeListViewController: UIViewController, UITableViewDelegate, UITable
         
         dateTextField.placeholder = "ex) 20200604"
         dateTextField.delegate = self
+        CommonFuncs.setTextFieldUI(textField: dateTextField, offset: 10)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -98,10 +99,9 @@ class PartTimeListViewController: UIViewController, UITableViewDelegate, UITable
         let cell = appliedAdTableView.dequeueReusableCell(withIdentifier: "AppliedAdCell", for: indexPath) as! AppliedAdCell
         cell.adTitleLabel.text = "\(adsResult[indexPath.row].adTitle ?? "")"
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        cell.shopDayLabel.text = "\(dateFormatter.string(for: adsResult[indexPath.row].workDay) ?? "")"
-        dateFormatter.dateFormat = "HH:mm"
-        cell.shopTimeLabel.text = "\(dateFormatter.string(for: adsResult[indexPath.row].startTime) ?? "") ~ \(dateFormatter.string(from: adsResult[indexPath.row].endTime))"
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm ~"
+        cell.shopStartLabel.text = "\(dateFormatter.string(for: adsResult[indexPath.row].startTime) ?? "") ~ "
+        cell.shopEndLabel.text = "\(dateFormatter.string(from: adsResult[indexPath.row].endTime))"
         cell.shopWageLabel.text = "\(adsResult[indexPath.row].wage ?? 0)원"
         cell.shopImageView.image = adsResult[indexPath.row].images[0]
         
@@ -212,16 +212,13 @@ class PartTimeListViewController: UIViewController, UITableViewDelegate, UITable
         db.collection("AdData").document(docID).getDocument() {
             (document, err) in
             let data = document?.data()
-            let workDayString = data!["workDay"] as! String
             let startTimeString = data!["startTime"] as! String
             let endTimeString = data!["endTime"] as! String
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyyMMdd"
-            let workDay = dateFormatter.date(from: workDayString)
-            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.dateFormat = "yyyyMMdd HH:mm"
             let startTime = dateFormatter.date(from: startTimeString)
             let endTime = dateFormatter.date(from: endTimeString)
-            let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
+            let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
             ad.applyState = inp_state
             //분야/인원
             let fieldCount = data!["fieldCount"] as! Int
@@ -260,17 +257,14 @@ class PartTimeListViewController: UIViewController, UITableViewDelegate, UITable
         db.collection("AdData").document(docID).getDocument() {
             (document, err) in
             let data = document?.data()
-            let workDayString = data!["workDay"] as! String
-            if workDayString == date {
-                let startTimeString = data!["startTime"] as! String
+            let startTimeString = data!["startTime"] as! String
+            if startTimeString.hasPrefix(date) {
                 let endTimeString = data!["endTime"] as! String
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyyMMdd"
-                let workDay = dateFormatter.date(from: workDayString)
-                dateFormatter.dateFormat = "HH:mm"
+                dateFormatter.dateFormat = "yyyyMMdd HH:mm"
                 let startTime = dateFormatter.date(from: startTimeString)
                 let endTime = dateFormatter.date(from: endTimeString)
-                let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, day: workDay!, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
+                let ad = Ad.init(email: data!["Uploader"] as! String, name: data!["name"] as! String, type: data!["type"] as! String, lat: data!["latitude"] as! Double, lng: data!["longitude"] as! Double, range: data!["range"] as! Int, title: data!["adTitle"] as? String, start: startTime!, end: endTime!, wage: data!["wage"] as! Int, workDetail: data!["workDetail"] as! String, preferGender: data!["preferGender"] as! Int, preferMinAge: data!["preferMinAge"] as! Int, preferMaxAge: data!["preferMaxAge"] as! Int, preferInfo: data!["preferInfo"] as! String)
                 ad.applyState = inp_state
                 //분야/인원
                 let fieldCount = data!["fieldCount"] as! Int
