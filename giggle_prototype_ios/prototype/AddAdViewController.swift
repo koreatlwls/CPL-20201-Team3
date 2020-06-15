@@ -40,6 +40,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var longitude: Double!
     @IBOutlet weak var rangeTextField: UITextField!
     @IBOutlet weak var availableLabel: UILabel!
+    @IBOutlet weak var mapContainerView: UIView!
     var availableCount: Int!
     var tokens: [String]!
     var emails: [String]!
@@ -544,12 +545,13 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         maxAgeTextField.delegate = self
         inputTextField.delegate = self
         rangeTextField.delegate = self
+        adTitleTextField.delegate = self
         
         //TextView Delegate 설정
         workDetailTextView.delegate = self
         preferenceTextView.delegate = self
         
-        addKeyboardNotification()
+        //addKeyboardNotification()
         
         //ScrollView Gesture 추가
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -678,7 +680,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    private func addKeyboardNotification() {
+    /*private func addKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -696,7 +698,7 @@ class AddAdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-    }
+    }*/
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.scrollView.endEditing(true)
@@ -719,27 +721,30 @@ extension AddAdViewController: UITextFieldDelegate {
             scrollViewYOffset = 50
         }
         else if textField == wageTextField {
-            scrollViewYOffset = 630 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 660 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
         }
         else if textField == minAgeTextField || textField == maxAgeTextField {
-            scrollViewYOffset = 981 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 760 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
+        }
+        else if textField == adTitleTextField {
+            scrollViewYOffset = 870 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
         }
         else if textField == inputTextField {
-            scrollViewYOffset = 1270 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 1290 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
         }
         else if textField == rangeTextField {
-            scrollViewYOffset = 1300 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 1300 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20) + Int(self.mapContainerView.frame.height)
         }
         else {
             for index in 0..<Int(self.currentInputFieldCount) {
                 print(index)
                 if textField == (self.parentInputFieldStackView.subviews[index+1].subviews[0].subviews[1] as! UITextField) {
-                    scrollViewYOffset = 340 + index*100
+                    scrollViewYOffset = 200 + index*Int(inputFieldStackView.frame.height+20)
                     break
                 }
                 else if textField ==
                     (self.parentInputFieldStackView.subviews[index+1].subviews[1].subviews[1] as! UITextField) {
-                    scrollViewYOffset = 390 + index*100
+                    scrollViewYOffset = 220 + index*Int(inputFieldStackView.frame.height+20)
                     break
                 }
             }
@@ -748,7 +753,7 @@ extension AddAdViewController: UITextFieldDelegate {
         return true
     }
     
-    @IBAction func calculateExpectedWage () {
+    @IBAction func calculateExpectedWage() {
         if let wage_str = wageTextField.text, let wage_int = Int(wage_str) {
                 var expected = hour*wage_int
                 expected += wage_int / 60 * minute
@@ -761,10 +766,10 @@ extension AddAdViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         var scrollViewYOffset = 0
         if textView == workDetailTextView {
-            scrollViewYOffset = 725 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 1020 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
         }
         else if textView == preferenceTextView {
-            scrollViewYOffset = 1076 + (Int(self.currentInputFieldCount)-1)*100
+            scrollViewYOffset = 1190 + (Int(self.currentInputFieldCount)-1)*Int(inputFieldStackView.frame.height+20)
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: true)
         return true

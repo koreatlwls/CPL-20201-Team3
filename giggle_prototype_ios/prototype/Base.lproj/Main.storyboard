@@ -980,7 +980,7 @@
                                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Qp-js-eKd">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="161.5" height="30"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                             </textField>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원 / 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRb-p2-StG">
                                                                                 <rect key="frame" x="171.5" y="0.0" width="58.5" height="30"/>
@@ -1054,7 +1054,7 @@
                                                                                             <constraint firstAttribute="width" constant="40" id="ZHf-jw-6CT"/>
                                                                                         </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6x-Ro-DGG">
                                                                                         <rect key="frame" x="40" y="0.0" width="20" height="30"/>
@@ -1071,7 +1071,7 @@
                                                                                             <constraint firstAttribute="width" constant="40" id="BhZ-xX-UDx"/>
                                                                                         </constraints>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                     </textField>
                                                                                 </subviews>
                                                                             </stackView>
@@ -1333,6 +1333,7 @@
                         <outlet property="inputFieldStackView" destination="zNk-ed-Bdh" id="klj-X9-Tp6"/>
                         <outlet property="inputFieldStepper" destination="q2M-xc-IAg" id="re9-26-bIf"/>
                         <outlet property="inputTextField" destination="2ZP-Vd-YPf" id="5rH-dE-SS7"/>
+                        <outlet property="mapContainerView" destination="VcG-hD-UdJ" id="NCC-2G-9Se"/>
                         <outlet property="maxAgeTextField" destination="Dgw-DJ-RWS" id="s26-bQ-yBn"/>
                         <outlet property="minAgeTextField" destination="YHZ-s1-gbI" id="Nwj-lr-bLn"/>
                         <outlet property="nameTextField" destination="BXi-NX-Zcy" id="Xzc-zX-gAJ"/>
